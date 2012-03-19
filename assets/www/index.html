@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<title>Yuukou Web'App :)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<link rel="stylesheet" href="jquery.mobile-1.0.1/jquery.mobile-1.0.1.min.css" />
+<script src="jquery.mobile-1.0.1/jquery-1.7.1.min.js"></script>
+<script src="jquery.mobile-1.0.1/jquery.mobile-1.0.1.min.js"></script>
+<!-- DEBUT DU SCRIPT -->
+
+<STYLE TYPE="text/css">
+<!--
+#cache {
+    position:absolute; top:200px; z-index:10; visibility:hidden;
+}
+-->
+</STYLE>
+<DIV ID="cache"><TABLE WIDTH=400 BGCOLOR=#000000 BORDER=0 CELLPADDING=2 CELLSPACING=0><TR>
+<TD ALIGN=center VALIGN=middle><TABLE WIDTH=100% BGCOLOR=#FFFFFF BORDER=0 CELLPADDING=0 CELLSPACING=0><TR>
+<TD ALIGN=center VALIGN=middle><BR><img src="../img/University_of_Westminster.png"/>
+<BR><BR></TD>  </TR></TABLE></TD>  </TR></TABLE></DIV>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+a = setTimeout("",55);
+var nava = (document.layers);
+var dom = (document.getElementById);
+var iex = (document.all);
+if (nava) { cach = document.cache }
+else if (dom) { cach = document.getElementById("cache").style }
+else if (iex) { cach = cache.style }
+else if (a=!0) { cach = cache.style }
+largeur = screen.width;
+cach.left = Math.round((largeur/2)-200);
+cach.visibility = "visible";
+
+function cacheOff()
+	{
+	cach.visibility = "hidden";
+	}
+window.onload = cacheOff
+
+</SCRIPT>
+
+</head>
+<body>
+<div data-role="page" id="home" data-theme="e">
+		<div data-role="header" data-position="fixed"></div>
+
+
+		<div data-role="footer" id="footer" data-theme="a"
+			data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#programme" id="chat" >Programme</a>
+					</li>
+
+					<li><a href="index.html" id="chat">News</a>
+
+					</li>
+					<li><a href="#" id="star" >Favoris</a>
+					</li>
+					<li><a href="#" id="map" >Carte</a>
+					</li>
+					<li><a href="#infos" id="notepad" >Infos</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+
+</html>
+
