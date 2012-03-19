@@ -1,6 +1,6 @@
-Yacine MAGHEZZI 			  *	
-Stage à WestMinster University		  *
-Création du fichier : Mardi 14 Mars 2012  *
+Yacine MAGHEZZI 			  			*	
+Stage à WestMinster University		  	*
+Création du fichier : Mardi 14 Mars 2012*
 ==========================================*
 
 A mettre toute les remarques et choses faites en plus :
@@ -14,3 +14,10 @@ Fichier note.txt
 
 Utilisation de github sous windows
 
+19/03/2012
+Git hub fonctionnel
+Nouvelles directives : 
+	- Utiliser un Servlet PHP qui nous permettra d'acceder au WEB service et les renvoyer les informations 
+	a l'application.
+	- Pareil pour les flux RSS fonctionnalitée a venir.
+	
