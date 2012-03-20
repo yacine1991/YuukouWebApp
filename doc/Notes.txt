@@ -1,4 +1,7 @@
-Creation d'un acces securisé a Github
+﻿Creation d'un acces securisé a Github
 http://help.github.com/linux-set-up-git/
 
 
+
+Utilisation de SOAP et PHP 5
+Acces a un reseau securisé HTTPS, Via SSL.

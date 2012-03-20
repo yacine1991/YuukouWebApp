@@ -4,6 +4,15 @@ TO DO list *
 Jeudi 15 mars 2012
 
 TO DO :
-Installer PhoneGap
-Deployer sur simulateur Android
-Deployer sur HTC
+Installer PhoneGap				Done	
+Deployer sur simulateur Android	Done
+Deployer sur HTC				Done
+
+Mardi 20 Mars 2012
+Se connecter a un Webservice non sercurisé et en recuperer la reponse  Done(Voir source dans /phpServlet)
+
+Securiser l'acces et la requete via la lib php_openssl
+lien : http://www.foujino-blog.be/2011/05/25/php-soap-ssl/
+Recupere une information du serveur
+
+

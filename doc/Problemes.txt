@@ -1,4 +1,6 @@
 Problemes rencontrés : 
 
+
 Comptabilité entre NuSOAP et WAMP, Car nusoap supporte pas le PHP 5 donc
 retrogradage en PHP4 et Apache Serveur 2.0.x
+=> Résolu : Repassage en PHP5 Ainsi que Apache 2.2
