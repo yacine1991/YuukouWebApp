@@ -13,6 +13,12 @@ Se connecter a un Webservice non sercurisé et en recuperer la reponse  Done(Voir
 
 Securiser l'acces et la requete via la lib php_openssl
 lien : http://www.foujino-blog.be/2011/05/25/php-soap-ssl/
-Recupere une information du serveur
+Recupere une information du serveur										done
+
+Tester avec une page HMTL si on peut recuperer les information de recuprere le php
+Faire marcher la conversation avec HTTPS
+
+
+
 
 

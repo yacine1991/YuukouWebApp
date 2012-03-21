@@ -20,4 +20,8 @@ Nouvelles directives :
 	- Utiliser un Servlet PHP qui nous permettra d'acceder au WEB service et les renvoyer les informations 
 	a l'application.
 	- Pareil pour les flux RSS fonctionnalitée a venir.
-	
+
+21/03/2012	
+Acces au Webservice de test, il est a present possible de recuperer la reponse de celui ci.
+Enregistrement l'envellope SOAP sous un fichier .xml avec la date de recu de la requete.
+Affichage de cette reponse au format HMTL.
