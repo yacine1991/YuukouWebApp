@@ -6,3 +6,5 @@ retrogradage en PHP4 et Apache Serveur 2.0.x
 => Résolu : Repassage en PHP5 Ainsi que Apache 2.2
 
 Probleme avec le certificat du WEB service de yuukou
+=> Erreur SOAPClient Invalid Header Security non resolue, donc je suis passé a autre chose
+
