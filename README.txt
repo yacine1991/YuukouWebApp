@@ -30,3 +30,6 @@ Affichage de cette réponse au format HMTL.
 Abandon du servlet PHP, après beaucoup d'essai infructueux, je suis finalement passé à un Servlet JSP beaucoup simple et efficace a créé via Netbeans.
 Je récupère la réponse du Web service sécurisé via SSL facilement, avec un affichage explicite parsable par la suite.
 Afin qu'il soit fonctionnel il suffisait d'ajouter un certificat auto signé dans le dossier .netbeans.
+
+27/03/2012
+
