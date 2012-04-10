@@ -7,7 +7,7 @@
 
     <h:head>
         <head>
-            <title>JSF 2.0 Hello World</title>
+            <title>Page principale</title>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
             <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
@@ -18,27 +18,23 @@
         </head>
     </h:head>
     <h:body>
-        <div data-role="page" id="home" data-theme="e">
+        <div data-role="page" id="home" data-theme="b">
 
-            <h3>JSF 2.0 Hello World Example - hello.xhtml</h3>
+            <h3>hello.xhtml</h3>
             <h:form>
-                <h:inputText value="#{helloBean.name}"></h:inputText>
+                <h:inputText value="#{roomList.name}"></h:inputText>
                 <h:commandButton value="Welcome Me" action="welcome"></h:commandButton>
             </h:form>
-            <div data-role="footer" id="footer" data-theme="a"
+            
+            
+            <div data-role="footer" id="footer" data-theme="b"
                  data-position="fixed">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#programme" id="chat" >Programme</a>
-                        </li>
-
-                        <li><a href="index.html" id="chat">News</a>
-
-                        </li>
+                        <li><a href="#home" id="chat" data-icon="home" class="icon-home">Home</a>
+                        </li>                   
                         <li><a href="#" id="star" >Favoris</a>
-                        </li>
-                        <li><a href="#" id="map" >Carte</a>
-                        </li>
+                        </li>                       
                         <li><a href="#infos" id="notepad" >Infos</a>
                         </li>
 

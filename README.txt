@@ -33,3 +33,6 @@ Afin qu'il soit fonctionnel il suffisait d'ajouter un certificat auto signé dan
 
 27/03/2012
 
+29/03/2012
+Premiere infrastructure de l'application via JSF et JSP
+Ajout des librairies tel que phonegap + Jquery mobile

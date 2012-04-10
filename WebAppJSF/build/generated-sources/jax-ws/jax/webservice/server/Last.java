@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="days" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -25,8 +26,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "last")
+@XmlType(name = "last", propOrder = {
+    "days"
+})
 public class Last {
 
+    protected int days;
+
+    /**
+     * Gets the value of the days property.
+     * 
+     */
+    public int getDays() {
+        return days;
+    }
+
+    /**
+     * Sets the value of the days property.
+     * 
+     */
+    public void setDays(int value) {
+        this.days = value;
+    }
 
 }

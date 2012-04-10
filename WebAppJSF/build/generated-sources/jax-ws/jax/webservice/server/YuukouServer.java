@@ -27,6 +27,7 @@ public interface YuukouServer {
 
     /**
      * 
+     * @param days
      * @return
      *     returns java.lang.String
      */
@@ -35,7 +36,180 @@ public interface YuukouServer {
     @RequestWrapper(localName = "last", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.Last")
     @ResponseWrapper(localName = "lastResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.LastResponse")
     @Action(input = "http://server.webservice.jax/YuukouServer/lastRequest", output = "http://server.webservice.jax/YuukouServer/lastResponse")
-    public String last();
+    public String last(
+        @WebParam(name = "days", targetNamespace = "")
+        int days);
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "checkConfigHealth", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.CheckConfigHealth")
+    @ResponseWrapper(localName = "checkConfigHealthResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.CheckConfigHealthResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/checkConfigHealthRequest", output = "http://server.webservice.jax/YuukouServer/checkConfigHealthResponse")
+    public String checkConfigHealth();
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "lastDefault", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.LastDefault")
+    @ResponseWrapper(localName = "lastDefaultResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.LastDefaultResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/lastDefaultRequest", output = "http://server.webservice.jax/YuukouServer/lastDefaultResponse")
+    public String lastDefault();
+
+    /**
+     * 
+     * @param idRoom
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "healthForRoom", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthForRoom")
+    @ResponseWrapper(localName = "healthForRoomResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthForRoomResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/healthForRoomRequest", output = "http://server.webservice.jax/YuukouServer/healthForRoomResponse")
+    public String healthForRoom(
+        @WebParam(name = "idRoom", targetNamespace = "")
+        String idRoom);
+
+    /**
+     * 
+     * @param last
+     * @param idUser
+     * @param who
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "searchHistoryUser", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.SearchHistoryUser")
+    @ResponseWrapper(localName = "searchHistoryUserResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.SearchHistoryUserResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/searchHistoryUserRequest", output = "http://server.webservice.jax/YuukouServer/searchHistoryUserResponse")
+    public String searchHistoryUser(
+        @WebParam(name = "idUser", targetNamespace = "")
+        String idUser,
+        @WebParam(name = "who", targetNamespace = "")
+        boolean who,
+        @WebParam(name = "last", targetNamespace = "")
+        boolean last);
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getListRooms", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetListRooms")
+    @ResponseWrapper(localName = "getListRoomsResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetListRoomsResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/getListRoomsRequest", output = "http://server.webservice.jax/YuukouServer/getListRoomsResponse")
+    public String getListRooms();
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "isCycleRunning", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.IsCycleRunning")
+    @ResponseWrapper(localName = "isCycleRunningResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.IsCycleRunningResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/isCycleRunningRequest", output = "http://server.webservice.jax/YuukouServer/isCycleRunningResponse")
+    public boolean isCycleRunning();
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "askMaintenance", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.AskMaintenance")
+    @ResponseWrapper(localName = "askMaintenanceResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.AskMaintenanceResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/askMaintenanceRequest", output = "http://server.webservice.jax/YuukouServer/askMaintenanceResponse")
+    public boolean askMaintenance();
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "endMaintenance", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.EndMaintenance")
+    @ResponseWrapper(localName = "endMaintenanceResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.EndMaintenanceResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/endMaintenanceRequest", output = "http://server.webservice.jax/YuukouServer/endMaintenanceResponse")
+    public boolean endMaintenance();
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "isMaintenanceScheduled", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.IsMaintenanceScheduled")
+    @ResponseWrapper(localName = "isMaintenanceScheduledResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.IsMaintenanceScheduledResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/isMaintenanceScheduledRequest", output = "http://server.webservice.jax/YuukouServer/isMaintenanceScheduledResponse")
+    public boolean isMaintenanceScheduled();
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getSitesInformation", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetSitesInformation")
+    @ResponseWrapper(localName = "getSitesInformationResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetSitesInformationResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/getSitesInformationRequest", output = "http://server.webservice.jax/YuukouServer/getSitesInformationResponse")
+    public String getSitesInformation();
+
+    /**
+     * 
+     * @param type
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getRoomsType", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetRoomsType")
+    @ResponseWrapper(localName = "getRoomsTypeResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetRoomsTypeResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/getRoomsTypeRequest", output = "http://server.webservice.jax/YuukouServer/getRoomsTypeResponse")
+    public String getRoomsType(
+        @WebParam(name = "type", targetNamespace = "")
+        String type);
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "who", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.Who")
+    @ResponseWrapper(localName = "whoResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.WhoResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/whoRequest", output = "http://server.webservice.jax/YuukouServer/whoResponse")
+    public String who();
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "healthResourcesReportForAllRooms", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthResourcesReportForAllRooms")
+    @ResponseWrapper(localName = "healthResourcesReportForAllRoomsResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthResourcesReportForAllRoomsResponse")
+    @Action(input = "http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsRequest", output = "http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsResponse")
+    public String healthResourcesReportForAllRooms();
 
     /**
      * 
@@ -69,30 +243,6 @@ public interface YuukouServer {
 
     /**
      * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getListRooms", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetListRooms")
-    @ResponseWrapper(localName = "getListRoomsResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetListRoomsResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/getListRoomsRequest", output = "http://server.webservice.jax/YuukouServer/getListRoomsResponse")
-    public String getListRooms();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "healthResourcesReportForAllRooms", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthResourcesReportForAllRooms")
-    @ResponseWrapper(localName = "healthResourcesReportForAllRoomsResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthResourcesReportForAllRoomsResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsRequest", output = "http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsResponse")
-    public String healthResourcesReportForAllRooms();
-
-    /**
-     * 
      * @param idRoom
      * @return
      *     returns java.lang.String
@@ -113,82 +263,10 @@ public interface YuukouServer {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getSitesInformation", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetSitesInformation")
-    @ResponseWrapper(localName = "getSitesInformationResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.GetSitesInformationResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/getSitesInformationRequest", output = "http://server.webservice.jax/YuukouServer/getSitesInformationResponse")
-    public String getSitesInformation();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkConfigHealth", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.CheckConfigHealth")
-    @ResponseWrapper(localName = "checkConfigHealthResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.CheckConfigHealthResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/checkConfigHealthRequest", output = "http://server.webservice.jax/YuukouServer/checkConfigHealthResponse")
-    public String checkConfigHealth();
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "who", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.Who")
-    @ResponseWrapper(localName = "whoResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.WhoResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/whoRequest", output = "http://server.webservice.jax/YuukouServer/whoResponse")
-    public String who();
-
-    /**
-     * 
-     * @param idRoom
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "healthForRoom", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthForRoom")
-    @ResponseWrapper(localName = "healthForRoomResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthForRoomResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/healthForRoomRequest", output = "http://server.webservice.jax/YuukouServer/healthForRoomResponse")
-    public String healthForRoom(
-        @WebParam(name = "idRoom", targetNamespace = "")
-        String idRoom);
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "healthForAllRooms", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthForAllRooms")
     @ResponseWrapper(localName = "healthForAllRoomsResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.HealthForAllRoomsResponse")
     @Action(input = "http://server.webservice.jax/YuukouServer/healthForAllRoomsRequest", output = "http://server.webservice.jax/YuukouServer/healthForAllRoomsResponse")
     public String healthForAllRooms();
-
-    /**
-     * 
-     * @param last
-     * @param idUser
-     * @param who
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "searchHistoryUser", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.SearchHistoryUser")
-    @ResponseWrapper(localName = "searchHistoryUserResponse", targetNamespace = "http://server.webservice.jax/", className = "jax.webservice.server.SearchHistoryUserResponse")
-    @Action(input = "http://server.webservice.jax/YuukouServer/searchHistoryUserRequest", output = "http://server.webservice.jax/YuukouServer/searchHistoryUserResponse")
-    public String searchHistoryUser(
-        @WebParam(name = "idUser", targetNamespace = "")
-        String idUser,
-        @WebParam(name = "who", targetNamespace = "")
-        boolean who,
-        @WebParam(name = "last", targetNamespace = "")
-        boolean last);
 
     /**
      * 

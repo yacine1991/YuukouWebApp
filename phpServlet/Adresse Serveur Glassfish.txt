@@ -1,1 +1,0 @@
-https://caribou.cscs.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?WSDL

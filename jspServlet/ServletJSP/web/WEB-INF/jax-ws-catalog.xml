@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="https://yuukou2.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?wsdl" uri="wsdl/yuukou2.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.wsdl"/>
-    <system systemId="https://yuukou2.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?xsd=1" uri="wsdl/yuukou2.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.xsd_1.xsd"/>
-</catalog>
