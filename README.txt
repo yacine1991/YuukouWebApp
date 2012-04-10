@@ -36,3 +36,9 @@ Afin qu'il soit fonctionnel il suffisait d'ajouter un certificat auto signé dan
 29/03/2012
 Premiere infrastructure de l'application via JSF et JSP
 Ajout des librairies tel que phonegap + Jquery mobile
+
+10/04/2012
+Remaniement total de l'application, avec creation de classe Room Et RoomList afin d'avoir une structure plus elaborée
+Application a laquelle nous avons ajouté le framework JQuery mobile
+Appel aussi de la methode getSitesInfo pour avoir plus de précisions sur l'endroit ou se trouve les salles.
+Prendre en charge la conversion de bytes en photo de getSitesInfos

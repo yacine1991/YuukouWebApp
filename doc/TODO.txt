@@ -18,6 +18,10 @@ Recupere une information du serveur										done
 Tester avec une page HMTL si on peut recuperer les information de recuprere le php
 Faire marcher la conversation avec HTTPS
 
+Mardi 10 Avril 2012 : 
+Changement de cap : 
+Utilisation de JSP et Java ainsi que un servlet pour dispatcher la reponse.
+Gerer le tableau de bytes de l'image du getSitesInfo
 
 
 

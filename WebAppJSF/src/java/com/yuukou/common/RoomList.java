@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 public class RoomList implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String name;
+   
     private String JSONstate;
     private String JSONmaintenance;
     private String JSONlastCycle;
@@ -21,6 +21,7 @@ public class RoomList implements Serializable {
         JSONcontent = new ArrayList<Room>();
         
     }
+    
 
     public String getJSONReason() {
         return JSONReason;
@@ -59,19 +60,35 @@ public class RoomList implements Serializable {
         this.JSONstate = JSONstate;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
+   
     public void addRoom(Room room){
         JSONcontent.add(room);
     }
 
+   public Room getRoom(String idRoom){
+       for (int i = 0; i < JSONcontent.size(); i++) {
+           if(JSONcontent.get(i).getIdRoom().equals(idRoom)){
+               return JSONcontent.get(i);
+           }
+       }
+       
+       return null;
+   }
+   public Room getRoom2(int i){
+      return JSONcontent.get(i); 
+   }
    
+   public Room get(int id){
+      if(id < 0 || id > JSONcontent.size()){
+          return null;
+      }
+      
+      return JSONcontent.get(id);
+   }
+   
+   public int getSize(){
+       return JSONcontent.size();
+   }
     
     
 }

@@ -8,3 +8,8 @@ retrogradage en PHP4 et Apache Serveur 2.0.x
 Probleme avec le certificat du WEB service de yuukou
 => Erreur SOAPClient Invalid Header Security non resolue, donc je suis passé a autre chose
 
+JSF : utilisation trop complexe et peu intuitive !
+=> Resolu : Changement de concept avec la creatino d' MCD comprenant des classes utiles a la connection ainsi qu'a Parsage JSON
+
+10/04/2012
+Tableau de bytes a convertir en image du getSitesInfos

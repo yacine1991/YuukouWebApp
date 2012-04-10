@@ -37,19 +37,20 @@ public class YuukouServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RoomList rl = new RoomList();
-       
+
         roomsStatus(rl);
-        
+        roomDescription(rl);
+
         String url = "/roomsInfos.jsp"; //relative url for display jsp page
         request.setAttribute("roomList", rl);
 
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
         rd.forward(request, response);
-        
-        
+
+
 //        response.setContentType("text/html;charset=UTF-8");
 //        PrintWriter out = response.getWriter();
 //        
@@ -84,7 +85,7 @@ public class YuukouServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
 
         processRequest(request, response);
     }
@@ -119,8 +120,11 @@ public class YuukouServlet extends HttpServlet {
         Object obj;
         Connection c = new Connection();
         String responsehealthForAllRooms = c.conhealthForAllRooms();
+
+
         try {
             obj = jp.parse(responsehealthForAllRooms);
+
         } catch (ParseException ex) {
             Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
             return;
@@ -140,7 +144,7 @@ public class YuukouServlet extends HttpServlet {
                 r.setIdRoom(jso.get("Room").toString());
                 r.setStatus(jso.get("State").toString());
                 r.setTypeResource(jso.get("TypeResources").toString());
-                
+
                 if (jso.get("State").equals("Available")) {
                     //a finir ajouter une listRooms pour l'
                     r.setHealthRoom(jso.get("Health").toString());
@@ -166,6 +170,63 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
+    }
+
+    public void roomDescription(RoomList rl) {
+        JSONParser jp = new JSONParser();
+        Object obj;
+        Connection c = new Connection();
+        String responsegetSitesInformation = c.congetSitesInformations();
+        int i = 0;
+
+        try {
+            obj = jp.parse(responsegetSitesInformation);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            rl.setJSONstate("OK");
+            rl.setJSONlastCycle(jo.get("JSONLastCycle").toString());
+            rl.setJSONmaintenance(jo.get("JSONMaintenance").toString());
+            JSONArray joo = (JSONArray) jo.get("JSONContents");
+
+            for (i=0;i<rl.getSize();i++ ) {
+
+                Iterator it = joo.iterator();
+                boolean loop = false;
+                while ( it.hasNext() && !loop) {
+
+                    Room r = rl.getRoom2(i);
+                    JSONObject jso = (JSONObject) it.next();
+                    System.out.println("Test avant boucle for");
+                    
+                    if (r.getIdRoom().startsWith(jso.get("Description").toString())) {
+
+                        r.setShortDescription(jso.get("ShortDescription").toString());
+                        r.setLongDescription(jso.get("LongDescription").toString());
+                        r.setDescription(jso.get("Description").toString());
+
+                        System.out.println("Desc : " + jso.get("LongDescription").toString());
+                        loop = true;
+                    }
+                }
+                
+
+            }
+        } else {
+
+            rl.setJSONstate("KO");
+            rl.setJSONReason(jo.get("JSONReason").toString());
+            rl.setJSONmaintenance(responsegetSitesInformation);
+
+
+        }
+
 
     }
 }

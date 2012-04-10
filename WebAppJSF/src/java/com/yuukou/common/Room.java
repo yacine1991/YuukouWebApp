@@ -21,6 +21,34 @@ public class Room {
     private String endTime;
     private String eventType;
     private String busy;
+    private String ShortDescription;
+    private String LongDescription;
+    private String Description;
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+
+    public String getLongDescription() {
+        return LongDescription;
+    }
+
+    public void setLongDescription(String LongDescription) {
+        this.LongDescription = LongDescription;
+    }
+
+    public String getShortDescription() {
+        return ShortDescription;
+    }
+
+    public void setShortDescription(String ShortDescription) {
+        this.ShortDescription = ShortDescription;
+    }
+    
 
     public String getBusy() {
         return busy;
