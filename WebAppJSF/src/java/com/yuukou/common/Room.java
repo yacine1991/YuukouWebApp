@@ -4,6 +4,10 @@
  */
 package com.yuukou.common;
 
+import java.awt.Image;
+import java.io.File;
+import java.util.ArrayList;
+
 /**
  *
  * @author Yacine
@@ -24,6 +28,15 @@ public class Room {
     private String ShortDescription;
     private String LongDescription;
     private String Description;
+    private boolean HasImage;
+    private File Image;
+
+    public File getImage() {
+        return Image;
+    }
+
+
+   
 
     public String getDescription() {
         return Description;
@@ -147,6 +160,19 @@ public class Room {
     public void setTypeResource(String typeResource) {
         this.typeResource = typeResource;
     }
+
+    public boolean getHasImage() {
+        return HasImage;
+    }
+
+    public void setHasImage(boolean HasImage) {
+        this.HasImage = HasImage;
+    }
+
+    public void setImage(File Image) {
+        this.Image = Image;
+    }
+
 
   
     

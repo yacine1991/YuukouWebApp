@@ -59,6 +59,12 @@
                         <li><%out.println("Pc down : " + r.getPcDown());%></li>
                         <li><%out.println("Start time : " + r.getStartTime());%></li>
                         <li><%out.println("Desc : " + r.getLongDescription());%></li>
+                        <li><%out.println("Has Image ? : " + r.getHasImage());%></li>
+                        <li><%out.println("Chemin absolu: " + r.getImage().getAbsolutePath());%></li>
+                        <li><%out.println("Chemin : " + r.getImage().getPath());%></li>
+                        <li><%out.println("Chemin canonnique: " + r.getImage().getCanonicalPath());%></li>
+                        <li><img src="${r.getImage()}" alt="Image" width="125" height="125"> </li>
+                       
 
                     </ul>
                 </li>

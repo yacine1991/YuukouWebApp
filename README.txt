@@ -42,3 +42,11 @@ Remaniement total de l'application, avec creation de classe Room Et RoomList afi
 Application a laquelle nous avons ajouté le framework JQuery mobile
 Appel aussi de la methode getSitesInfo pour avoir plus de précisions sur l'endroit ou se trouve les salles.
 Prendre en charge la conversion de bytes en photo de getSitesInfos
+
+11/04/2012
+Recupération des bytes en les convertisssant dans un array pui plusieurs cast afin de pouvoir l'interpreter comme il se doit.
+Le fait est que il m'est impossible d'afficher l'image dans un absolute path ou relatif.
+Mais l'image est bien enregistrée.
+Enregistrée au format jpg, tout le traitement se fera sur le serveur, cela sera plus couteut en ressources, mais 
+forcement plus rapide a faire sur un PC que sur telephone protable.
+L'image est donc après chargée, le téléphone aura juste a faire le chargement comme une image banale.

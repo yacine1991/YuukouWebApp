@@ -23,6 +23,10 @@ Changement de cap :
 Utilisation de JSP et Java ainsi que un servlet pour dispatcher la reponse.
 Gerer le tableau de bytes de l'image du getSitesInfo
 
+Mercredi 11 avril 2012
+Afficher l'image dans le JSP
+Refondre tout l'interface moisie des informations de la page.
+
 
 
 

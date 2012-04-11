@@ -13,3 +13,7 @@ JSF : utilisation trop complexe et peu intuitive !
 
 10/04/2012
 Tableau de bytes a convertir en image du getSitesInfos
+=> Résolu : Recuperation en parsant le fichier + plusieurs cast afin que je puisse créer le fichier.
+
+11/04/2012
+Probleme avec l'affichage du JSP/HTML, surement une histoire de chemins.

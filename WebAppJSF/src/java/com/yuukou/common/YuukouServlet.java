@@ -4,10 +4,13 @@
  */
 package com.yuukou.common;
 
-import java.io.IOException;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -115,9 +118,10 @@ public class YuukouServlet extends HttpServlet {
         return "Short description";
     }
 
-    public void roomsStatus(RoomList rl) {
+    public void roomsStatus(RoomList rl) throws IOException {
         JSONParser jp = new JSONParser();
         Object obj;
+        int i;
         Connection c = new Connection();
         String responsehealthForAllRooms = c.conhealthForAllRooms();
 
@@ -153,7 +157,25 @@ public class YuukouServlet extends HttpServlet {
                     r.setPcDown(jso.get("Down").toString());
                     r.setResources(jso.get("Resources").toString());
                     r.setBusy(jso.get("Busy").toString());
+                    System.out.println("Avant hasImage");
+                    if (jso.get("HasImage").equals("YES")) {
+                        r.setHasImage(true);
 
+                        
+                        JSONArray jab = (JSONArray) jso.get("Image");
+                        byte[] tab = new byte[jab.size()];
+                        for (i = 0; i < jab.size(); i++) {
+                            Long ll = (Long) jab.get(i);
+                            String test = String.valueOf(ll);
+                            
+                            tab[i] = Byte.parseByte(test);
+                        }
+                        System.out.println("Fin boucle remplisage tableau");
+
+                        r.setImage(convertByteToImage(tab));
+                        System.out.println("File : " + convertByteToImage(tab).getAbsolutePath());
+
+                    }
 
                 } else {
                     r.setStartTime(jso.get("StartTime").toString());
@@ -195,27 +217,25 @@ public class YuukouServlet extends HttpServlet {
             rl.setJSONmaintenance(jo.get("JSONMaintenance").toString());
             JSONArray joo = (JSONArray) jo.get("JSONContents");
 
-            for (i=0;i<rl.getSize();i++ ) {
+            for (i = 0; i < rl.getSize(); i++) {
 
                 Iterator it = joo.iterator();
                 boolean loop = false;
-                while ( it.hasNext() && !loop) {
+                while (it.hasNext() && !loop) {
 
                     Room r = rl.getRoom2(i);
                     JSONObject jso = (JSONObject) it.next();
-                    System.out.println("Test avant boucle for");
-                    
+
                     if (r.getIdRoom().startsWith(jso.get("Description").toString())) {
 
                         r.setShortDescription(jso.get("ShortDescription").toString());
                         r.setLongDescription(jso.get("LongDescription").toString());
                         r.setDescription(jso.get("Description").toString());
 
-                        System.out.println("Desc : " + jso.get("LongDescription").toString());
                         loop = true;
                     }
                 }
-                
+
 
             }
         } else {
@@ -228,5 +248,16 @@ public class YuukouServlet extends HttpServlet {
         }
 
 
+
+    }
+
+    public File convertByteToImage(byte[] tab) throws IOException {
+
+        InputStream in = new ByteArrayInputStream(tab);
+        BufferedImage bImageFromConvert = ImageIO.read(in);
+        File fi = new File("london.jpg");
+        
+        ImageIO.write(bImageFromConvert, "jpg", fi);
+        return fi;
     }
 }
