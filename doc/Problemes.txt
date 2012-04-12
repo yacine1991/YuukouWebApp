@@ -17,3 +17,8 @@ Tableau de bytes a convertir en image du getSitesInfos
 
 11/04/2012
 Probleme avec l'affichage du JSP/HTML, surement une histoire de chemins.
+
+12/04/2012
+Toujours le meme probleme sauf que maintenant c'est le chemin qui est mauvais.
+Probleme de dialogue en JAVA et JS (ajax) sauf que l'un est coté serveur, lautre coté client donc pas possible de combiner
+les 2 pour pouvoir utiliser l'API Google Chart.

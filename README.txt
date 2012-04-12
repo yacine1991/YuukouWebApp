@@ -50,3 +50,7 @@ Mais l'image est bien enregistrée.
 Enregistrée au format jpg, tout le traitement se fera sur le serveur, cela sera plus couteut en ressources, mais 
 forcement plus rapide a faire sur un PC que sur telephone protable.
 L'image est donc après chargée, le téléphone aura juste a faire le chargement comme une image banale.
+
+12/04/2012
+Ajout de methodes getImagePath pour recuperer plus facilement le chemin de l'image, et debut de test sur les statistiques
+de l'appli.

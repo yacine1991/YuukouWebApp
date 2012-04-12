@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.security.auth.message.callback.PrivateKeyCallback;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -45,13 +46,18 @@ public class YuukouServlet extends HttpServlet {
 
         roomsStatus(rl);
         roomDescription(rl);
+        
 
-        String url = "/roomsInfos.jsp"; //relative url for display jsp page
+        String url1 = "/roomsInfos.jsp"; //relative url for display jsp page
+        String url2 = "/Statistics.jsp";
         request.setAttribute("roomList", rl);
 
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher(url);
+        RequestDispatcher rd = sc.getRequestDispatcher(url1);
+        
+        RequestDispatcher rd2 = sc.getRequestDispatcher(url2);
         rd.forward(request, response);
+        rd2.forward(request, response);
 
 
 //        response.setContentType("text/html;charset=UTF-8");
@@ -171,10 +177,9 @@ public class YuukouServlet extends HttpServlet {
                             tab[i] = Byte.parseByte(test);
                         }
                         System.out.println("Fin boucle remplisage tableau");
-
-                        r.setImage(convertByteToImage(tab));
-                        System.out.println("File : " + convertByteToImage(tab).getAbsolutePath());
-
+                        r.setImage(convertByteToImage(tab, r.getIdRoom()));
+                        System.out.println("File : " + convertByteToImage(tab, r.getIdRoom()).getAbsolutePath());
+                            
                     }
 
                 } else {
@@ -251,13 +256,46 @@ public class YuukouServlet extends HttpServlet {
 
     }
 
-    public File convertByteToImage(byte[] tab) throws IOException {
+    public File convertByteToImage(byte[] tab, String idRoom) throws IOException {
 
         InputStream in = new ByteArrayInputStream(tab);
         BufferedImage bImageFromConvert = ImageIO.read(in);
-        File fi = new File("london.jpg");
+        File fi = new File(YuukouServlet.class.getClassLoader().getResource("pictures").getPath()+idRoom+".jpg");
         
         ImageIO.write(bImageFromConvert, "jpg", fi);
+        
         return fi;
+    }
+    
+    public static boolean copyFile(File source, File dest){
+	try{
+		// Declaration et ouverture des flux
+		java.io.FileInputStream sourceFile = new java.io.FileInputStream(source);
+		
+		try{
+			java.io.FileOutputStream destinationFile = null;
+			
+			try{
+				destinationFile = new FileOutputStream(dest);
+				
+				// Lecture par segment de 0.5Mo 
+				byte buffer[] = new byte[512 * 1024];
+				int nbLecture;
+				
+				while ((nbLecture = sourceFile.read(buffer)) != -1){
+					destinationFile.write(buffer, 0, nbLecture);
+				}
+			} finally {
+				destinationFile.close();
+			}
+		} finally {
+			sourceFile.close();
+		}
+	} catch (IOException e){
+		e.printStackTrace();
+		return false; // Erreur
+	}
+	
+	return true; // Résultat OK  
     }
 }

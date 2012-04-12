@@ -20,12 +20,15 @@ Faire marcher la conversation avec HTTPS
 
 Mardi 10 Avril 2012 : 
 Changement de cap : 
-Utilisation de JSP et Java ainsi que un servlet pour dispatcher la reponse.
-Gerer le tableau de bytes de l'image du getSitesInfo
+Utilisation de JSP et Java ainsi que un servlet pour dispatcher la reponse.	Done	
+Gerer le tableau de bytes de l'image du getSitesInfo						Done
 
 Mercredi 11 avril 2012
-Afficher l'image dans le JSP
+Afficher l'image dans le JSP								
 Refondre tout l'interface moisie des informations de la page.
+Statistiques, Dialogue en JS et JAva
+Se documenter sur googlechart et JChart
+
 
 
 

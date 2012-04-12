@@ -172,6 +172,9 @@ public class Room {
     public void setImage(File Image) {
         this.Image = Image;
     }
+    public String getImagePath(){
+        return this.Image.getPath();
+    }
 
 
   

@@ -31,8 +31,11 @@
                 <a href="" data-icon="home" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
                 <a data-icon="refresh"  data-iconpos="notext" data-rel="dialog" data-transition="fade" href="javascript:document.location.reload();"></a>
             </div>
-
+            
             <% RoomList rl = (RoomList) request.getAttribute("roomList");%>
+           
+
+ 
             <ul data-role="listview" data-theme="c" data-filter="true">
                 <li data-role="list-divider"> JSON State : ${roomList.JSONstate}
                     JSON LastCycle : ${roomList.JSONlastCycle}
@@ -50,10 +53,11 @@
                     <% } else {%>
                     <img src="images/windows.jpg" align="middle"/>
                     <% }%>
-                    <h3><% out.println(r.getIdRoom());%></h3>                
+                    <h3><% out.println(r.getIdRoom());%></h3>
+                     <p><%   out.println("Status : " + r.getStatus());%></p>
                     <p><%   out.println("Avaiability : " + r.getAvailability());%></p>
 
-                    <ul>
+                    <ul><% %>
                         <li><%out.println("Health Room : " + r.getHealthRoom());%></li>
                         <li><%out.println("Pc dispo : " + r.getPcAvailable());%></li>
                         <li><%out.println("Pc down : " + r.getPcDown());%></li>
@@ -63,7 +67,11 @@
                         <li><%out.println("Chemin absolu: " + r.getImage().getAbsolutePath());%></li>
                         <li><%out.println("Chemin : " + r.getImage().getPath());%></li>
                         <li><%out.println("Chemin canonnique: " + r.getImage().getCanonicalPath());%></li>
-                        <li><img src="${r.getImage()}" alt="Image" width="125" height="125"> </li>
+                        
+                        <li><%out.println("Parent  " + r.getImage());%></li>
+                        
+                        <li><%out.println("Rcontepath " + request.getRequestURL());%></li>
+                        <li><%out.println("<img src=" +YuukouServlet.class.getClassLoader().getResource("pictures").getPath()+r.getIdRoom()+" alt=\"salle\"/>");%> </li>
                        
 
                     </ul>
@@ -72,9 +80,6 @@
 
                 <%--<li><% out.print(rl.getJSONcontent().size());%></li>--%>
             </ul>
-
-            <h2>${roomList.JSONstate}</h2>
-
 
 
 

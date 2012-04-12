@@ -16,6 +16,8 @@ public class RoomList implements Serializable {
     private String JSONlastCycle;
     private String JSONReason;
     private ArrayList<Room> JSONcontent;
+    private int nbMac;
+    private int nbPc;
 
     public RoomList() {
         JSONcontent = new ArrayList<Room>();
@@ -88,6 +90,25 @@ public class RoomList implements Serializable {
    
    public int getSize(){
        return JSONcontent.size();
+   }
+   public int getNumberMac(){
+        for (int i = 0; i < JSONcontent.size(); i++) {
+           if(JSONcontent.get(i).getIdRoom().startsWith("en")){
+               nbMac = nbMac +1;
+              
+           }
+       }
+         return nbMac;
+   }
+   
+      public int getNumberPc(){
+        for (int i = 0; i < JSONcontent.size(); i++) {
+           if(!JSONcontent.get(i).getIdRoom().startsWith("en")){
+               nbPc = nbPc +1;
+              
+           }
+       }
+         return nbPc;
    }
     
     
