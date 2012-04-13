@@ -1,0 +1,17 @@
+org.krysalis.jcharts
+org.krysalis.jcharts.axisChart
+org.krysalis.jcharts.axisChart.axis
+org.krysalis.jcharts.axisChart.axis.scale
+org.krysalis.jcharts.axisChart.customRenderers.axisValue
+org.krysalis.jcharts.axisChart.customRenderers.axisValue.renderers
+org.krysalis.jcharts.chartData
+org.krysalis.jcharts.chartData.interfaces
+org.krysalis.jcharts.chartData.processors
+org.krysalis.jcharts.chartText
+org.krysalis.jcharts.encoders
+org.krysalis.jcharts.imageMap
+org.krysalis.jcharts.nonAxisChart
+org.krysalis.jcharts.properties
+org.krysalis.jcharts.properties.util
+org.krysalis.jcharts.test
+org.krysalis.jcharts.types

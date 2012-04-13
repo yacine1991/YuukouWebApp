@@ -22,3 +22,7 @@ Probleme avec l'affichage du JSP/HTML, surement une histoire de chemins.
 Toujours le meme probleme sauf que maintenant c'est le chemin qui est mauvais.
 Probleme de dialogue en JAVA et JS (ajax) sauf que l'un est coté serveur, lautre coté client donc pas possible de combiner
 les 2 pour pouvoir utiliser l'API Google Chart.
+
+14/04/2012
+Probleme avec les différentes libraires + version qui possendent certaines classes d'autre non pour
+JFreeCHart

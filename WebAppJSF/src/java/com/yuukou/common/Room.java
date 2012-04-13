@@ -4,9 +4,7 @@
  */
 package com.yuukou.common;
 
-import java.awt.Image;
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  *

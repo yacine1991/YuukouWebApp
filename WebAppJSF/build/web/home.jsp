@@ -29,7 +29,7 @@
                 </li>-->
                 <li><a href="YuukouServlet">Find a PC </a>
                 </li>
-                 <li><a href="Statistics.jsp">stats </a>
+                 <li><a href="roomStatistics.jsp">Statistics </a>
                 </li>
                 <li></li>
             </ul>

@@ -26,8 +26,14 @@ Gerer le tableau de bytes de l'image du getSitesInfo						Done
 Mercredi 11 avril 2012
 Afficher l'image dans le JSP								
 Refondre tout l'interface moisie des informations de la page.
-Statistiques, Dialogue en JS et JAva
-Se documenter sur googlechart et JChart
+Statistiques, Dialogue en JS et JAva			Abort
+Se documenter sur googlechart et JChart			Abort
+
+Vendredi 13 / 04
+Utilisation de JFreeChart approfondie
+Afficher le graphique a l'appel de la page
+
+
 
 
 

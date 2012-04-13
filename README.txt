@@ -54,3 +54,8 @@ L'image est donc après chargée, le téléphone aura juste a faire le chargemen
 12/04/2012
 Ajout de methodes getImagePath pour recuperer plus facilement le chemin de l'image, et debut de test sur les statistiques
 de l'appli.
+
+12/04/2012
+Ajout des librairies JFreeChart permettant de creer un graphique.
+J'ai reussi a créer un graphique lambda qui s'enregistre directement sans s'afficher.
+Le graphique a l'air plutot pas mal. 
