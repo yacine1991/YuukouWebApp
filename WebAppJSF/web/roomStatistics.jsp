@@ -6,6 +6,7 @@
 
 
 
+<%@page import="com.yuukou.common.Room"%>
 <%@page import="org.jfree.chart.renderer.xy.XYLineAndShapeRenderer"%>
 <%@page import="org.jfree.chart.plot.PlotOrientation"%>
 <%@page import="org.jfree.data.xy.DefaultXYDataset"%>
@@ -40,9 +41,17 @@
 
             <!--Div that will hold the pie chart-->
             <div id="test">
-                <h1><%
+                <% RoomList rl = (RoomList) request.getAttribute("roomList");
+                    
                     Statistics s = new Statistics();
-                    s.drawSome();
+                %>
+                <h1><%                    
+                    
+                    s.drawPieMacPc(rl);
+                    s.drawPieComputerPerCampus(rl);
+                    s.drawPieComputerBusyAvailableDown(rl);
+                    s.drawPieRoomsBusyAvailable(rl);
+                    
                     %>   </h1>
 
             </div>

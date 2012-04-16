@@ -27,9 +27,9 @@
                         <input type="submit" value ="envoyer"/>
                     </form>
                 </li>-->
-                <li><a href="YuukouServlet">Find a PC </a>
+                <li><a href="YuukouServlet?choice=find">Find a PC </a>
                 </li>
-                 <li><a href="roomStatistics.jsp">Statistics </a>
+                 <li><a href="YuukouServlet?choice=stats">Statistics </a>
                 </li>
                 <li></li>
             </ul>

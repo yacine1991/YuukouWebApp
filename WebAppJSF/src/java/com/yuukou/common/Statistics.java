@@ -7,8 +7,10 @@ package com.yuukou.common;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.jfree.chart.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.entity.StandardEntityCollection;
 import org.jfree.chart.labels.StandardPieItemLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
@@ -20,8 +22,19 @@ import org.jfree.data.general.DefaultPieDataset;
  * @author Yacine
  */
 public class Statistics {
+    private int nbHarrow;
+    private int nbCavendish;
+    private int nbMarylbone;
+    private int nbRegent;
+    private int nbLittle;
+    private int nbECS;
+    private int nbBusy;
+    private int nbDown;
+    private int nbAvailable;
+    private int nbRoomBusy;
+    private int nbRoomAvailable;
 
-    public void drawPieChart()  {
+    public void drawPieChart() {
         // create a chart
         final DefaultPieDataset data = new DefaultPieDataset();
         data.setValue("One", new Double(43.2));
@@ -74,22 +87,142 @@ public class Statistics {
 
     }
 
-public void drawSome(){
-    DefaultPieDataset data=new DefaultPieDataset();
-    data.setValue("Category1",43.2);
-    data.setValue("Category2",27.9);
-    data.setValue("Category3",79.5);
- 
-    //create a chart...
-    JFreeChart chart=ChartFactory.createPieChart( "SamplePieChart", data, true/*legend?*/,true/*tooltips?*/, false/*URLs?*/);
- 
-    //create and display a frame...
-    
-    chart.createBufferedImage(500, 300);
+    public void drawPieMacPc(RoomList rl) {
+
+
+        int nbMac = rl.getNumberMac();
+        int nbPc = rl.getNumberPc();
+
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Macintosh", nbMac);
+        data.setValue("Windows", nbPc);
+
+
+        //create a chart...
+        JFreeChart chart = ChartFactory.createPieChart("Mac - PC", data, true/*
+                 * legend?
+                 */, true/*
+                 * tooltips?
+                 */, false/*
+                 * URLs?
+                 */);
+
+        //create and display a frame...
+
+        chart.createBufferedImage(500, 300);
         try {
-            ChartUtilities.saveChartAsJPEG(new File("chart.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File("macPC.jpg"), chart, 500, 300);
         } catch (IOException ex) {
             Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+
+
     }
+
+    public void drawPieComputerPerCampus(RoomList rl) {
+        nbCavendish = rl.getNbComputerCavendish();
+        nbMarylbone = rl.getNbComputerMarylebone();
+        nbRegent = rl.getNbComputerRegent();
+        nbLittle = rl.getNbComputerLittleTich();
+        nbHarrow = rl.getNbComputerHarrow();
+        nbECS = rl.getNbComputerECS();
+
+
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Regent", nbRegent);
+        data.setValue("Marylbone", nbMarylbone);
+        data.setValue("LittleTich", nbLittle);
+        data.setValue("Harrow", nbHarrow);
+        data.setValue("Cavendish", nbCavendish);
+        data.setValue("ECS", nbECS);
+
+
+
+        //create a chart...
+        JFreeChart chart = ChartFactory.createPieChart("Computer Rooms per Campus", data, true/*
+                 * legend?
+                 */, true/*
+                 * tooltips?
+                 */, false/*
+                 * URLs?
+                 */);
+
+        //create and display a frame...
+
+        chart.createBufferedImage(500, 300);
+        try {
+            ChartUtilities.saveChartAsJPEG(new File("RoomsperCampus.jpg"), chart, 500, 300);
+        } catch (IOException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void drawPieComputerBusyAvailableDown(RoomList rl) {
+        nbBusy = rl.getNumberBusy();
+        nbDown = rl.getNumberDown();
+        nbAvailable = rl.getNumberAvailable();
+        
+
+
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Busy", nbBusy);
+        data.setValue("Down", nbBusy);
+        data.setValue("Available", nbAvailable);
+
+
+
+
+        //create a chart...
+        JFreeChart chart = ChartFactory.createPieChart("Busy - Available - Down", data, true/*
+                 * legend?
+                 */, true/*
+                 * tooltips?
+                 */, false/*
+                 * URLs?
+                 */);
+
+        //create and display a frame...
+
+        chart.createBufferedImage(500, 300);
+        try {
+            ChartUtilities.saveChartAsJPEG(new File("RessourcesPies.jpg"), chart, 500, 300);
+        } catch (IOException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }
+    
+    public void drawPieRoomsBusyAvailable(RoomList rl) {
+        nbRoomBusy = rl.getNumberRoomBusy();
+        
+        nbRoomAvailable = rl.getNumberRoomAvailable();
+        
+
+
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Room Busy", nbRoomBusy);
+        
+        data.setValue("Room Available", nbRoomAvailable);
+
+
+
+
+        //create a chart...
+        JFreeChart chart = ChartFactory.createPieChart("Rooms Busy - Available", data, true/*
+                 * legend?
+                 */, true/*
+                 * tooltips?
+                 */, false/*
+                 * URLs?
+                 */);
+
+        //create and display a frame...
+
+        chart.createBufferedImage(500, 300);
+        try {
+            ChartUtilities.saveChartAsJPEG(new File("RoomsBAPie.jpg"), chart, 500, 300);
+        } catch (IOException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

@@ -30,8 +30,10 @@ Statistiques, Dialogue en JS et JAva			Abort
 Se documenter sur googlechart et JChart			Abort
 
 Vendredi 13 / 04
-Utilisation de JFreeChart approfondie
-Afficher le graphique a l'appel de la page
+Utilisation de JFreeChart approfondie		Done
+Afficher le graphique a l'appel de la page	
+Finaliser les graphiques ainsi que l'ajout de plusieurs statistiques en tout genre
+
 
 
 

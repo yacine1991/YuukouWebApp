@@ -59,3 +59,8 @@ de l'appli.
 Ajout des librairies JFreeChart permettant de creer un graphique.
 J'ai reussi a créer un graphique lambda qui s'enregistre directement sans s'afficher.
 Le graphique a l'air plutot pas mal. 
+
+16/04/2012
+Creation des fonction necessaires a la generation de graphiques, qui rendent plutot pas mal.
+4 graphique différents, mais toujours pas possible de les afficher.
+Résolution du probleme concernant le request dipacher, en demander un paramatere ne fonction de la page appellée.
