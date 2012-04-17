@@ -2,6 +2,8 @@ package com.yuukou.common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -123,7 +125,7 @@ public class RoomList implements Serializable {
         return nbPc;
     }
 
-    public int getNbComputerRegent() {
+    public int getNbComputerRoomsRegent() {
         nbPcRegent = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongDescription().equals("Regent")) {
@@ -133,7 +135,7 @@ public class RoomList implements Serializable {
         return nbPcRegent;
     }
 
-    public int getNbComputerCavendish() {
+    public int getNbComputerRoomsCavendish() {
         nbPcCavendish = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongDescription().equals("New Cavendish Street")) {
@@ -143,7 +145,7 @@ public class RoomList implements Serializable {
         return nbPcCavendish;
     }
 
-    public int getNbComputerLittleTich() {
+    public int getNbComputerRoomsLittleTich() {
         nbPcLittleTich = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongDescription().equals("Little Titchfield Street")) {
@@ -153,7 +155,7 @@ public class RoomList implements Serializable {
         return nbPcLittleTich;
     }
 
-    public int getNbComputerHarrow() {
+    public int getNbComputerRoomsHarrow() {
         nbPcHarrow = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongDescription().equals("Harrow")) {
@@ -163,7 +165,7 @@ public class RoomList implements Serializable {
         return nbPcHarrow;
     }
 
-    public int getNbComputerMarylebone() {
+    public int getNbComputerRoomsMarylebone() {
         nbPcMarylebone = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongDescription().equals("Marylebone")) {
@@ -173,7 +175,7 @@ public class RoomList implements Serializable {
         return nbPcMarylebone;
     }
 
-    public int getNbComputerECS() {
+    public int getNbComputerRoomsECS() {
         nbPcECS = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongDescription().equals("Electronics and Computer Science")) {
@@ -183,7 +185,7 @@ public class RoomList implements Serializable {
         return nbPcECS;
     }
 
-    public int getNumberAvailable() {
+    public int getNumberComputerAvailableForAllCampus() {
         nbPcAvailable = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
@@ -194,7 +196,7 @@ public class RoomList implements Serializable {
         return nbPcAvailable;
     }
 
-    public int getNumberDown() {
+    public int getNumberComputerDownForAllCampus() {
         nbPcDown = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
@@ -205,7 +207,7 @@ public class RoomList implements Serializable {
         return nbPcDown;
     }
 
-    public int getNumberBusy() {
+    public int getNumberComputerBusyForAllCampus() {
         int nbPcBusy = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
@@ -216,7 +218,7 @@ public class RoomList implements Serializable {
         return nbPcBusy;
     }
 
-    public int getNumberRoomAvailable() {
+    public int getNumberRoomAvailableForAllCampus() {
         nbRoomAvailable = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getStatus().equals("Available")) {
@@ -228,7 +230,7 @@ public class RoomList implements Serializable {
 
     }
 
-    public int getNumberRoomBusy() {
+    public int getNumberRoomBusyForAllCampus() {
         nbRoomBusy = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (!JSONcontent.get(i).getStatus().equals("Available")) {
@@ -237,5 +239,76 @@ public class RoomList implements Serializable {
         }
 
         return nbRoomBusy;
+    }
+
+    public int getNumberRoomBusyPerCampus(String campus) {
+        int nbRoomBusyPerCampus = 0;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongDescription().equals(campus) && !JSONcontent.get(i).getStatus().equals("Available")) {
+                nbRoomBusyPerCampus = nbRoomBusyPerCampus + 1;
+            }
+        }
+
+        return nbRoomBusyPerCampus;
+    }
+
+    public int getNumberRoomAvailablePerCampus(String campus) {
+        int nbRoomAvailablePerCampus = 0;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongDescription().equals(campus) && JSONcontent.get(i).getStatus().equals("Available")) {
+                nbRoomAvailablePerCampus = nbRoomAvailablePerCampus + 1;
+            }
+        }
+
+        return nbRoomAvailablePerCampus;
+    }
+
+    public int getNumberComputerAvailablePerCampus(String campus) {
+        int nbPcAvailablePerCampus = 0;
+        int swap;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongDescription().equals(campus)) {
+                swap = Integer.parseInt(JSONcontent.get(i).getPcAvailable());
+                nbPcAvailablePerCampus = nbPcAvailablePerCampus + swap;
+            }
+
+        }
+        return nbPcAvailablePerCampus;
+    }
+
+    public int getNumberComputerDownPerCampus(String campus) {
+        int nbPcDownPerCampus = 0;
+        int swap;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongDescription().equals(campus)) {
+                swap = Integer.parseInt(JSONcontent.get(i).getPcDown());
+                nbPcDownPerCampus = nbPcDownPerCampus + swap;
+            }
+
+        }
+        return nbPcDownPerCampus;
+    }
+
+    public int getNumberComputerBusyPerCampus(String campus) {
+        int nbPcBusyPerCampus = 0;
+        int swap;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongDescription().equals(campus) && !JSONcontent.get(i).getStatus().equals("Available")) {
+                swap = Integer.parseInt(JSONcontent.get(i).getResources());
+                nbPcBusyPerCampus = nbPcBusyPerCampus + swap;
+            }
+
+        }
+        return nbPcBusyPerCampus;
+    }
+
+    public Set getCampus() {
+        Set listCampus = new HashSet();
+        String campus;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            campus = JSONcontent.get(i).getLongDescription();
+            listCampus.add(campus);
+        }
+        return listCampus;
     }
 }

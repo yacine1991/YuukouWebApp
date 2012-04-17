@@ -6,13 +6,14 @@
 
 
 
+<%@page import="com.yuukou.common.ChartStatistics"%>
+<%@page import="com.yuukou.common.PieStatistics"%>
 <%@page import="com.yuukou.common.Room"%>
 <%@page import="org.jfree.chart.renderer.xy.XYLineAndShapeRenderer"%>
 <%@page import="org.jfree.chart.plot.PlotOrientation"%>
 <%@page import="org.jfree.data.xy.DefaultXYDataset"%>
 <%@page import="org.jfree.chart.JFreeChart"%>
 <%@page import="org.jfree.chart.ChartFactory"%>
-<%@page import="com.yuukou.common.Statistics"%>
 <%@page import="javax.management.j2ee.statistics.Statistic"%>
 <%@page import="com.yuukou.common.RoomList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -43,14 +44,19 @@
             <div id="test">
                 <% RoomList rl = (RoomList) request.getAttribute("roomList");
                     
-                    Statistics s = new Statistics();
+                    PieStatistics ps = new PieStatistics();
+                    ChartStatistics cs = new ChartStatistics();
                 %>
                 <h1><%                    
                     
-                    s.drawPieMacPc(rl);
-                    s.drawPieComputerPerCampus(rl);
-                    s.drawPieComputerBusyAvailableDown(rl);
-                    s.drawPieRoomsBusyAvailable(rl);
+                    ps.drawPieMacPc(rl);
+                    ps.drawPieComputerPerCampus(rl);
+                    ps.drawPieComputerBusyAvailableDown(rl);
+                    ps.drawPieRoomsBusyAvailable(rl);
+                    ps.drawPieRoomsBusyAvailablePerCampus(rl, "Regent");
+                    
+                    cs.createLegendItems();
+                    cs.createChart(cs.createDataset(rl));
                     
                     %>   </h1>
 

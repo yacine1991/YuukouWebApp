@@ -64,3 +64,8 @@ Le graphique a l'air plutot pas mal.
 Creation des fonction necessaires a la generation de graphiques, qui rendent plutot pas mal.
 4 graphique différents, mais toujours pas possible de les afficher.
 Résolution du probleme concernant le request dipacher, en demander un paramatere ne fonction de la page appellée.
+
+17/04/2012
+Ajout de fonction de recupération des données en mettant un String en parametre.
+Ainsi que l'ajout de diagramme pour tous les autre campus.
+Probleme avec l'iterateur a regler.

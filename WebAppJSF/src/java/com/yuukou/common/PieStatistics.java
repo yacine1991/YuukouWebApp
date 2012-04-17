@@ -5,23 +5,24 @@
 package com.yuukou.common;
 
 import java.io.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.JFreeChart;
+import org.jfree.chart.*;
 import org.jfree.chart.entity.StandardEntityCollection;
 import org.jfree.chart.labels.StandardPieItemLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.urls.StandardPieURLGenerator;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.general.DatasetChangeListener;
+import org.jfree.data.general.DatasetGroup;
 import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
  * @author Yacine
  */
-public class Statistics {
+public class PieStatistics {
     private int nbHarrow;
     private int nbCavendish;
     private int nbMarylbone;
@@ -33,6 +34,8 @@ public class Statistics {
     private int nbAvailable;
     private int nbRoomBusy;
     private int nbRoomAvailable;
+    private int nbRoomBusyPerCampus;
+    private int nbRoomAvailablePerCampus;
 
     public void drawPieChart() {
         // create a chart
@@ -113,19 +116,19 @@ public class Statistics {
         try {
             ChartUtilities.saveChartAsJPEG(new File("macPC.jpg"), chart, 500, 300);
         } catch (IOException ex) {
-            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
     }
 
     public void drawPieComputerPerCampus(RoomList rl) {
-        nbCavendish = rl.getNbComputerCavendish();
-        nbMarylbone = rl.getNbComputerMarylebone();
-        nbRegent = rl.getNbComputerRegent();
-        nbLittle = rl.getNbComputerLittleTich();
-        nbHarrow = rl.getNbComputerHarrow();
-        nbECS = rl.getNbComputerECS();
+        nbCavendish = rl.getNbComputerRoomsCavendish();
+        nbMarylbone = rl.getNbComputerRoomsMarylebone();
+        nbRegent = rl.getNbComputerRoomsRegent();
+        nbLittle = rl.getNbComputerRoomsLittleTich();
+        nbHarrow = rl.getNbComputerRoomsHarrow();
+        nbECS = rl.getNbComputerRoomsECS();
 
 
         DefaultPieDataset data = new DefaultPieDataset();
@@ -153,14 +156,14 @@ public class Statistics {
         try {
             ChartUtilities.saveChartAsJPEG(new File("RoomsperCampus.jpg"), chart, 500, 300);
         } catch (IOException ex) {
-            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void drawPieComputerBusyAvailableDown(RoomList rl) {
-        nbBusy = rl.getNumberBusy();
-        nbDown = rl.getNumberDown();
-        nbAvailable = rl.getNumberAvailable();
+        nbBusy = rl.getNumberComputerBusyForAllCampus();
+        nbDown = rl.getNumberComputerDownForAllCampus();
+        nbAvailable = rl.getNumberComputerAvailableForAllCampus();
         
 
 
@@ -187,15 +190,15 @@ public class Statistics {
         try {
             ChartUtilities.saveChartAsJPEG(new File("RessourcesPies.jpg"), chart, 500, 300);
         } catch (IOException ex) {
-            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }
     
     public void drawPieRoomsBusyAvailable(RoomList rl) {
-        nbRoomBusy = rl.getNumberRoomBusy();
+        nbRoomBusy = rl.getNumberRoomBusyForAllCampus();
         
-        nbRoomAvailable = rl.getNumberRoomAvailable();
+        nbRoomAvailable = rl.getNumberRoomAvailableForAllCampus();
         
 
 
@@ -222,7 +225,45 @@ public class Statistics {
         try {
             ChartUtilities.saveChartAsJPEG(new File("RoomsBAPie.jpg"), chart, 500, 300);
         } catch (IOException ex) {
-            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    public void drawPieRoomsBusyAvailablePerCampus(RoomList rl,String campus) {
+        nbRoomBusyPerCampus = rl.getNumberRoomBusyPerCampus(campus);
+        
+        nbRoomAvailablePerCampus = rl.getNumberRoomAvailablePerCampus(campus);
+        
+
+
+        DefaultPieDataset data = new DefaultPieDataset();
+        
+        data.setValue("Room Busy", nbRoomBusyPerCampus);
+        
+        data.setValue("Room Available", nbRoomAvailablePerCampus);
+
+
+
+
+        //create a chart...
+        JFreeChart chart = ChartFactory.createPieChart("Rooms Busy - Available for "+campus+"", data, true/*
+                 * legend?
+                 */, true/*
+                 * tooltips?
+                 */, false/*
+                 * URLs?
+                 */);
+
+        //create and display a frame...
+
+        chart.createBufferedImage(500, 300);
+        try {
+            ChartUtilities.saveChartAsJPEG(new File("RoomsBAPiefor"+campus+".jpg"), chart, 500, 300);
+        } catch (IOException ex) {
+            Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 }

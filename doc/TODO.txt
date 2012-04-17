@@ -32,7 +32,10 @@ Se documenter sur googlechart et JChart			Abort
 Vendredi 13 / 04
 Utilisation de JFreeChart approfondie		Done
 Afficher le graphique a l'appel de la page	
-Finaliser les graphiques ainsi que l'ajout de plusieurs statistiques en tout genre
+Finaliser les graphiques ainsi que l'ajout de plusieurs statistiques en tout genre	Done
+
+17/04
+Finaliser le graphique de barres
 
 
 

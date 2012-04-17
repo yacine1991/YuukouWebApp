@@ -30,3 +30,5 @@ JFreeCHart		=> Résolu, ajout des bonnes librairies
 16/04/2012
 Probleme dans l'affichage des photos en JSP, toujours une histoire de chemin
 
+17/04/2012
+Itérateur qui ne bouge pas 
