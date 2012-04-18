@@ -31,4 +31,7 @@ JFreeCHart		=> Résolu, ajout des bonnes librairies
 Probleme dans l'affichage des photos en JSP, toujours une histoire de chemin
 
 17/04/2012
-Itérateur qui ne bouge pas 
+Itérateur qui ne bouge pas  => Résolu, Iteration mal incrémentée, mais idée abandonnée
+
+18/04/2012
+Séparation avec 2 servlet distinct qui ne font pas appel a n'importe quelles methodes.

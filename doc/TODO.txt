@@ -35,7 +35,10 @@ Afficher le graphique a l'appel de la page
 Finaliser les graphiques ainsi que l'ajout de plusieurs statistiques en tout genre	Done
 
 17/04
-Finaliser le graphique de barres
+Finaliser le graphique de barres	Done
+
+18/04
+Séparer par 2 servlet distincts.
 
 
 

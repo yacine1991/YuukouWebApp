@@ -41,31 +41,38 @@ public class YuukouServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String type = request.getParameter("choice");
-        if(type == null || type.isEmpty()){
-            
+        if (type == null || type.isEmpty()) {
         }
-        
-        RoomList rl = new RoomList();
 
-        roomsStatus(rl);
-        roomDescription(rl);
+        RoomList rl = new RoomList();
+        Room r = new Room();
+
 
         String url = null;
-        
-        if(type.equals("find")){
-            url = "/roomsInfos.jsp";
-        } else if(type.equals("stats")){
+
+        if (type.equals("find")) {
+            url = "/roomsDisplay.jsp";
+            roomsStatus(rl);
+            roomDescription(rl);
+            request.setAttribute("roomList", rl);
+        } else if (type.equals("stats")) {
             url = "/roomStatistics.jsp";
-        } else {
-    
+            roomsStatus(rl);
+            roomDescription(rl);
+            request.setAttribute("roomList", rl);
+        } else if (type.equals("Room")){
+            url = "/roomInfos.jsp";
+            String id = request.getParameter("id");
+            roomStatus(r, id);
+            request.setAttribute("room", r);
         }
+
         
-        request.setAttribute("roomList", rl);
 
         ServletContext sc = getServletContext();
-        
+
         RequestDispatcher rd = sc.getRequestDispatcher(url);
-        
+ 
         rd.forward(request, response);
 
 
@@ -138,7 +145,7 @@ public class YuukouServlet extends HttpServlet {
         Object obj;
         int i;
         Connection c = new Connection();
-        String responsehealthForAllRooms = c.conhealthForAllRooms();
+        String responsehealthForAllRooms = c.conhealthForAllRooms(false);
 
 
         try {
@@ -197,6 +204,7 @@ public class YuukouServlet extends HttpServlet {
                     r.setEventType(jso.get("EventType").toString());
                 }
                 rl.addRoom(r);
+                System.out.println("add " + r.getIdRoom());
             }
 
         } else {
@@ -260,9 +268,78 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
+    }
+
+    public void roomStatus(Room r, String idRoom) throws IOException {
+        JSONParser jp = new JSONParser();
+        Object obj;
+        int i;
+        Connection c = new Connection();
+        String responsehealthForRoom = c.healthForRoom(idRoom, true);
+
+
+        try {
+            obj = jp.parse(responsehealthForRoom);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            r.setJSONstate("OK");
+            r.setJSONlastCycle(jo.get("JSONLastCycle").toString());
+            r.setJSONmaintenance(jo.get("JSONMaintenance").toString());
+
+
+            JSONObject jso = (JSONObject) jo.get("JSONContents");
+            r.setIdRoom(jso.get("Room").toString());
+            r.setStatus(jso.get("State").toString());
+            r.setTypeResource(jso.get("TypeResources").toString());
+
+            if (jso.get("State").equals("Available")) {
+                //a finir ajouter une listRooms pour l'
+                r.setHealthRoom(jso.get("Health").toString());
+                r.setAvailability(jso.get("Availability").toString());
+                r.setPcAvailable(jso.get("Available").toString());
+                r.setPcDown(jso.get("Down").toString());
+                r.setResources(jso.get("Resources").toString());
+                r.setBusy(jso.get("Busy").toString());
+                System.out.println("Avant hasImage");
+                if (jso.get("HasImage").equals("YES")) {
+                    r.setHasImage(true);
+
+
+                    JSONArray jab = (JSONArray) jso.get("Image");
+                    byte[] tab = new byte[jab.size()];
+                    for (i = 0; i < jab.size(); i++) {
+                        Long ll = (Long) jab.get(i);
+                        String test = String.valueOf(ll);
+
+                        tab[i] = Byte.parseByte(test);
+                    }
+                    System.out.println("Fin boucle remplisage tableau");
+                    r.setImage(convertByteToImage(tab, r.getIdRoom()));
+                    System.out.println("File : " + convertByteToImage(tab, r.getIdRoom()).getAbsolutePath());
+
+                }
+
+            } else {
+                r.setStartTime(jso.get("StartTime").toString());
+                r.setEndTime(jso.get("EndTime").toString());
+                r.setEventType(jso.get("EventType").toString());
+            }
+
+
+        } else {
+            r.setJSONstate("KO");
+            r.setJSONReason(jo.get("JSONReason").toString());
 
 
 
+        }
     }
 
     public File convertByteToImage(byte[] tab, String idRoom) throws IOException {

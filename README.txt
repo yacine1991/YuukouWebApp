@@ -69,3 +69,14 @@ Résolution du probleme concernant le request dipacher, en demander un paramater
 Ajout de fonction de recupération des données en mettant un String en parametre.
 Ainsi que l'ajout de diagramme pour tous les autre campus.
 Probleme avec l'iterateur a regler.
+
+18/04/2012
+Thierry est venu aujourd'hui.
+D'apres lui je dois separer la partie manager de la partie client, ce qui donnera naissance a 2 applications différentes mais faisant appel aux meme classes.
+Pour l'une certaines seront bridée quand a l'autre, tout est libre.
+A voir aussi l'utilisation de l'API de Google Map si j'ai le temps.
+Amélioration des fonctions roomStatus et RoomsStatus, le chargement etait ong car je me devais de creer un jpg pour chaque salle existante,
+alors elle n'est pas forcement utilisée.
+J'ai donc séparée le traitement dans 2 JSP différentes.
+La premiere va permettre de remplir l'objet Room sans photos, afin de pouvoir l'afficher sous forme de liste, quand a la deuxieme, rappelle une focntion du servlet qui Parse
+une methode que j'apelle du Webservice, mais cette fois ci avec la photo, donc cela me permet d'enregistrer la photo que i j'ai l'identifiant de la room actuelle.

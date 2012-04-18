@@ -46,7 +46,7 @@
                     while (it.hasNext()) {
                         Room r = (Room) it.next();
                 %>
-                <li>
+                <li><% out.println("<a href=YuukouServlet?choice=Room&id="+r.getIdRoom()+">");%>
                     <%
                         if (r.getTypeResource().equals("mc")) {%>
                     <img src="images/apple.jpg" align="middle"/>
@@ -56,56 +56,17 @@
                     <h3><% out.println(r.getIdRoom());%></h3>
                     <p><%   out.println("Status : " + r.getStatus());%></p>
                     <% if (r.getStatus() != "Busy") {%>
-                    <p><%   out.println("Avaiability : " + r.getAvailability());%></p>
+                    <p><%   out.println("Availability : " + r.getAvailability());%></p>
 
-                    <ul>
-                        <li><%out.println("Health Room : " + r.getHealthRoom());%></li>
-                        <li><%out.println("Pc dispo : " + r.getPcAvailable());%></li>
-                        <li><%out.println("Pc down : " + r.getPcDown());%></li>
-                        <li><%out.println("Start time : " + r.getStartTime());%></li>
-                        <li><%out.println("Desc : " + r.getLongDescription());%></li>
-                        <li><%out.println("Has Image ? : " + r.getHasImage());%></li>
-                        <li><%out.println("Chemin absolu: " + r.getImage().getAbsolutePath());%></li>
-                        <li><%out.println("Chemin : " + r.getImage().getPath());%></li>
-                        <li><%out.println("Chemin canonnique: " + r.getImage().getCanonicalPath());%></li>
+                        
 
-                        <li><%out.println("Parent  " + r.getImage());%></li>
-
-                        <li><%out.println("Rcontepath " + request.getRequestURL());%></li>
-                        <li><%out.println("<img src=" + YuukouServlet.class.getClassLoader().getResource("pictures").getPath() + r.getIdRoom() + " alt=\"salle\"/>");%> </li>
-
-
-                    </ul>            
-
-
+                    <%out.println("</a>");%>
                 </li>
-                <% }}%>
+                <% }
+                    }%>
 
-                <%--<li><% out.print(rl.getJSONcontent().size());%></li>--%>
+           
             </ul>
-
-
-
-
-            <%--   <jsp:useBean id="room" scope="request" class="YuukouServlet.getRes" />
-                    <%
-
-            try {
-                out.print("<h1> <b>WHO</b> </h1></br>");
-                jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
-                jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
-                // TODO process result here
-                java.lang.String result = port.who();
-                out.println(result);
-
-            } catch (Exception ex) {
-                Properties prop = System.getProperties();
-                out.println(prop.get("javax.net.ssl.trustStore"));
-                out.println(ex.getMessage());
-                // TODO handle custom exceptions here
-            }
-        %>--%>
-
 
         </div>
     </body>

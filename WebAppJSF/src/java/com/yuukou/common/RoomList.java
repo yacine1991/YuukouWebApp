@@ -2,13 +2,7 @@ package com.yuukou.common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
-@ManagedBean
-@SessionScoped
 public class RoomList implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -293,8 +287,8 @@ public class RoomList implements Serializable {
         int nbPcBusyPerCampus = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals(campus) && !JSONcontent.get(i).getStatus().equals("Available")) {
-                swap = Integer.parseInt(JSONcontent.get(i).getResources());
+            if (JSONcontent.get(i).getLongDescription().equals(campus)) {
+                swap = Integer.parseInt(JSONcontent.get(i).getBusy());
                 nbPcBusyPerCampus = nbPcBusyPerCampus + swap;
             }
 
@@ -302,12 +296,28 @@ public class RoomList implements Serializable {
         return nbPcBusyPerCampus;
     }
 
-    public Set getCampus() {
-        Set listCampus = new HashSet();
+    public ArrayList<String> getCampus() {
+
+        ArrayList<String> listCampus = new ArrayList<String>();
         String campus;
         for (int i = 0; i < JSONcontent.size(); i++) {
             campus = JSONcontent.get(i).getLongDescription();
-            listCampus.add(campus);
+            if (!listCampus.contains(campus)) {
+                listCampus.add(campus);
+            }
+        }
+        return listCampus;
+    }
+
+    public ArrayList<String> getCampusShort() {
+
+        ArrayList<String> listCampus = new ArrayList<String>();
+        String campus;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            campus = JSONcontent.get(i).getShortDescription();
+            if (!listCampus.contains(campus)) {
+                listCampus.add(campus);
+            }
         }
         return listCampus;
     }

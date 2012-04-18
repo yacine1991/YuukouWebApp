@@ -182,7 +182,9 @@
 </xs:complexType>
 
 <xs:complexType name="healthForAllRooms">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="image" type="xs:boolean"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="healthForAllRoomsResponse">
@@ -262,6 +264,7 @@
 <xs:complexType name="healthForRoom">
 <xs:sequence>
 <xs:element name="idRoom" type="xs:string" minOccurs="0"/>
+<xs:element name="image" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

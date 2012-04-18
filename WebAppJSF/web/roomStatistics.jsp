@@ -49,16 +49,18 @@
                 %>
                 <h1><%                    
                     
-                    ps.drawPieMacPc(rl);
+                    /*ps.drawPieMacPc(rl);
                     ps.drawPieComputerPerCampus(rl);
                     ps.drawPieComputerBusyAvailableDown(rl);
                     ps.drawPieRoomsBusyAvailable(rl);
                     ps.drawPieRoomsBusyAvailablePerCampus(rl, "Regent");
                     
                     cs.createLegendItems();
-                    cs.createChart(cs.createDataset(rl));
+                    cs.createChart(cs.createDataset(rl));*/
                     
                     %>   </h1>
+                    <h2>Test image :<br>
+                        <%out.println("<img src=\"macPC.jpg\" alt=\"salle\"/>");%></h2>
 
             </div>
 

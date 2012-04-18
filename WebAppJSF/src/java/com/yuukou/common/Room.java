@@ -11,6 +11,7 @@ import java.io.File;
  * @author Yacine
  */
 public class Room {
+
     private String idRoom;
     private String healthRoom;
     private String availability;
@@ -28,13 +29,38 @@ public class Room {
     private String Description;
     private boolean HasImage;
     private File Image;
+    private String JSONstate;
+    private String JSONlastCycle;
+    private String JSONmaintenance;
+    private String JSONReason;
+
+    public String getJSONlastCycle() {
+        return JSONlastCycle;
+    }
+
+    public String getJSONReason() {
+        return JSONReason;
+    }
+
+    public void setJSONReason(String JSONReason) {
+        this.JSONReason = JSONReason;
+    }
+
+    public void setJSONlastCycle(String JSONlastCycle) {
+        this.JSONlastCycle = JSONlastCycle;
+    }
+
+    public String getJSONmaintenance() {
+        return JSONmaintenance;
+    }
+
+    public void setJSONmaintenance(String JSONmaintenance) {
+        this.JSONmaintenance = JSONmaintenance;
+    }
 
     public File getImage() {
         return Image;
     }
-
-
-   
 
     public String getDescription() {
         return Description;
@@ -59,7 +85,6 @@ public class Room {
     public void setShortDescription(String ShortDescription) {
         this.ShortDescription = ShortDescription;
     }
-    
 
     public String getBusy() {
         return busy;
@@ -68,8 +93,6 @@ public class Room {
     public void setBusy(String busy) {
         this.busy = busy;
     }
-
-    
 
     public String getAvailability() {
         return availability;
@@ -170,13 +193,25 @@ public class Room {
     public void setImage(File Image) {
         this.Image = Image;
     }
-    public String getImagePath(){
+
+    public String getImagePath() {
         return this.Image.getPath();
     }
 
-  
-  
-    
-    
-    
+    public void toDoIfHasImage() {
+        if (this.getHasImage() == true) {
+            
+
+        }
+    }
+
+    public String getJSONstate() {
+        return JSONstate;
+    }
+
+    public void setJSONstate(String JSONstate) {
+        this.JSONstate = JSONstate;
+    }
+
+   
 }
