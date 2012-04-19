@@ -1,0 +1,73 @@
+\documentclass[11pt]{report}
+
+\usepackage[latin1]{inputenc} % un package
+\usepackage[T1]{fontenc}      % un second package
+\usepackage[francais]{babel}  % un troisième package
+\usepackage{lmodern}
+\usepackage{graphicx}
+
+%%%% debut macro pour enlever le nom chapitre %%%%
+\makeatletter
+    \def\@makechapterhead#1{%
+        \vspace*{50\p@}%
+        {\parindent \z@ \raggedright \normalfont
+            \interlinepenalty\@M
+            \ifnum \c@secnumdepth >\m@ne
+            \Huge\bfseries \thechapter\quad
+            \fi
+            \Huge \bfseries #1\par\nobreak
+            \vskip 40\p@
+        }}
+
+    \def\@makeschapterhead#1{%
+        \vspace*{50\p@}%
+        {\parindent \z@ \raggedright
+            \normalfont
+            \interlinepenalty\@M
+            \Huge \bfseries  #1\par\nobreak
+            \vskip 40\p@
+        }
+    }
+\makeatother
+%%%% fin macro %%%%
+
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+
+\setcounter{page}{0} % enlever numéro de page
+
+ 
+\textbf{Yacine Maghezzi}\\ 
+Licence 3 Informatique\\
+Département de Mathématique et Informatique\\
+
+\vspace{4cm}
+
+\small Rapport de Stage \\
+\LARGE Application mobile Yuukou et gUSE\\
+\vspace{1cm}
+\includegraphics[scale=0.25]{img/wmin.jpg} 
+
+\vspace{5cm}
+
+
+\noindent 
+\center{Maitre de stage : M. Thierry Delaitre\\
+Tuteur de stage : M. Jean-Michel Hufflen\\ 
+}
+\vspace{1cm}
+\textbf{Lieu de stage :} University Of Westminster\\
+\textbf{Durée/Date :}12 mars - 3 Juin\\
+
+
+\end{titlepage}
+\clearpage
+
+\tableofcontents
+\input{Introduction}
+
+\end{document}
+
