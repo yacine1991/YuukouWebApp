@@ -23,6 +23,7 @@ import org.jfree.data.general.DefaultPieDataset;
  * @author Yacine
  */
 public class PieStatistics {
+
     private int nbHarrow;
     private int nbCavendish;
     private int nbMarylbone;
@@ -159,12 +160,12 @@ public class PieStatistics {
             Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void drawPieComputerBusyAvailableDown(RoomList rl) {
         nbBusy = rl.getNumberComputerBusyForAllCampus();
         nbDown = rl.getNumberComputerDownForAllCampus();
         nbAvailable = rl.getNumberComputerAvailableForAllCampus();
-        
+
 
 
         DefaultPieDataset data = new DefaultPieDataset();
@@ -192,19 +193,19 @@ public class PieStatistics {
         } catch (IOException ex) {
             Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
     }
-    
+
     public void drawPieRoomsBusyAvailable(RoomList rl) {
         nbRoomBusy = rl.getNumberRoomBusyForAllCampus();
-        
+
         nbRoomAvailable = rl.getNumberRoomAvailableForAllCampus();
-        
+
 
 
         DefaultPieDataset data = new DefaultPieDataset();
         data.setValue("Room Busy", nbRoomBusy);
-        
+
         data.setValue("Room Available", nbRoomAvailable);
 
 
@@ -228,26 +229,25 @@ public class PieStatistics {
             Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    public void drawPieRoomsBusyAvailablePerCampus(RoomList rl,String campus) {
+
+    public void drawPieRoomsBusyAvailablePerCampus(RoomList rl, String campus) {
         nbRoomBusyPerCampus = rl.getNumberRoomBusyPerCampus(campus);
-        
+
         nbRoomAvailablePerCampus = rl.getNumberRoomAvailablePerCampus(campus);
-        
+
 
 
         DefaultPieDataset data = new DefaultPieDataset();
-        
+
         data.setValue("Room Busy", nbRoomBusyPerCampus);
-        
+
         data.setValue("Room Available", nbRoomAvailablePerCampus);
 
 
 
 
         //create a chart...
-        JFreeChart chart = ChartFactory.createPieChart("Rooms Busy - Available for "+campus+"", data, true/*
+        JFreeChart chart = ChartFactory.createPieChart("Rooms Busy - Available for " + campus + "", data, true/*
                  * legend?
                  */, true/*
                  * tooltips?
@@ -259,11 +259,9 @@ public class PieStatistics {
 
         chart.createBufferedImage(500, 300);
         try {
-            ChartUtilities.saveChartAsJPEG(new File("RoomsBAPiefor"+campus+".jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File("RoomsBAPiefor" + campus + ".jpg"), chart, 500, 300);
         } catch (IOException ex) {
             Logger.getLogger(PieStatistics.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 }

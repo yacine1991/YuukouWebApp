@@ -28,10 +28,13 @@ Probleme avec les différentes libraires + version qui possendent certaines class
 JFreeCHart		=> Résolu, ajout des bonnes librairies
 
 16/04/2012
-Probleme dans l'affichage des photos en JSP, toujours une histoire de chemin
+Probleme dans l'affichage des photos en JSP, toujours une histoire de chemin => Résolu : getServletcontext.GetrealPath(/)
 
 17/04/2012
 Itérateur qui ne bouge pas  => Résolu, Iteration mal incrémentée, mais idée abandonnée
 
 18/04/2012
 Séparation avec 2 servlet distinct qui ne font pas appel a n'importe quelles methodes.
+
+20/04/2012
+Utilisation dans une page JSP du javascript dans laquelle on apelle des methodes java.

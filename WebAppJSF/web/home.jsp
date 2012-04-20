@@ -14,7 +14,7 @@
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>YuukouWebApp Main Page</title>
     </head>
     <body>
         <div data-role="page">
@@ -29,7 +29,7 @@
                 </li>-->
                 <li><a href="YuukouServlet?choice=find">Find a PC</a>
                 </li>
-                 <li><a href="YuukouServlet?choice=stats">Statistics</a>
+                <li><a href="YuukouServlet?choice=stats">Statistics</a>
                 </li>
                 <li></li>
             </ul>

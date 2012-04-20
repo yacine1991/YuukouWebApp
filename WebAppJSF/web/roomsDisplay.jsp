@@ -46,7 +46,7 @@
                     while (it.hasNext()) {
                         Room r = (Room) it.next();
                 %>
-                <li><% out.println("<a href=YuukouServlet?choice=Room&id="+r.getIdRoom()+">");%>
+                <li><% out.println("<a href=YuukouServlet?choice=Room&id=" + r.getIdRoom() + ">");%>
                     <%
                         if (r.getTypeResource().equals("mc")) {%>
                     <img src="images/apple.jpg" align="middle"/>
@@ -57,17 +57,18 @@
                     <p><%   out.println("Status : " + r.getStatus());%></p>
                     <% if (r.getStatus() != "Busy") {%>
                     <p><%   out.println("Availability : " + r.getAvailability());%></p>
+                    <p><%   out.println("Campus location : " + r.getLongDescription());%></p>
 
-                        
+
 
                     <%out.println("</a>");%>
                 </li>
-                <% }
+                <% } else {
+                            out.println("<blink><font color=\"red\">Room busy</font></blink>");
+                        }
                     }%>
-
-           
             </ul>
-
+          
         </div>
     </body>
 </html>

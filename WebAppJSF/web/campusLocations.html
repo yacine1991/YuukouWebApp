@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>Ma Carte Geographique sur votre site</title>
+    <META NAME="TITLE" CONTENT="Ma Carte Geographique sur votre site">
+    <meta name="Description" content="Script permettant d'installer aisément Google Maps sur votre site">
+    <meta name="Abstract" content="Script permettant d'installer aisément Google Maps sur votre site">
+    <META NAME="Author" CONTENT="VDC">
+    <META NAME="OWNER" CONTENT="VDC">
+    <meta name="KeyWords" content="google,carte,google maps,cartographie,situer,situation,acces">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <META name="Copyright" content="Copyright VDC">
+    <META http-equiv="Content-Language" content="fr">
+    <META NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+    <META NAME="REVISIT-AFTER" CONTENT="15">
+    <META name="Rating" content="General">
+    <meta name="Category" content="Tourisme">
+    <link rel="StyleSheet" href="css/google_maps_style.css" type="text/css">
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAFw0lDRKsdCra15LPvIxvehQuHwjmHlzDHWpHMxhjhC1X3GZpEhQi2dPB5PhkqZuu76tqEmcGsJaLOg" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    function load()
+	  {
+      if (GBrowserIsCompatible())
+	    {
+        var map = new GMap2(document.getElementById("map"));
+map.addControl(new GMapTypeControl());
+map.addControl(new GSmallMapControl());
+map.addControl(new GOverviewMapControl());
+map.setCenter(new GLatLng(51.52082960525813, -0.13968282935820753),18);
+    var point = new GLatLng(51.52082960525813, -0.13968282935820753);
+    var MGMicon = new GIcon();
+    MGMicon.iconSize=new GSize(32,32);
+    MGMicon.shadowSize=new GSize(56,32);
+    MGMicon.iconAnchor=new GPoint(16,32);
+    MGMicon.infoWindowAnchor=new GPoint(16,0);
+    var MGMrepere = new GIcon(MGMicon, "http://www.my-google-maps.com/Sujets/blue-pushpin.png", null, "http://www.my-google-maps.com/Sujets/blue-pushpin-s.png");
+    var marker = new GMarker(point,MGMrepere);
+    map.addOverlay(marker);
+
+point = new GLatLng(51.52082960525813, -0.13968282935820753);
+map.openInfoWindowHtml(point,"New Cavendish Campus");
+        }
+      }
+    //]]>
+	</script>
+	</head>
+  <BODY BGCOLOR="#D8E9EC" onload="load()" onunload="GUnload()">
+    <TABLE cellpadding="0" cellspacing="0" border="0" width="640" class="just">
+	  <tr><td ALIGN="LEFT" VALIGN="TOP"><div id="map" style="width: 468px; height: 270px"></div>
+</td></tr>
+	  <tr><td ALIGN="LEFT" VALIGN="TOP">
+      <script type="text/javascript"><!--
+	      google_ad_client = "pub-6860157129998313";
+	      google_ad_width = 468;
+	      google_ad_height = 15;
+	      google_ad_format = "468x15_0ads_al_s";
+	      google_ad_channel = "";
+	      google_color_border = "336699";
+	      google_color_bg = "D8E9EC";
+	      google_color_link = "FFFF00";
+	      google_color_text = "0000FF";
+	      google_color_url = "CCCCCC";
+	    //--></script>
+	    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script><br>
+	  </td></tr>	
+	  
+    </table>
+  </BODY>
+</HTML>

@@ -58,7 +58,7 @@ public class ChartStatistics {
 
         GroupedStackedBarRenderer renderer =
                 new GroupedStackedBarRenderer();
-       
+
 
 
         renderer.setItemMargin(0.0);

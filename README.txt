@@ -80,3 +80,9 @@ alors elle n'est pas forcement utilisée.
 J'ai donc séparée le traitement dans 2 JSP différentes.
 La premiere va permettre de remplir l'objet Room sans photos, afin de pouvoir l'afficher sous forme de liste, quand a la deuxieme, rappelle une focntion du servlet qui Parse
 une methode que j'apelle du Webservice, mais cette fois ci avec la photo, donc cela me permet d'enregistrer la photo que i j'ai l'identifiant de la room actuelle.
+
+20/04/2012
+Application premiere version commence a ressembler a quelque chose.
+A rajouter dans une page de JSP les graphiques avec Google Chart API.
+<%= %>
+Affichage des images reussies, mais probleme dans l'afficahge des infos des salles dans la page roomInfos

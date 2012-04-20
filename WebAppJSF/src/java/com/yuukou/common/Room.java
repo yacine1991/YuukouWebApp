@@ -200,8 +200,6 @@ public class Room {
 
     public void toDoIfHasImage() {
         if (this.getHasImage() == true) {
-            
-
         }
     }
 
@@ -212,6 +210,4 @@ public class Room {
     public void setJSONstate(String JSONstate) {
         this.JSONstate = JSONstate;
     }
-
-   
 }
