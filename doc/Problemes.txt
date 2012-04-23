@@ -37,4 +37,4 @@ Itérateur qui ne bouge pas  => Résolu, Iteration mal incrémentée, mais idée aban
 Séparation avec 2 servlet distinct qui ne font pas appel a n'importe quelles methodes.
 
 20/04/2012
-Utilisation dans une page JSP du javascript dans laquelle on apelle des methodes java.
+Utilisation dans une page JSP du javascript dans laquelle on apelle des methodes java. => Resolu

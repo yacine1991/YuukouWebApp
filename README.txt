@@ -86,3 +86,9 @@ Application premiere version commence a ressembler a quelque chose.
 A rajouter dans une page de JSP les graphiques avec Google Chart API.
 <%= %>
 Affichage des images reussies, mais probleme dans l'afficahge des infos des salles dans la page roomInfos
+
+23/04/2013
+Ajout des statstique pour google map.
+Nouvelles consignes : 
+	- A faire, utiliser getGraph renvoyée par le webservice pour faire le graphique ac GoogleChart
+	- Affichage des graphs divers faits precedemment mais avec google jChart.

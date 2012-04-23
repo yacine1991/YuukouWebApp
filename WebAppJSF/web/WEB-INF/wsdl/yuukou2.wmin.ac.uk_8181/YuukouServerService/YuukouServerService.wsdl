@@ -28,17 +28,17 @@
 <xsd:import namespace="http://server.webservice.jax/" schemaLocation="https://yuukou2.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="last">
-<part name="parameters" element="tns:last"/>
-</message>
-<message name="lastResponse">
-<part name="parameters" element="tns:lastResponse"/>
-</message>
 <message name="checkConfigHealth">
 <part name="parameters" element="tns:checkConfigHealth"/>
 </message>
 <message name="checkConfigHealthResponse">
 <part name="parameters" element="tns:checkConfigHealthResponse"/>
+</message>
+<message name="who">
+<part name="parameters" element="tns:who"/>
+</message>
+<message name="whoResponse">
+<part name="parameters" element="tns:whoResponse"/>
 </message>
 <message name="lastDefault">
 <part name="parameters" element="tns:lastDefault"/>
@@ -52,17 +52,56 @@
 <message name="healthForRoomResponse">
 <part name="parameters" element="tns:healthForRoomResponse"/>
 </message>
+<message name="healthForAllRooms">
+<part name="parameters" element="tns:healthForAllRooms"/>
+</message>
+<message name="healthForAllRoomsResponse">
+<part name="parameters" element="tns:healthForAllRoomsResponse"/>
+</message>
 <message name="searchHistoryUser">
 <part name="parameters" element="tns:searchHistoryUser"/>
 </message>
 <message name="searchHistoryUserResponse">
 <part name="parameters" element="tns:searchHistoryUserResponse"/>
 </message>
+<message name="getGraphWithRequest">
+<part name="parameters" element="tns:getGraphWithRequest"/>
+</message>
+<message name="getGraphWithRequestResponse">
+<part name="parameters" element="tns:getGraphWithRequestResponse"/>
+</message>
+<message name="launchCycle">
+<part name="parameters" element="tns:launchCycle"/>
+</message>
 <message name="getListRooms">
 <part name="parameters" element="tns:getListRooms"/>
 </message>
 <message name="getListRoomsResponse">
 <part name="parameters" element="tns:getListRoomsResponse"/>
+</message>
+<message name="healthResourcesReportForAllRooms">
+<part name="parameters" element="tns:healthResourcesReportForAllRooms"/>
+</message>
+<message name="healthResourcesReportForAllRoomsResponse">
+<part name="parameters" element="tns:healthResourcesReportForAllRoomsResponse"/>
+</message>
+<message name="healthResourcesReportForRoom">
+<part name="parameters" element="tns:healthResourcesReportForRoom"/>
+</message>
+<message name="healthResourcesReportForRoomResponse">
+<part name="parameters" element="tns:healthResourcesReportForRoomResponse"/>
+</message>
+<message name="getSitesInformation">
+<part name="parameters" element="tns:getSitesInformation"/>
+</message>
+<message name="getSitesInformationResponse">
+<part name="parameters" element="tns:getSitesInformationResponse"/>
+</message>
+<message name="getRoomsType">
+<part name="parameters" element="tns:getRoomsType"/>
+</message>
+<message name="getRoomsTypeResponse">
+<part name="parameters" element="tns:getRoomsTypeResponse"/>
 </message>
 <message name="isCycleRunning">
 <part name="parameters" element="tns:isCycleRunning"/>
@@ -88,59 +127,26 @@
 <message name="isMaintenanceScheduledResponse">
 <part name="parameters" element="tns:isMaintenanceScheduledResponse"/>
 </message>
-<message name="getSitesInformation">
-<part name="parameters" element="tns:getSitesInformation"/>
+<message name="getGraphWithRequestUsingJson">
+<part name="parameters" element="tns:getGraphWithRequestUsingJson"/>
 </message>
-<message name="getSitesInformationResponse">
-<part name="parameters" element="tns:getSitesInformationResponse"/>
+<message name="getGraphWithRequestUsingJsonResponse">
+<part name="parameters" element="tns:getGraphWithRequestUsingJsonResponse"/>
 </message>
-<message name="getRoomsType">
-<part name="parameters" element="tns:getRoomsType"/>
+<message name="last">
+<part name="parameters" element="tns:last"/>
 </message>
-<message name="getRoomsTypeResponse">
-<part name="parameters" element="tns:getRoomsTypeResponse"/>
-</message>
-<message name="who">
-<part name="parameters" element="tns:who"/>
-</message>
-<message name="whoResponse">
-<part name="parameters" element="tns:whoResponse"/>
-</message>
-<message name="healthResourcesReportForAllRooms">
-<part name="parameters" element="tns:healthResourcesReportForAllRooms"/>
-</message>
-<message name="healthResourcesReportForAllRoomsResponse">
-<part name="parameters" element="tns:healthResourcesReportForAllRoomsResponse"/>
-</message>
-<message name="getGraphWithRequest">
-<part name="parameters" element="tns:getGraphWithRequest"/>
-</message>
-<message name="getGraphWithRequestResponse">
-<part name="parameters" element="tns:getGraphWithRequestResponse"/>
-</message>
-<message name="healthResourcesReportForRoom">
-<part name="parameters" element="tns:healthResourcesReportForRoom"/>
-</message>
-<message name="healthResourcesReportForRoomResponse">
-<part name="parameters" element="tns:healthResourcesReportForRoomResponse"/>
-</message>
-<message name="healthForAllRooms">
-<part name="parameters" element="tns:healthForAllRooms"/>
-</message>
-<message name="healthForAllRoomsResponse">
-<part name="parameters" element="tns:healthForAllRoomsResponse"/>
-</message>
-<message name="launchCycle">
-<part name="parameters" element="tns:launchCycle"/>
+<message name="lastResponse">
+<part name="parameters" element="tns:lastResponse"/>
 </message>
 <portType name="YuukouServer">
-<operation name="last">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/lastRequest" message="tns:last"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/lastResponse" message="tns:lastResponse"/>
-</operation>
 <operation name="checkConfigHealth">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/checkConfigHealthRequest" message="tns:checkConfigHealth"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/checkConfigHealthResponse" message="tns:checkConfigHealthResponse"/>
+</operation>
+<operation name="who">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/whoRequest" message="tns:who"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/whoResponse" message="tns:whoResponse"/>
 </operation>
 <operation name="lastDefault">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/lastDefaultRequest" message="tns:lastDefault"/>
@@ -150,13 +156,40 @@
 <input wsam:Action="http://server.webservice.jax/YuukouServer/healthForRoomRequest" message="tns:healthForRoom"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/healthForRoomResponse" message="tns:healthForRoomResponse"/>
 </operation>
+<operation name="healthForAllRooms">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/healthForAllRoomsRequest" message="tns:healthForAllRooms"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/healthForAllRoomsResponse" message="tns:healthForAllRoomsResponse"/>
+</operation>
 <operation name="searchHistoryUser">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/searchHistoryUserRequest" message="tns:searchHistoryUser"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/searchHistoryUserResponse" message="tns:searchHistoryUserResponse"/>
 </operation>
+<operation name="getGraphWithRequest">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestRequest" message="tns:getGraphWithRequest"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestResponse" message="tns:getGraphWithRequestResponse"/>
+</operation>
+<operation name="launchCycle">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/launchCycle" message="tns:launchCycle"/>
+</operation>
 <operation name="getListRooms">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/getListRoomsRequest" message="tns:getListRooms"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/getListRoomsResponse" message="tns:getListRoomsResponse"/>
+</operation>
+<operation name="healthResourcesReportForAllRooms">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsRequest" message="tns:healthResourcesReportForAllRooms"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsResponse" message="tns:healthResourcesReportForAllRoomsResponse"/>
+</operation>
+<operation name="healthResourcesReportForRoom">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForRoomRequest" message="tns:healthResourcesReportForRoom"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForRoomResponse" message="tns:healthResourcesReportForRoomResponse"/>
+</operation>
+<operation name="getSitesInformation">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/getSitesInformationRequest" message="tns:getSitesInformation"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/getSitesInformationResponse" message="tns:getSitesInformationResponse"/>
+</operation>
+<operation name="getRoomsType">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/getRoomsTypeRequest" message="tns:getRoomsType"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/getRoomsTypeResponse" message="tns:getRoomsTypeResponse"/>
 </operation>
 <operation name="isCycleRunning">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/isCycleRunningRequest" message="tns:isCycleRunning"/>
@@ -174,42 +207,19 @@
 <input wsam:Action="http://server.webservice.jax/YuukouServer/isMaintenanceScheduledRequest" message="tns:isMaintenanceScheduled"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/isMaintenanceScheduledResponse" message="tns:isMaintenanceScheduledResponse"/>
 </operation>
-<operation name="getSitesInformation">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/getSitesInformationRequest" message="tns:getSitesInformation"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/getSitesInformationResponse" message="tns:getSitesInformationResponse"/>
+<operation name="getGraphWithRequestUsingJson">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestUsingJsonRequest" message="tns:getGraphWithRequestUsingJson"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestUsingJsonResponse" message="tns:getGraphWithRequestUsingJsonResponse"/>
 </operation>
-<operation name="getRoomsType">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/getRoomsTypeRequest" message="tns:getRoomsType"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/getRoomsTypeResponse" message="tns:getRoomsTypeResponse"/>
-</operation>
-<operation name="who">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/whoRequest" message="tns:who"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/whoResponse" message="tns:whoResponse"/>
-</operation>
-<operation name="healthResourcesReportForAllRooms">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsRequest" message="tns:healthResourcesReportForAllRooms"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForAllRoomsResponse" message="tns:healthResourcesReportForAllRoomsResponse"/>
-</operation>
-<operation name="getGraphWithRequest">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestRequest" message="tns:getGraphWithRequest"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestResponse" message="tns:getGraphWithRequestResponse"/>
-</operation>
-<operation name="healthResourcesReportForRoom">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForRoomRequest" message="tns:healthResourcesReportForRoom"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/healthResourcesReportForRoomResponse" message="tns:healthResourcesReportForRoomResponse"/>
-</operation>
-<operation name="healthForAllRooms">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/healthForAllRoomsRequest" message="tns:healthForAllRooms"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/healthForAllRoomsResponse" message="tns:healthForAllRoomsResponse"/>
-</operation>
-<operation name="launchCycle">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/launchCycle" message="tns:launchCycle"/>
+<operation name="last">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/lastRequest" message="tns:last"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/lastResponse" message="tns:lastResponse"/>
 </operation>
 </portType>
 <binding name="YuukouServerPortBinding" type="tns:YuukouServer">
 <wsp:PolicyReference URI="#YuukouServerPortBindingPolicy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="last">
+<operation name="checkConfigHealth">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -218,7 +228,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="checkConfigHealth">
+<operation name="who">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -245,6 +255,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="healthForAllRooms">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="searchHistoryUser">
 <soap:operation soapAction=""/>
 <input>
@@ -254,7 +273,58 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="getGraphWithRequest">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="launchCycle">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
 <operation name="getListRooms">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="healthResourcesReportForAllRooms">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="healthResourcesReportForRoom">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getSitesInformation">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getRoomsType">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -299,7 +369,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getSitesInformation">
+<operation name="getGraphWithRequestUsingJson">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -308,7 +378,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getRoomsType">
+<operation name="last">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -316,57 +386,6 @@
 <output>
 <soap:body use="literal"/>
 </output>
-</operation>
-<operation name="who">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="healthResourcesReportForAllRooms">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getGraphWithRequest">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="healthResourcesReportForRoom">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="healthForAllRooms">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="launchCycle">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
 </operation>
 </binding>
 <service name="YuukouServerService">

@@ -41,7 +41,11 @@ Finaliser le graphique de barres	Done
 Séparer par 2 servlet distincts.
 
 20/04
-Affichage des graphiques avec GoogleChart API, abandon de JFreeChart.
+Affichage des graphiques avec GoogleChart API, abandon de JFreeChart. => Done
+
+23/04
+Approfondir l'utilisation de google Chart
+Exploitation de la focntion getGraph du WS
 
 
 

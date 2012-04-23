@@ -178,23 +178,22 @@ public class YuukouServlet extends HttpServlet {
                 r.setStatus(jso.get("State").toString());
                 r.setTypeResource(jso.get("TypeResources").toString());
 
-                if (jso.get("State").equals("Available")) {
-                    //a finir ajouter une listRooms pour l'
-                    r.setHealthRoom(jso.get("Health").toString());
-                    r.setAvailability(jso.get("Availability").toString());
-                    r.setPcAvailable(jso.get("Available").toString());
-                    r.setPcDown(jso.get("Down").toString());
-                    r.setResources(jso.get("Resources").toString());
-                    r.setBusy(jso.get("Busy").toString());
+                //a finir ajouter une listRooms pour l'
+                r.setHealthRoom(jso.get("Health").toString());
+                r.setAvailability(jso.get("Availability").toString());
+                r.setPcAvailable(jso.get("Available").toString());
+                r.setPcDown(jso.get("Down").toString());
+                r.setResources(jso.get("Resources").toString());
+                r.setBusy(jso.get("Busy").toString());
 
-                    if (jso.get("HasImage").equals("YES")) {
-                        r.setHasImage(true);
+                if (jso.get("HasImage").equals("YES")) {
+                    r.setHasImage(true);
 
 
-                        
-                    }
 
-                } else {
+                }
+
+                if (jso.get("State").equals("Busy")) {
                     r.setStartTime(jso.get("StartTime").toString());
                     r.setEndTime(jso.get("EndTime").toString());
                     r.setEventType(jso.get("EventType").toString());
@@ -304,7 +303,7 @@ public class YuukouServlet extends HttpServlet {
                 r.setPcDown(jso.get("Down").toString());
                 r.setResources(jso.get("Resources").toString());
                 r.setBusy(jso.get("Busy").toString());
-               
+
                 if (jso.get("HasImage").equals("YES")) {
                     r.setHasImage(true);
 
@@ -319,7 +318,7 @@ public class YuukouServlet extends HttpServlet {
                     }
 
                     r.setImage(convertByteToImage(tab, r.getIdRoom()));
-                    
+
 
                 }
 
@@ -337,7 +336,7 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
-        
+
     }
 
     public File convertByteToImage(byte[] tab, String idRoom) throws IOException {

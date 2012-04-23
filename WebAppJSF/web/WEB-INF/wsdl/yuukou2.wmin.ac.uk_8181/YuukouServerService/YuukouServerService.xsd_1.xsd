@@ -16,6 +16,10 @@
 
 <xs:element name="getGraphWithRequestResponse" type="tns:getGraphWithRequestResponse"/>
 
+<xs:element name="getGraphWithRequestUsingJson" type="tns:getGraphWithRequestUsingJson"/>
+
+<xs:element name="getGraphWithRequestUsingJsonResponse" type="tns:getGraphWithRequestUsingJsonResponse"/>
+
 <xs:element name="getListRooms" type="tns:getListRooms"/>
 
 <xs:element name="getListRoomsResponse" type="tns:getListRoomsResponse"/>
@@ -110,6 +114,23 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getGraphWithRequestUsingJson">
+<xs:sequence>
+<xs:element name="rqt" type="xs:string" minOccurs="0"/>
+<xs:element name="rqtLqbel" type="xs:string" minOccurs="0"/>
+<xs:element name="label" type="xs:string" minOccurs="0"/>
+<xs:element name="startTime" type="xs:string" minOccurs="0"/>
+<xs:element name="endTime" type="xs:string" minOccurs="0"/>
+<xs:element name="factor" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getGraphWithRequestUsingJsonResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="launchCycle">
 <xs:sequence/>
 </xs:complexType>
@@ -135,6 +156,8 @@
 <xs:sequence>
 <xs:element name="contents" type="xs:base64Binary" minOccurs="0"/>
 <xs:element name="dates" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="hasData" type="xs:boolean"/>
+<xs:element name="typeContents" type="xs:string" minOccurs="0"/>
 <xs:element name="values" type="xs:int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
@@ -159,6 +182,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getListRooms">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getListRoomsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="healthResourcesReportForRoom">
 <xs:sequence>
 <xs:element name="idRoom" type="xs:string" minOccurs="0"/>
@@ -166,16 +199,6 @@
 </xs:complexType>
 
 <xs:complexType name="healthResourcesReportForRoomResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getListRooms">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getListRoomsResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -193,21 +216,21 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="healthResourcesReportForAllRooms">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="healthResourcesReportForAllRoomsResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="lastDefault">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="lastDefaultResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="healthResourcesReportForAllRooms">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="healthResourcesReportForAllRoomsResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>

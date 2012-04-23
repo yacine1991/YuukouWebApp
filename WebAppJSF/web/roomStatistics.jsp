@@ -28,6 +28,33 @@
         <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <%
+            RoomList rl = (RoomList) request.getAttribute("roomList");
+        %>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Hours per Day'],
+                    ['Cavensih',     <%=rl.getNbComputerRoomsCavendish()%>],
+                    ['ECS',      <%=rl.getNbComputerRoomsECS()%>],
+                    ['Harrow',  <%=rl.getNbComputerRoomsHarrow()%>],
+                    ['Little Tich', <%=rl.getNbComputerRoomsLittleTich()%>],
+                    ['Little Tich', <%=rl.getNbComputerRoomsRegent()%>],
+                    ['Marylbone',    <%=rl.getNbComputerRoomsMarylebone()%>]
+                ]);
+
+                var options = {
+                    title: 'My Daily Activities'
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        </script>
+
 
     </head>
 
@@ -42,28 +69,25 @@
 
             <!--Div that will hold the pie chart-->
             <div id="test">
-                <% RoomList rl = (RoomList) request.getAttribute("roomList");
-
-                    PieStatistics ps = new PieStatistics();
-                    ChartStatistics cs = new ChartStatistics();
-                %>
-                <h1><%
-
-                    /*
-                     * ps.drawPieMacPc(rl); ps.drawPieComputerPerCampus(rl);
-                     * ps.drawPieComputerBusyAvailableDown(rl);
-                     * ps.drawPieRoomsBusyAvailable(rl);
-                     * ps.drawPieRoomsBusyAvailablePerCampus(rl, "Regent");
-                     *
-                     * cs.createLegendItems();
-                     * cs.createChart(cs.createDataset(rl));
-                     */
-
-                    %>   </h1>
-                <h2>Test image :<br>
-                    <%out.println("<img src=\"macPC.jpg\" alt=\"salle\"/>");%></h2>
 
             </div>
+            <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+            <h1><%
+
+                /*
+                 * PieStatistics ps = new PieStatistics(); ChartStatistics cs =
+                 * new ChartStatistics(); ps.drawPieMacPc(rl);
+                 * ps.drawPieComputerPerCampus(rl);
+                 * ps.drawPieComputerBusyAvailableDown(rl);
+                 * ps.drawPieRoomsBusyAvailable(rl);
+                 * ps.drawPieRoomsBusyAvailablePerCampus(rl, "Regent");
+                 *
+                 * cs.createLegendItems(); cs.createChart(cs.createDataset(rl));
+                 */
+
+                %>   </h1>
+
 
 
         </div>

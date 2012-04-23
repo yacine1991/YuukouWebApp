@@ -20,8 +20,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
         <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="yuukou.css"/>
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
+
     </head>
     <body>
         <div data-role="page">
@@ -54,21 +57,30 @@
                     <img src="images/windows.jpg" align="middle"/>
                     <% }%>
                     <h3><% out.println(r.getIdRoom());%></h3>
+                    
+                    <% if (!r.getStatus().equals("Busy")) {%>
                     <p><%   out.println("Status : " + r.getStatus());%></p>
-                    <% if (r.getStatus() != "Busy") {%>
-                    <p><%   out.println("Availability : " + r.getAvailability());%></p>
+                    <p><%  if (Float.parseFloat(r.getAvailability()) >= 75.0) {
+
+                            out.println("Availability : <span style=\" background-color: #0DED20;\"> " + r.getAvailability() + " </span>");
+                        } else if (Float.parseFloat(r.getAvailability()) >= 50.0) {
+                            out.println("Availability : <span style=\" background-color: #F7B10D;\"> " + r.getAvailability() + " </span>");
+                        } else {
+                            out.println("Availability : <span style=\" background-color: #F90909;\"> " + r.getAvailability() + " </span>");
+                        }
+                        %></p>
                     <p><%   out.println("Campus location : " + r.getLongDescription());%></p>
 
 
 
                     <%out.println("</a>");%>
                 </li>
-                <% } else {
+                <% } else if (r.getStatus().equals("Busy")){
                             out.println("<blink><font color=\"red\">Room busy</font></blink>");
-                        }
+                           }
                     }%>
             </ul>
-          
+
         </div>
     </body>
 </html>
