@@ -36,6 +36,12 @@ public class Connection {
         jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
         return port.healthForRoom(idRoom, image);
     }
+
+    public String getGraphWithRequestUsingJson(java.lang.String rqt, java.lang.String rqtLqbel, java.lang.String label, java.lang.String startTime, java.lang.String endTime, int factor) {
+        jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
+        jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
+        return port.getGraphWithRequestUsingJson(rqt, rqtLqbel, label, startTime, endTime, factor);
+    }
     
     
     

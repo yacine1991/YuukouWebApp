@@ -92,3 +92,6 @@ Ajout des statstique pour google map.
 Nouvelles consignes : 
 	- A faire, utiliser getGraph renvoyée par le webservice pour faire le graphique ac GoogleChart
 	- Affichage des graphs divers faits precedemment mais avec google jChart.
+
+24/04/2012
+Ajout de la fonction GetGraphRequest permettant de parser la reponse JSON du webService

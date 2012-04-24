@@ -49,6 +49,7 @@ public class YuukouServlet extends HttpServlet {
 
         RoomList rl = new RoomList();
         Room r = new Room();
+        Graph g = new Graph();
 
 
         String url = null;
@@ -62,6 +63,7 @@ public class YuukouServlet extends HttpServlet {
             url = "/roomStatistics.jsp";
             roomsStatus(rl);
             roomDescription(rl);
+            graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
             request.setAttribute("roomList", rl);
         } else if (type.equals("Room")) {
             url = "/roomInfos.jsp";
@@ -348,5 +350,72 @@ public class YuukouServlet extends HttpServlet {
         ImageIO.write(bImageFromConvert, "jpg", fi);
 
         return fi;
+    }
+
+    public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) {
+        Connection c = new Connection();
+        String rqt = "select start_time_session from yuukou_last"
+                + " where start_time_session >= '" + timeStart + "'"
+                + " and start_time_session <= '" + timeEnd + "'"
+                + " order by start_time_session;";
+        int factor = Integer.parseInt(factorStr);
+
+
+        JSONParser jp = new JSONParser();
+        Object obj;
+        int i;
+
+        String responseGetGraph = c.getGraphWithRequestUsingJson(rqt, "start_time_session", "HoHoHOHOHO", timeStart, timeEnd, factor);
+        System.out.println(responseGetGraph);
+
+        try {
+            obj = jp.parse(responseGetGraph);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            g.setJSONstate("OK");
+            g.setJSONlastCycle(jo.get("JSONLastCycle").toString());
+            g.setJSONmaintenance(jo.get("JSONMaintenance").toString());
+
+
+            JSONObject jso = (JSONObject) jo.get("JSONContents");
+            g.setHasData(jso.get("HasData").toString());
+            g.setImageType(jso.get("ImageType").toString());
+
+            JSONArray joo = (JSONArray) jso.get("ContentsValues");
+            System.out.println("Size" + joo.toArray().length);
+            
+            String[] tabContentsValues = new String[joo.size()];
+            for (i = 0; i < joo.size(); i++) {
+                tabContentsValues[i] = (String) joo.get(i).toString();
+            }
+            g.setContentsValues(tabContentsValues);
+
+            
+            JSONArray joo2 = (JSONArray) jso.get("ContentsDates");
+            String[] tabContentsDates = new String[joo2.size()];
+            for (i = 0; i < joo2.size(); i++) {
+                tabContentsDates[i] = (String) joo2.get(i).toString();
+            }
+            g.setContentsDates(tabContentsDates);
+
+            JSONArray joo3 = (JSONArray) jso.get("Image");
+            String[] tabImages = new String[joo3.size()];
+            for (i = 0; i < joo2.size(); i++) {
+                tabImages[i] = (String) joo3.get(i).toString();
+            }
+            g.setImage(tabImages);
+
+            
+        } else {
+            g.setJSONstate("KO");
+            g.setJSONReason(jo.get("JSONReason").toString());
+        }
     }
 }

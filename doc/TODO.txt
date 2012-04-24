@@ -45,7 +45,11 @@ Affichage des graphiques avec GoogleChart API, abandon de JFreeChart. => Done
 
 23/04
 Approfondir l'utilisation de google Chart
-Exploitation de la focntion getGraph du WS
+Exploitation de la focntion getGraph du WS => Parsage effectué
+
+24/04
+Recuperer new infos tout x miniutes mais sans recharger la page.
+Utiliser googleChart
 
 
 
