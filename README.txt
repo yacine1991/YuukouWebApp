@@ -95,3 +95,7 @@ Nouvelles consignes :
 
 24/04/2012
 Ajout de la fonction GetGraphRequest permettant de parser la reponse JSON du webService
+
+25/04/2012
+Ajout des methode restriction + url de la salle dans room suite a la modification du WS.
+Debut d'utlisation de AJAX pour java.

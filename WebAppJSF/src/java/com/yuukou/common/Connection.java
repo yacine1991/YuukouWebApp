@@ -11,13 +11,13 @@ package com.yuukou.common;
 public class Connection {
     private String result;
     
-    public String conhealthForAllRooms(boolean image) {
+    public String conhealthForAllRooms() {
 
 
         jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
         jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
         // TODO process result here
-        result = port.healthForAllRooms(image);
+        result = port.healthForAllRooms();
         return result;
     }
 
@@ -31,10 +31,10 @@ public class Connection {
         return result;
     }
 
-    public String healthForRoom(java.lang.String idRoom, boolean image) {
+    public String healthForRoom(java.lang.String idRoom) {
         jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
         jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
-        return port.healthForRoom(idRoom, image);
+        return port.healthForRoom(idRoom);
     }
 
     public String getGraphWithRequestUsingJson(java.lang.String rqt, java.lang.String rqtLqbel, java.lang.String label, java.lang.String startTime, java.lang.String endTime, int factor) {

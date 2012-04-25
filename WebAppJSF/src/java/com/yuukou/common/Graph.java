@@ -1,5 +1,10 @@
 package com.yuukou.common;
 
+import com.sun.jndi.toolkit.dir.SearchFilter;
+import java.io.Serializable;
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +14,9 @@ package com.yuukou.common;
  *
  * @author Yacine
  */
-public class Graph {
+@ManagedBean
+@SessionScoped
+public class Graph implements Serializable{
 
   private String JSONstate;
     private String JSONlastCycle;

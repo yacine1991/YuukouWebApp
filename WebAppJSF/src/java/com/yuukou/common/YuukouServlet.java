@@ -154,7 +154,7 @@ public class YuukouServlet extends HttpServlet {
         Object obj;
         int i;
         Connection c = new Connection();
-        String responsehealthForAllRooms = c.conhealthForAllRooms(false);
+        String responsehealthForAllRooms = c.conhealthForAllRooms();
 
 
         try {
@@ -188,12 +188,12 @@ public class YuukouServlet extends HttpServlet {
                 r.setResources(jso.get("Resources").toString());
                 r.setBusy(jso.get("Busy").toString());
 
-                if (jso.get("HasImage").equals("YES")) {
+                /*if (jso.get("HasImage").equals("YES")) {
                     r.setHasImage(true);
 
 
 
-                }
+                }*/
 
                 if (jso.get("State").equals("Busy")) {
                     r.setStartTime(jso.get("StartTime").toString());
@@ -273,7 +273,7 @@ public class YuukouServlet extends HttpServlet {
         Object obj;
         int i;
         Connection c = new Connection();
-        String responsehealthForRoom = c.healthForRoom(idRoom, true);
+        String responsehealthForRoom = c.healthForRoom(idRoom);
 
 
         try {
@@ -305,6 +305,8 @@ public class YuukouServlet extends HttpServlet {
                 r.setPcDown(jso.get("Down").toString());
                 r.setResources(jso.get("Resources").toString());
                 r.setBusy(jso.get("Busy").toString());
+                r.setRoomUrl(jso.get("Url").toString());
+                r.setRestriction(jso.get("Restriction").toString());
 
                 if (jso.get("HasImage").equals("YES")) {
                     r.setHasImage(true);

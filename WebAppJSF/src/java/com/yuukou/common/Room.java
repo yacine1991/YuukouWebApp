@@ -33,6 +33,24 @@ public class Room {
     private String JSONlastCycle;
     private String JSONmaintenance;
     private String JSONReason;
+    private String Restriction;
+    private String RoomUrl;
+
+    public String getRestriction() {
+        return Restriction;
+    }
+
+    public void setRestriction(String Restriction) {
+        this.Restriction = Restriction;
+    }
+
+    public String getRoomUrl() {
+        return RoomUrl;
+    }
+
+    public void setRoomUrl(String RoomUrl) {
+        this.RoomUrl = RoomUrl;
+    }
 
     public String getJSONlastCycle() {
         return JSONlastCycle;

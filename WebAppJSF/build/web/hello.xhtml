@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <head>
+            <title>Page principale</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+            <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
+            <script src="jquery-1.7.1.min.js"></script>
+            <script src="jquery.mobile-1.0.1.min.js"></script>
+
+
+        </head>
+    </h:head>
+    <h:body>
+        <div data-role="page" id="home" data-theme="b">
+
+            <h3>hello.xhtml</h3>
+            <h:form>
+                <h:inputText value="#{roomList.name}"></h:inputText>
+                <h:commandButton value="Welcome Me" action="welcome"></h:commandButton>
+            </h:form>
+            
+            
+            <div data-role="footer" id="footer" data-theme="b"
+                 data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home" id="chat" data-icon="home" class="icon-home">Home</a>
+                        </li>                   
+                        <li><a href="#" id="star" >Favoris</a>
+                        </li>                       
+                        <li><a href="#infos" id="notepad" >Infos</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </h:body>
+</html>

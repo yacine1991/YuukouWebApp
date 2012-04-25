@@ -28,6 +28,9 @@
 <xsd:import namespace="http://server.webservice.jax/" schemaLocation="https://yuukou2.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="launchCycle">
+<part name="parameters" element="tns:launchCycle"/>
+</message>
 <message name="checkConfigHealth">
 <part name="parameters" element="tns:checkConfigHealth"/>
 </message>
@@ -70,8 +73,11 @@
 <message name="getGraphWithRequestResponse">
 <part name="parameters" element="tns:getGraphWithRequestResponse"/>
 </message>
-<message name="launchCycle">
-<part name="parameters" element="tns:launchCycle"/>
+<message name="getGraphWithRequestUsingJson">
+<part name="parameters" element="tns:getGraphWithRequestUsingJson"/>
+</message>
+<message name="getGraphWithRequestUsingJsonResponse">
+<part name="parameters" element="tns:getGraphWithRequestUsingJsonResponse"/>
 </message>
 <message name="getListRooms">
 <part name="parameters" element="tns:getListRooms"/>
@@ -127,12 +133,6 @@
 <message name="isMaintenanceScheduledResponse">
 <part name="parameters" element="tns:isMaintenanceScheduledResponse"/>
 </message>
-<message name="getGraphWithRequestUsingJson">
-<part name="parameters" element="tns:getGraphWithRequestUsingJson"/>
-</message>
-<message name="getGraphWithRequestUsingJsonResponse">
-<part name="parameters" element="tns:getGraphWithRequestUsingJsonResponse"/>
-</message>
 <message name="last">
 <part name="parameters" element="tns:last"/>
 </message>
@@ -140,6 +140,9 @@
 <part name="parameters" element="tns:lastResponse"/>
 </message>
 <portType name="YuukouServer">
+<operation name="launchCycle">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/launchCycle" message="tns:launchCycle"/>
+</operation>
 <operation name="checkConfigHealth">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/checkConfigHealthRequest" message="tns:checkConfigHealth"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/checkConfigHealthResponse" message="tns:checkConfigHealthResponse"/>
@@ -168,8 +171,9 @@
 <input wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestRequest" message="tns:getGraphWithRequest"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestResponse" message="tns:getGraphWithRequestResponse"/>
 </operation>
-<operation name="launchCycle">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/launchCycle" message="tns:launchCycle"/>
+<operation name="getGraphWithRequestUsingJson">
+<input wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestUsingJsonRequest" message="tns:getGraphWithRequestUsingJson"/>
+<output wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestUsingJsonResponse" message="tns:getGraphWithRequestUsingJsonResponse"/>
 </operation>
 <operation name="getListRooms">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/getListRoomsRequest" message="tns:getListRooms"/>
@@ -207,10 +211,6 @@
 <input wsam:Action="http://server.webservice.jax/YuukouServer/isMaintenanceScheduledRequest" message="tns:isMaintenanceScheduled"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/isMaintenanceScheduledResponse" message="tns:isMaintenanceScheduledResponse"/>
 </operation>
-<operation name="getGraphWithRequestUsingJson">
-<input wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestUsingJsonRequest" message="tns:getGraphWithRequestUsingJson"/>
-<output wsam:Action="http://server.webservice.jax/YuukouServer/getGraphWithRequestUsingJsonResponse" message="tns:getGraphWithRequestUsingJsonResponse"/>
-</operation>
 <operation name="last">
 <input wsam:Action="http://server.webservice.jax/YuukouServer/lastRequest" message="tns:last"/>
 <output wsam:Action="http://server.webservice.jax/YuukouServer/lastResponse" message="tns:lastResponse"/>
@@ -219,6 +219,12 @@
 <binding name="YuukouServerPortBinding" type="tns:YuukouServer">
 <wsp:PolicyReference URI="#YuukouServerPortBindingPolicy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="launchCycle">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
 <operation name="checkConfigHealth">
 <soap:operation soapAction=""/>
 <input>
@@ -282,11 +288,14 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="launchCycle">
+<operation name="getGraphWithRequestUsingJson">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
 </input>
+<output>
+<soap:body use="literal"/>
+</output>
 </operation>
 <operation name="getListRooms">
 <soap:operation soapAction=""/>
@@ -361,15 +370,6 @@
 </output>
 </operation>
 <operation name="isMaintenanceScheduled">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getGraphWithRequestUsingJson">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
