@@ -57,21 +57,21 @@ public class YuukouServlet extends HttpServlet {
         if (type.equals("find")) {
             url = "/roomsDisplay.jsp";
             roomsStatus(rl);
-            roomDescription(rl);
+            roomLocation(rl);
             request.setAttribute("roomList", rl);
         } else if (type.equals("stats")) {
             url = "/roomStatistics.jsp";
             roomsStatus(rl);
-            roomDescription(rl);
+            roomLocation(rl);
             graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
             request.setAttribute("roomList", rl);
         } else if (type.equals("Room")) {
             url = "/roomInfos.jsp";
             String id = request.getParameter("id");
-            //r.setLongDescription("Ai ai ai ai");
+            //r.setLongLocation("Ai ai ai ai");
 
             roomStatus(r, id);
-            roomDescription(rl);
+            roomLocation(rl);
             request.setAttribute("room", r);
             request.setAttribute("roomList", rl);
         }
@@ -187,13 +187,15 @@ public class YuukouServlet extends HttpServlet {
                 r.setPcDown(jso.get("Down").toString());
                 r.setResources(jso.get("Resources").toString());
                 r.setBusy(jso.get("Busy").toString());
+                r.setRestriction(jso.get("Restriction").toString());
 
-                /*if (jso.get("HasImage").equals("YES")) {
-                    r.setHasImage(true);
-
-
-
-                }*/
+                /*
+                 * if (jso.get("HasImage").equals("YES")) { r.setHasImage(true);
+                 *
+                 *
+                 *
+                 * }
+                 */
 
                 if (jso.get("State").equals("Busy")) {
                     r.setStartTime(jso.get("StartTime").toString());
@@ -213,7 +215,7 @@ public class YuukouServlet extends HttpServlet {
         }
     }
 
-    public void roomDescription(RoomList rl) {
+    public void roomLocation(RoomList rl) {
         JSONParser jp = new JSONParser();
         Object obj;
         Connection c = new Connection();
@@ -245,12 +247,12 @@ public class YuukouServlet extends HttpServlet {
                     Room r = rl.getRoom2(i);
                     JSONObject jso = (JSONObject) it.next();
 
-                    if (r.getIdRoom().startsWith(jso.get("Description").toString())) {
+                    if (r.getIdRoom().startsWith(jso.get("Location").toString())) {
 
-                        r.setShortDescription(jso.get("ShortDescription").toString());
-                        r.setLongDescription(jso.get("LongDescription").toString());
-                        System.out.println("Long Description : " + r.getLongDescription());
-                        r.setDescription(jso.get("Description").toString());
+                        r.setShortLocation(jso.get("ShortLocation").toString());
+                        r.setLongLocation(jso.get("LongLocation").toString());
+                        System.out.println("Long Location : " + r.getLongLocation());
+                        r.setLocation(jso.get("Location").toString());
 
                         loop = true;
                     }
@@ -275,7 +277,7 @@ public class YuukouServlet extends HttpServlet {
         Connection c = new Connection();
         String responsehealthForRoom = c.healthForRoom(idRoom);
 
-
+        System.out.println("Rentre dans la fonction");
         try {
             obj = jp.parse(responsehealthForRoom);
 
@@ -307,30 +309,56 @@ public class YuukouServlet extends HttpServlet {
                 r.setBusy(jso.get("Busy").toString());
                 r.setRoomUrl(jso.get("Url").toString());
                 r.setRestriction(jso.get("Restriction").toString());
+                System.out.println("Parsage jusqua a hasImage");
+            } else {
+                if (jso.get("HasTimeTable").equals("YES")) {
 
-                if (jso.get("HasImage").equals("YES")) {
-                    r.setHasImage(true);
+                    r.setHasTimeTable(true);
 
+                    JSONArray joo = (JSONArray) jso.get("TimeTable");
+                    TimeTable[] tabTimeTable = new TimeTable[joo.size()];
 
-                    JSONArray jab = (JSONArray) jso.get("Image");
-                    byte[] tab = new byte[jab.size()];
-                    for (i = 0; i < jab.size(); i++) {
-                        Long ll = (Long) jab.get(i);
-                        String test = String.valueOf(ll);
+                    for (i = 0; i < joo.size(); i++) {
+                        JSONObject joTimeTable = (JSONObject) joo.get(i);
+                        String swap1 = (String) joTimeTable.get("StartTime");
+                        String swap2 = (String) joTimeTable.get("EndTime");
+                        String swap3 = (String) joTimeTable.get("EventType");
+                        String swap4 = (String) joTimeTable.get("EventDescription");
+                        TimeTable tb = new TimeTable(swap1, swap2, swap3, swap4);
 
-                        tab[i] = Byte.parseByte(test);
+                        tabTimeTable[i] = tb;
+
                     }
-
-                    r.setImage(convertByteToImage(tab, r.getIdRoom()));
+                    r.setTimeTable(tabTimeTable);
 
 
                 }
 
-            } else {
-                r.setStartTime(jso.get("StartTime").toString());
-                r.setEndTime(jso.get("EndTime").toString());
-                r.setEventType(jso.get("EventType").toString());
+
+
+
             }
+
+            if (jso.get("HasImage").equals("YES")) {
+                r.setHasImage(true);
+                System.out.println("Has image" + jso.get("HasImage"));
+
+
+                JSONArray jab = (JSONArray) jso.get("Image");
+                byte[] tab = new byte[jab.size()];
+                for (i = 0; i < jab.size(); i++) {
+                    Long ll = (Long) jab.get(i);
+                    String test = String.valueOf(ll);
+
+                    tab[i] = Byte.parseByte(test);
+                }
+
+                r.setImage(convertByteToImage(tab, r.getIdRoom()));
+
+                System.out.println("Fin conversion image");
+            }
+
+
 
 
         } else {
@@ -340,7 +368,7 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
-
+        System.out.println("Fin de la focntion roomStatus");
     }
 
     public File convertByteToImage(byte[] tab, String idRoom) throws IOException {
@@ -392,14 +420,14 @@ public class YuukouServlet extends HttpServlet {
 
             JSONArray joo = (JSONArray) jso.get("ContentsValues");
             System.out.println("Size" + joo.toArray().length);
-            
+
             String[] tabContentsValues = new String[joo.size()];
             for (i = 0; i < joo.size(); i++) {
                 tabContentsValues[i] = (String) joo.get(i).toString();
             }
             g.setContentsValues(tabContentsValues);
 
-            
+
             JSONArray joo2 = (JSONArray) jso.get("ContentsDates");
             String[] tabContentsDates = new String[joo2.size()];
             for (i = 0; i < joo2.size(); i++) {
@@ -414,7 +442,7 @@ public class YuukouServlet extends HttpServlet {
             }
             g.setImage(tabImages);
 
-            
+
         } else {
             g.setJSONstate("KO");
             g.setJSONReason(jo.get("JSONReason").toString());

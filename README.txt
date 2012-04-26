@@ -99,3 +99,5 @@ Ajout de la fonction GetGraphRequest permettant de parser la reponse JSON du web
 25/04/2012
 Ajout des methode restriction + url de la salle dans room suite a la modification du WS.
 Debut d'utlisation de AJAX pour java.
+
+26/04/2012

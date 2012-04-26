@@ -3,6 +3,7 @@
     Created on : 28 mars 2012, 16:20:37
     Author     : Yacine
 --%>
+<%@page import="com.yuukou.common.TimeTable"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.awt.Robot"%>
 <%@page import="com.yuukou.common.YuukouServlet"%>
@@ -52,13 +53,47 @@
                     <li><%out.println("Computer Busy : " + r.getBusy());%></li>
                     <li><%out.println("Computer Types : " + r.getTypeResource());%></li>
                     <li><%out.println("Long Description : " + r.getLongDescription());%></li>
+                    <li><%out.println("TimeTable : " + r.getHasTimeTable());
+                        if (r.getHasTimeTable() != null) {
+                            System.out.print("Lenght " + r.getTimeTable().length);
+                            for (int i = 0; i < r.getTimeTable().length; i++) {
+                                out.println("<li>Start time : " + r.getTimeTable()[i].getStartTime() + "");
+                                out.println("End Time : " + r.getTimeTable()[i].getEndTime() + "");
+                                out.println("Event type : " + r.getTimeTable()[i].getEventType() + "");
+                                out.println("Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</li>");
+
+
+                                r.getTimeTable()[i].getEventType();
+                            }
+                        }
+
+
+                        %></li>
+                    <li><%out.println("Long location : " + r.getLongLocation());%></li>
 
                     <%} else {
                             out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
-                            out.println("<li>Start time : " + r.getStartTime() + "</li>");
+                            /*out.println("<li>Start time : " + r.getStartTime() + "</li>");
                             out.println("<li>End Time : " + r.getEndTime() + "</li>");
-                            out.println("<li>Event type : " + r.getEventType() + "</li>");
-                        }%>                
+                            out.println("<li>Event type : " + r.getEventType() + "</li>");*/
+                        }%>
+                    <li><%out.println("TimeTable :" + r.getHasTimeTable());
+                        if (r.getHasTimeTable() != null) {
+                            System.out.print("Lenght " + r.getTimeTable().length);
+                            for (int i = 0; i < r.getTimeTable().length; i++) {
+                                out.println("<li>Start time : " + r.getTimeTable()[i].getStartTime() + "");
+                                out.println("End Time : " + r.getTimeTable()[i].getEndTime() + "");
+                                out.println("Event type : " + r.getTimeTable()[i].getEventType() + "");
+                                out.println("Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</li>");
+
+
+                                r.getTimeTable()[i].getEventType();
+                            }
+                        }
+
+
+
+                        %></li>
                 </ul>
                 <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
             </center>

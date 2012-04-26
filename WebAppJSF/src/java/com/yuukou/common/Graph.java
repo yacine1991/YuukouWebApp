@@ -1,6 +1,5 @@
 package com.yuukou.common;
 
-import com.sun.jndi.toolkit.dir.SearchFilter;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;

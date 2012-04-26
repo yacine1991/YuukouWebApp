@@ -35,6 +35,32 @@ public class Room {
     private String JSONReason;
     private String Restriction;
     private String RoomUrl;
+    private TimeTable[] TimeTable;
+    private Boolean HasTimeTable;
+
+    public Boolean getHasTimeTable() {
+        return HasTimeTable;
+    }
+
+    public void setHasTimeTable(Boolean HasTimeTable) {
+        this.HasTimeTable = HasTimeTable;
+    }
+
+    public String getLongDescription() {
+        return LongDescription;
+    }
+
+    public void setLongDescription(String LongDescription) {
+        this.LongDescription = LongDescription;
+    }
+
+    public com.yuukou.common.TimeTable[] getTimeTable() {
+        return TimeTable;
+    }
+
+    public void setTimeTable(com.yuukou.common.TimeTable[] TimeTable) {
+        this.TimeTable = TimeTable;
+    }
 
     public String getRestriction() {
         return Restriction;
@@ -84,15 +110,15 @@ public class Room {
         return Description;
     }
 
-    public void setDescription(String Description) {
+    public void setLocation(String Description) {
         this.Description = Description;
     }
 
-    public String getLongDescription() {
+    public String getLongLocation() {
         return LongDescription;
     }
 
-    public void setLongDescription(String LongDescription) {
+    public void setLongLocation(String LongDescription) {
         this.LongDescription = LongDescription;
     }
 
@@ -100,7 +126,7 @@ public class Room {
         return ShortDescription;
     }
 
-    public void setShortDescription(String ShortDescription) {
+    public void setShortLocation(String ShortDescription) {
         this.ShortDescription = ShortDescription;
     }
 

@@ -122,7 +122,7 @@ public class RoomList implements Serializable {
     public int getNbComputerRoomsRegent() {
         nbPcRegent = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals("Regent")) {
+            if (JSONcontent.get(i).getLongLocation().equals("Regent")) {
                 nbPcRegent = nbPcRegent + 1;
             }
         }
@@ -132,7 +132,7 @@ public class RoomList implements Serializable {
     public int getNbComputerRoomsCavendish() {
         nbPcCavendish = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals("New Cavendish Street")) {
+            if (JSONcontent.get(i).getLongLocation().equals("New Cavendish Street")) {
                 nbPcCavendish = nbPcCavendish + 1;
             }
         }
@@ -142,7 +142,7 @@ public class RoomList implements Serializable {
     public int getNbComputerRoomsLittleTich() {
         nbPcLittleTich = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals("Little Titchfield Street")) {
+            if (JSONcontent.get(i).getLongLocation().equals("Little Titchfield Street")) {
                 nbPcLittleTich = nbPcLittleTich + 1;
             }
         }
@@ -152,7 +152,7 @@ public class RoomList implements Serializable {
     public int getNbComputerRoomsHarrow() {
         nbPcHarrow = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals("Harrow")) {
+            if (JSONcontent.get(i).getLongLocation().equals("Harrow")) {
                 nbPcHarrow = nbPcHarrow + 1;
             }
         }
@@ -162,7 +162,7 @@ public class RoomList implements Serializable {
     public int getNbComputerRoomsMarylebone() {
         nbPcMarylebone = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals("Marylebone")) {
+            if (JSONcontent.get(i).getLongLocation().equals("Marylebone")) {
                 nbPcMarylebone = nbPcMarylebone + 1;
             }
         }
@@ -172,7 +172,7 @@ public class RoomList implements Serializable {
     public int getNbComputerRoomsECS() {
         nbPcECS = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals("Electronics and Computer Science")) {
+            if (JSONcontent.get(i).getLongLocation().equals("Electronics and Computer Science")) {
                 nbPcECS = nbPcECS + 1;
             }
         }
@@ -238,7 +238,7 @@ public class RoomList implements Serializable {
     public int getNumberRoomBusyPerCampus(String campus) {
         int nbRoomBusyPerCampus = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals(campus) && !JSONcontent.get(i).getStatus().equals("Available")) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus) && !JSONcontent.get(i).getStatus().equals("Available")) {
                 nbRoomBusyPerCampus = nbRoomBusyPerCampus + 1;
             }
         }
@@ -249,7 +249,7 @@ public class RoomList implements Serializable {
     public int getNumberRoomAvailablePerCampus(String campus) {
         int nbRoomAvailablePerCampus = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals(campus) && JSONcontent.get(i).getStatus().equals("Available")) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus) && JSONcontent.get(i).getStatus().equals("Available")) {
                 nbRoomAvailablePerCampus = nbRoomAvailablePerCampus + 1;
             }
         }
@@ -261,7 +261,7 @@ public class RoomList implements Serializable {
         int nbPcAvailablePerCampus = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals(campus)) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus)) {
                 swap = Integer.parseInt(JSONcontent.get(i).getPcAvailable());
                 nbPcAvailablePerCampus = nbPcAvailablePerCampus + swap;
             }
@@ -274,7 +274,7 @@ public class RoomList implements Serializable {
         int nbPcDownPerCampus = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals(campus)) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus)) {
                 swap = Integer.parseInt(JSONcontent.get(i).getPcDown());
                 nbPcDownPerCampus = nbPcDownPerCampus + swap;
             }
@@ -287,7 +287,7 @@ public class RoomList implements Serializable {
         int nbPcBusyPerCampus = 0;
         int swap;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            if (JSONcontent.get(i).getLongDescription().equals(campus)) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus)) {
                 swap = Integer.parseInt(JSONcontent.get(i).getBusy());
                 nbPcBusyPerCampus = nbPcBusyPerCampus + swap;
             }
@@ -301,7 +301,7 @@ public class RoomList implements Serializable {
         ArrayList<String> listCampus = new ArrayList<String>();
         String campus;
         for (int i = 0; i < JSONcontent.size(); i++) {
-            campus = JSONcontent.get(i).getLongDescription();
+            campus = JSONcontent.get(i).getLongLocation();
             if (!listCampus.contains(campus)) {
                 listCampus.add(campus);
             }
