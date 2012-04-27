@@ -53,6 +53,9 @@
                     <li><%out.println("Computer Busy : " + r.getBusy());%></li>
                     <li><%out.println("Computer Types : " + r.getTypeResource());%></li>
                     <li><%out.println("Long Description : " + r.getLongDescription());%></li>
+                    <li><%out.println("Restriction : " + r.getRestriction());%></li>
+           
+                    
                     <li><%out.println("TimeTable : " + r.getHasTimeTable());
                         if (r.getHasTimeTable() != null) {
                             System.out.print("Lenght " + r.getTimeTable().length);

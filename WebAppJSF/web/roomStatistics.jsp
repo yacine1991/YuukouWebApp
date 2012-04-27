@@ -29,11 +29,34 @@
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script type="text/javascript" src="javascript.js"></script>
+
         <%
             RoomList rl = (RoomList) request.getAttribute("roomList");
         %>
+        <script type="text/javascript" src="javascript.js"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Hours per Day'],
+                    ['Cavensih',     <%=rl.getNbComputerRoomsCavendish()%>],
+                    ['ECS',      <%=rl.getNbComputerRoomsECS()%>],
+                    ['Harrow',  <%=rl.getNbComputerRoomsHarrow()%>],
+                    ['Little Tich', <%=rl.getNbComputerRoomsLittleTich()%>],
+                    ['Regent', <%=rl.getNbComputerRoomsRegent()%>],
+                    ['Marylbone',    <%=rl.getNbComputerRoomsMarylebone()%>]
+                ]);
 
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+      }
+
+        </script>
     </head>
 
     <body onload="javascript:lancerCompteur(20);">
@@ -49,10 +72,10 @@
             <div id="test" data-role="collapsible">
                 <h3>I'm a header</h3>
 
-                <div id="chart_div" style="width: 900px; height: 500px;" data-role="collapsible"></div>
+                <div id="chart_div" style="width: 900px; height: 500px;" ></div>
 
-                <div id="visualization" data-role="collapsible"></div>
-                
+                <div id="chart_div2" style="width: 900px; height: 500px;"></div>
+                <p><% out.println("Nb computer maryl : "+rl.getNbComputerRoomsMarylebone());%></p>
             </div>
             <div id="temps"></div>
             <h1><%

@@ -40,5 +40,5 @@ Séparation avec 2 servlet distinct qui ne font pas appel a n'importe quelles met
 Utilisation dans une page JSP du javascript dans laquelle on apelle des methodes java. => Resolu
 
 25/04/2012
-Suivre les modification du WS et devoir rechanger certaines methodes.
+Suivre les modification du WS et devoir rechanger certaines methodes.	=> Resolu
 Ajax en JAVA avec recupération des bon parametres du servlet.

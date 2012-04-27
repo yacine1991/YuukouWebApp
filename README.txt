@@ -71,8 +71,8 @@ Ainsi que l'ajout de diagramme pour tous les autre campus.
 Probleme avec l'iterateur a regler.
 
 18/04/2012
-Thierry est venu aujourd'hui.
-D'apres lui je dois separer la partie manager de la partie client, ce qui donnera naissance a 2 applications différentes mais faisant appel aux meme classes.
+
+je dois separer la partie manager de la partie client, ce qui donnera naissance a 2 applications différentes mais faisant appel aux meme classes.
 Pour l'une certaines seront bridée quand a l'autre, tout est libre.
 A voir aussi l'utilisation de l'API de Google Map si j'ai le temps.
 Amélioration des fonctions roomStatus et RoomsStatus, le chargement etait ong car je me devais de creer un jpg pour chaque salle existante,
@@ -101,3 +101,10 @@ Ajout des methode restriction + url de la salle dans room suite a la modificatio
 Debut d'utlisation de AJAX pour java.
 
 26/04/2012
+Ajour des parsage de getGraph, et maj des parsage des fonction modifiée par Benoit
+Rectification du beug des image de s'affichant pas dans les salles occupées
+Affichages des timetable + Creation de la classe TimeTable.
+
+27/04/2012
+Probleme des statistiques réglé + ajotu de l'auto refresh( remplacant probablement l'AJAX)
+

@@ -48,8 +48,14 @@ Approfondir l'utilisation de google Chart
 Exploitation de la focntion getGraph du WS => Parsage effectué
 
 24/04
-Recuperer new infos tout x miniutes mais sans recharger la page.
-Utiliser googleChart
+Recuperer new infos tout x miniutes mais sans recharger la page.	Done=> Ajout d'un auto refresh
+Utiliser googleChart				DOne => MAnque malgré plusieurs fonction a exploiter.
+
+26/04
+Separer Graph du reste 
+Separer les fonction qui sont accesibles aux utilisateurs / Admin
+Refondre l'interface des statistiques 
+
 
 
 

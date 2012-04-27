@@ -1,0 +1,63 @@
+Remerciements
+
+1 Introduction
+
+2 Lieu du stage
+	2.1 University of Westminster
+	2.1.1 Presentation
+	2.1.2 Campus et écoles
+	2.1.3 Informations supplémentaires
+
+2.2 School of electronic and science
+
+3 Presentation du sujet
+	3.1 Le projet yuukou
+		3.1.1 Présentation
+		3.1.2 Fonctionnement
+
+4 Cahier des charges
+	4.1 Cahier des charges premier sujet
+	4.2 Cahier des charges second sujet
+
+5 Organisation et Spécifications
+	5.1 Gestion du temps
+	5.2 Systeme d'exploitation
+	5.3 Materiel et Logiciel
+		5.3.1 Netbeans
+		5.3.2 Mozilla, Firebug, Webdeveloppeur
+		5.3.3 GitHub
+	5.4 Les langages	
+		5.4.1 Java			
+		5.4.2 JSP
+	5.5 Formats de données
+		5.5.1 JSON
+	5.6 Frameworks et Librairies
+		5.6.1 jQuery Mobile
+		5.6.2 PhoneGap
+		5.6.3 JFreeChart
+		5.6.4 Google Chart API
+	5.7 Concepts utilisés
+		5.7.1 Les Servlets
+		5.7.2 Le Webservice
+		5.7.3 WSDL
+		
+		
+6 Mise en oeuvre
+	6.1 Architecture des données
+	6.2 Fonctionnement de JQuery Mobile
+	6.3 Classes Java
+	6.4 Fichiers JSP
+	6.5 Fonctionnement global
+	6.6 Appels des methodes du WS
+	6.7 Parsage du JSON
+	6.8 Recupération des Objet dans le JSP
+	6.6 Utilisatation de JfreeChart
+	6.7 Utilisatation de Google Chart API
+	
+	
+7 Problemes recontrès
+8 Bilan
+	8.1 Bilan humain
+	8.2 Bilan pedagogique
+
+9 COnclusion			

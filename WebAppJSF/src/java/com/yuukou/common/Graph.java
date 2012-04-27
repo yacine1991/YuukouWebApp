@@ -13,9 +13,8 @@ import javax.enterprise.context.SessionScoped;
  *
  * @author Yacine
  */
-@ManagedBean
-@SessionScoped
-public class Graph implements Serializable{
+
+public class Graph{
 
   private String JSONstate;
     private String JSONlastCycle;

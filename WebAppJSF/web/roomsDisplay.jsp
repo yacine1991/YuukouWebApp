@@ -21,7 +21,7 @@
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
         <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
 
-        <link rel="stylesheet" type="text/css" href="yuukou.css"/>
+
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
 
@@ -57,7 +57,7 @@
                     <img src="images/windows.jpg" alt="windows" align="middle"/>
                     <% }%>
                     <h3><% out.println(r.getIdRoom());%></h3>
-                    
+
                     <% if (!r.getStatus().equals("Busy")) {%>
                     <p><%   out.println("Status : " + r.getStatus());%></p>
                     <p><%  if (Float.parseFloat(r.getAvailability()) >= 75.0) {
@@ -75,9 +75,9 @@
 
                     <%out.println("</a>");%>
                 </li>
-                <% } else if (r.getStatus().equals("Busy")){
+                <% } else if (r.getStatus().equals("Busy")) {
                             out.println("<blink><font color=\"red\">Room busy</font></blink>");
-                           }
+                        }
                     }%>
             </ul>
 
