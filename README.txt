@@ -108,3 +108,6 @@ Affichages des timetable + Creation de la classe TimeTable.
 27/04/2012
 Probleme des statistiques réglé + ajotu de l'auto refresh( remplacant probablement l'AJAX)
 
+01/05/2012
+Location remarche, ainsi que le parsage de WHo, et healthforRoom.
+

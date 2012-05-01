@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.yuukou.common;
+package com.yuukou.data;
 
 import java.io.File;
 
@@ -27,7 +27,7 @@ public class Room {
     private String ShortDescription;
     private String LongDescription;
     private String Description;
-    private boolean HasImage;
+    private boolean HasImage = false;
     private File Image;
     private String JSONstate;
     private String JSONlastCycle;
@@ -36,9 +36,29 @@ public class Room {
     private String Restriction;
     private String RoomUrl;
     private TimeTable[] TimeTable;
-    private Boolean HasTimeTable;
+    private Computer[] ComputerList;
+    private boolean HasTimeTable = false;
+    private boolean HasComputersDown = false;
+    private boolean HasUserOnline = false;
 
-    public Boolean getHasTimeTable() {
+    public Computer[] getComputerList() {
+        return ComputerList;
+    }
+
+    public void setComputerList(Computer[] ComputerList) {
+        this.ComputerList = ComputerList;
+    }
+
+    public boolean getHasUserOnline() {
+        return HasUserOnline;
+    }
+
+    public void setHasUserOnline(Boolean HasUserOnline) {
+        this.HasUserOnline = HasUserOnline;
+    }
+    
+
+    public boolean getHasTimeTable() {
         return HasTimeTable;
     }
 
@@ -54,11 +74,11 @@ public class Room {
         this.LongDescription = LongDescription;
     }
 
-    public com.yuukou.common.TimeTable[] getTimeTable() {
+    public com.yuukou.data.TimeTable[] getTimeTable() {
         return TimeTable;
     }
 
-    public void setTimeTable(com.yuukou.common.TimeTable[] TimeTable) {
+    public void setTimeTable(com.yuukou.data.TimeTable[] TimeTable) {
         this.TimeTable = TimeTable;
     }
 
@@ -72,6 +92,14 @@ public class Room {
 
     public String getRoomUrl() {
         return RoomUrl;
+    }
+
+    public Boolean getHasComputersDown() {
+        return HasComputersDown;
+    }
+
+    public void setHasComputersDown(Boolean HasComputersDown) {
+        this.HasComputersDown = HasComputersDown;
     }
 
     public void setRoomUrl(String RoomUrl) {
@@ -254,4 +282,6 @@ public class Room {
     public void setJSONstate(String JSONstate) {
         this.JSONstate = JSONstate;
     }
+
+
 }

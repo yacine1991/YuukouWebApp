@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.4.19)  23 APR 2012 13:52
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.4.19)  30 APR 2012 16:28
 entering extended mode
 **PagedeGarde.tex
 (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.tex
@@ -187,7 +187,34 @@ Package pdftex.def Info: img/wmin.jpg used on input line 52.
  [0
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/YuukouWebApp/doc/LaTeX
-/img/wmin.jpg>] (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.toc)
+/img/wmin.jpg>] (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 5.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 5.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 5.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 5.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 5.
+)
 \tf@toc=\write3
 
 (D:\YuukouWebApp\doc\LaTeX\Introduction.tex [1
@@ -213,23 +240,46 @@ Overfull \hbox (3.87114pt too wide) in paragraph at lines 9--13
 [3
 
 
+]) (D:\YuukouWebApp\doc\LaTeX\Lieudustage.tex
+Chapitre 3.
+<img/wmin2.jpg, id=19, 400.49625pt x 318.18875pt>
+File: img/wmin2.jpg Graphic file (type jpg)
+ <use img/wmin2.jpg>
+Package pdftex.def Info: img/wmin2.jpg used on input line 12.
+(pdftex.def)             Requested size: 323.9978pt x 257.42558pt.
+ [4
+
+
+ <D:/YuukouWebApp/doc/LaTeX/img/wmin2.jpg>]
+<img/wmin1.jpg, id=24, 451.6875pt x 301.125pt>
+File: img/wmin1.jpg Graphic file (type jpg)
+ <use img/wmin1.jpg>
+Package pdftex.def Info: img/wmin1.jpg used on input line 35.
+(pdftex.def)             Requested size: 323.9978pt x 216.01033pt.
+ [5 <D:/YuukouWebApp/doc/LaTeX/img/wmin1.jpg>] [6])
+(D:\YuukouWebApp\doc\LaTeX\Presentationdusujet.tex
+Chapitre 4.
+[7
+
+
 ]) (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.aux) ) 
 Here is how much of TeX's memory you used:
- 2119 strings out of 494045
- 28065 string characters out of 3145966
+ 2210 strings out of 494045
+ 30187 string characters out of 3145966
  82335 words of memory out of 3000000
- 5412 multiletter control sequences out of 15000+200000
- 25710 words of font info for 23 fonts, out of 3000000 for 9000
+ 5471 multiletter control sequences out of 15000+200000
+ 51520 words of font info for 38 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 27i,5n,24p,332b,232s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,5n,24p,443b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 
 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /public/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/
-lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><
-C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb>
-Output written on PagedeGarde.pdf (4 pages, 286823 bytes).
+lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb
+><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb>
+Output written on PagedeGarde.pdf (8 pages, 521406 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

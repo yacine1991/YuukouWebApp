@@ -1,11 +1,10 @@
-package com.yuukou.common;
+package com.yuukou.data;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RoomList implements Serializable {
+public class RoomList{
 
-    private static final long serialVersionUID = 1L;
+    
     private String JSONstate;
     private String JSONmaintenance;
     private String JSONlastCycle;

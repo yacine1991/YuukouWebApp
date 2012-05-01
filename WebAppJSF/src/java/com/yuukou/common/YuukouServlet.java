@@ -4,6 +4,16 @@
  */
 package com.yuukou.common;
 
+import com.yuukou.connection.Connection;
+import com.yuukou.stats.Graph;
+import com.yuukou.data.Room;
+import com.yuukou.data.Computer;
+import com.yuukou.data.UserList;
+import com.yuukou.data.RoomList;
+import com.yuukou.data.User;
+import com.yuukou.data.TimeTable;
+import com.yuukou.data.Location;
+import com.yuukou.data.LocationList;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -50,6 +60,9 @@ public class YuukouServlet extends HttpServlet {
         RoomList rl = new RoomList();
         Room r = new Room();
         Graph g = new Graph();
+        UserList ul = new UserList();
+        User u = new User();
+        LocationList locationList = new LocationList();
 
 
         String url = null;
@@ -71,9 +84,13 @@ public class YuukouServlet extends HttpServlet {
             //r.setLongLocation("Ai ai ai ai");
 
             roomStatus(r, id);
-            roomLocation(rl);
+            getLocation(locationList);
+            roomLocation(r, locationList);
+            parseWho(ul, r);
+
+            request.setAttribute("userlist", ul);
             request.setAttribute("room", r);
-            request.setAttribute("roomList", rl);
+            
         }
 
 
@@ -270,6 +287,50 @@ public class YuukouServlet extends HttpServlet {
         }
     }
 
+    private void roomLocation(Room r, LocationList locationList){
+        String id = r.getIdRoom().split("-")[0];
+        if(locationList.contains(id)){
+            Location l = locationList.get(id);
+            r.setLocation(l.getId());
+            r.setShortLocation(l.getShortLocation());
+            r.setLongLocation(l.getLongLocation());
+        }
+    }
+    
+    private void getLocation(LocationList locationList) {
+        JSONParser jp = new JSONParser();
+        Object obj;
+        Connection c = new Connection();
+        String responsegetSitesInformation = c.congetSitesInformations();
+
+        try {
+            obj = jp.parse(responsegetSitesInformation);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            JSONArray joo = (JSONArray) jo.get("JSONContents");
+            Iterator it = joo.iterator();
+            
+            while (it.hasNext()) {
+                JSONObject jso = (JSONObject) it.next();
+
+                String id = jso.get("Location").toString();
+                String shortL = (String) jso.get("ShortLocation");
+                String longL = (String) jso.get("LongLocation");
+
+                locationList.add(id, new Location(id, shortL, longL));
+            }
+        } else {
+            //TODO
+        }
+    }
+
     public void roomStatus(Room r, String idRoom) throws IOException {
         JSONParser jp = new JSONParser();
         Object obj;
@@ -309,6 +370,7 @@ public class YuukouServlet extends HttpServlet {
                 r.setBusy(jso.get("Busy").toString());
                 r.setRoomUrl(jso.get("Url").toString());
                 r.setRestriction(jso.get("Restriction").toString());
+                healthResourceForRoom(r);
                 System.out.println("Parsage jusqua a hasImage");
             } else {
                 if (jso.get("HasTimeTable").equals("YES")) {
@@ -371,6 +433,98 @@ public class YuukouServlet extends HttpServlet {
         System.out.println("Fin de la focntion roomStatus");
     }
 
+    public void healthResourceForRoom(Room r) {
+        Connection c = new Connection();
+        String responseHealthResourceForRoom = c.healthResourcesReportForRoom(r.getIdRoom());
+        JSONParser jp = new JSONParser();
+        Object obj = null;
+
+        System.out.println("Rentre dans la fonction heatlhRessource");
+        try {
+            obj = jp.parse(responseHealthResourceForRoom);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            JSONObject jso = (JSONObject) jo.get("JSONContents");
+
+            if (jso.get("HasContents").toString().equals("YES")) {
+                JSONArray joo = (JSONArray) jso.get("Contents");
+                Computer[] tabComputer = new Computer[joo.size()];
+                String swap4 = (String) jso.get("Room").toString();
+                for (int i = 0; i < joo.size(); i++) {
+                    JSONObject joComputers = (JSONObject) joo.get(i);
+
+                    String swap1 = (String) joComputers.get("Status").toString();
+                    String swap2 = (String) joComputers.get("Resource").toString();
+                    String swap3 = (String) joComputers.get("LastTimeSeen").toString();
+
+
+                    Computer cpt2 = new Computer(swap4, swap2, swap3, swap1);
+                    tabComputer[i] = cpt2;
+                    r.setHasComputersDown(true);
+                }
+
+                r.setComputerList(tabComputer);
+            }
+        }
+
+
+    }
+
+    public void parseWho(UserList ul, Room r) {
+        JSONParser jp = new JSONParser();
+        Object obj;
+        int i;
+        Connection c = new Connection();
+        String responseWho = c.who();
+
+
+        System.out.println("Rentre dans la fonction Who");
+        try {
+            obj = jp.parse(responseWho);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            ul.setJSONstate("OK");
+            ul.setJSONlastCycle(jo.get("JSONLastCycle").toString());
+            ul.setJSONmaintenance(jo.get("JSONMaintenance").toString());
+
+
+            JSONArray joo = (JSONArray) jo.get("JSONContents");
+            for (Iterator it = joo.iterator(); it.hasNext();) {
+                User u = new User();
+                JSONObject jso = (JSONObject) it.next();
+                u.setIdUser(jso.get("User").toString());
+                u.setResourceUsedByUser(jso.get("Resource").toString());
+                u.setStartTimeSession(jso.get("StartTimeSession").toString());
+                ul.addUser(u);
+                r.setHasUserOnline(true);
+            }
+
+        } else {
+
+            ul.setJSONstate("KO");
+            ul.setJSONReason(jo.get("JSONReason").toString());
+            ul.setJSONmaintenance(responseWho);
+
+
+        }
+
+        System.out.println("Sort de la fonction Who");
+    }
+    
+    
     public File convertByteToImage(byte[] tab, String idRoom) throws IOException {
 
         InputStream in = new ByteArrayInputStream(tab);

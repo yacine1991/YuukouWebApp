@@ -4,16 +4,20 @@ Remerciements
 
 2 Lieu du stage
 	2.1 University of Westminster
-	2.1.1 Presentation
-	2.1.2 Campus et écoles
-	2.1.3 Informations supplémentaires
+		2.1.1 Presentation
+		2.1.2 Campus et écoles
+		2.1.3 Informations supplémentaires
 
-2.2 School of electronic and science
+	2.2 School of electronic and science
 
 3 Presentation du sujet
 	3.1 Le projet yuukou
 		3.1.1 Présentation
 		3.1.2 Fonctionnement
+	3.2 Migration vers Yuukou2
+		
+	3.2 L'interface utilisateur
+		
 
 4 Cahier des charges
 	4.1 Cahier des charges premier sujet

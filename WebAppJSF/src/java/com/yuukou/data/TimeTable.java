@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.yuukou.common;
+package com.yuukou.data;
 
 /**
  *
@@ -14,7 +14,7 @@ public class TimeTable {
     private String EventType;
     private String EventDescription;
 
-    TimeTable(String StartTime, String EndTime, String EventType, String EventDescription) {
+    public TimeTable(String StartTime, String EndTime, String EventType, String EventDescription) {
         this.StartTime = StartTime;
         this.EndTime = EndTime;
         this.EventType = EventType;

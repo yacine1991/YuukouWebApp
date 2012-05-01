@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.4.19)  19 APR 2012 16:20
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.4.19)  30 APR 2012 14:37
 entering extended mode
 **Introduction.tex
 (D:\YuukouWebApp\doc\LaTeX\Introduction.tex
@@ -377,7 +377,7 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no l in font nullfont!
-Missing character: There is no ? in font nullfont!
+Missing character: There is no ' in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -638,7 +638,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.11 D
-      urant ce stage, j?ai été amené à travailler sur deux sujets de stage. Le
+      urant ce stage, j'ai été amené à travailler sur deux sujets de stage. Le
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -657,7 +657,7 @@ Missing character: There is no g in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no j in font nullfont!
-Missing character: There is no ? in font nullfont!
+Missing character: There is no ' in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no é in font nullfont!

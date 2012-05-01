@@ -1,8 +1,4 @@
-package com.yuukou.common;
-
-import java.io.Serializable;
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+package com.yuukou.stats;
 
 /*
  * To change this template, choose Tools | Templates

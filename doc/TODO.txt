@@ -56,6 +56,15 @@ Separer Graph du reste
 Separer les fonction qui sont accesibles aux utilisateurs / Admin
 Refondre l'interface des statistiques 
 
+30/04
+Differencier Admin / Users
+Ewploiter fonction WHO, HealthRessourceForRoom Done
+Ajouter WSDL en local @WebservicecertifRef
+Ajouter lorque il y a maitennace
+Si glassfish out alors traiter l'erreur
+
+01/05
+HistoryUser a parser
 
 
 
