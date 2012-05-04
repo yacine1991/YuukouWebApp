@@ -1,0 +1,108 @@
+\chapter{Organisation et Spécifications}
+
+\section{Gestion du temps}
+
+\section{Système d'exploitation}
+
+\section{Matériel et Logiciels}
+
+\subsection{Netbeans}
+
+NetBeans est un environnement de développement intégré (IDE\protect\footnote{Interface De Développement}), placé en open source par Sun en juin 2000 sous licence CDDL et GPLv2. En plus de Java, NetBeans permet également de supporter différents autres langages, comme Python, C, C++, JavaScript, XML, Ruby, PHP et HTML. Il comprend toutes les caractéristiques d'un IDE moderne (éditeur en couleur, projets multi-langage, refactoring, éditeur graphique d'interfaces et de pages Web).
+Conçu en Java, NetBeans est disponible sous Windows, Linux, Solaris (sur x86 et SPARC).
+
+NetBeans propose différents outils pour l'exploitation de web services. Il supporte JAX-WS services, JAX-RS RESTful Web Services, standards JAX-RPC Web Service, SOAP et RESTful Web Services. Il permet l'utilisation des web services Google Maps, Yahoo News Search.
+Nous l'avons donc utilisé afin de pouvoir accéder de manière simple et efficace aux Web-service mis en place par l'université afin de pouvoir accéder aux informations disponibles.
+
+
+\subsection{Mozilla et cie}
+
+Mozilla Firefox est un navigateur Web libre et gratuit, développé et distribué par la Mozilla Foundation avec l'aide de centaines de bénévoles grâce aux méthodes de développement du logiciel libre/open source\protect\footnote{La désignation open source s'applique aux logiciels dont la licence respecte des critères précisément établis par l'Open Source Initiative, c'est-à-dire la possibilité de libre redistribution, d'accès au code source et aux travaux dérivés.} et à la liberté du code source.
+
+Les nombreux plugins ainsi que les outils d'analyse que propose ce navigateur m'ont permis de debbuger mon code.
+Plus particulièrement Firebug, qui m'a permit d'analyser les entêtes de mes requêtes a mon Servlet, ainsi que les temps de réponses de celui, plus l'édition du code source et du Javascript.
+
+\subsection{Github}
+
+GitHub est un service web d'hébergement et de gestion de développement de logiciels, utilisant le programme Git.
+
+Le site de dit de "\textit{Social Coding}\protect\footnote{Code source libre service}" permet a tout développeur d'avoir une aide tout au long du développement de son projet, grâce a la gestion de version que celui ci propose.
+Cet outil suis l'évolution des fichiers source et garde les anciennes versions de chacun d?eux.
+
+L'utilisation de ce service m'a permit d'avoir un aperçu de l'avancement de mon projet, ainsi que l'affichage de plusieurs statistiques en tout genre.
+Cela m'a également permit d'avoir une copie de mon travail sur un serveur distant en cas de crash de ma machine.
+
+Il existe plusieurs types de logiciels proposant le même type de service comme SVN, Mercurial, CVS ... Mais Git m'a semblé le plus approprié et le plus facile a prendre en main.
+
+Ces logiciels sont fortement conseillés pour gérer un projet informatique.
+
+\section{Les langages}
+\subsection{JAVA}
+
+Le langage Java est un langage de programmation informatique orienté objet créé par James Gosling et Patrick Naughton, employés de Sun Microsystems.
+Ses caractéristiques ainsi que la richesse de son écosystème et de sa communauté lui ont permis d'être très largement utilisé pour le développement d'applications de types très disparates. Java est notamment largement utilisé pour le développement d'applications d'entreprise et mobiles.
+Après les plusieurs essai infructueux avec PHP, j'ai décidé de basculer sur le langage JAVA qui m'a grandement facilité la tache, aussi grâce a la communauté très active sur le web.
+En effet la communication a un serveur en utilisant certaines stratégie de sécurité comme SSL\protect\footnote{\textit{Secure Sockets Layer}, un protocole de sécurisation des échanges sur Internet} et bien plus simple en JAVA. L'IDE récupère le certificat et le signe avec l'accord de l'utilisateur.
+Protocole efficace et simplifié par rapport à celle utilisée en PHP, que nous développerons dans la partie des problèmes rencontrés
+
+
+\subsection{JavaServer Pages}
+
+Le JavaServer Pages ou JSP est une technique basée sur Java qui permet aux développeurs de créer dynamiquement du code HTML, XML ou tout autre type de page web. Cette technique permet au code Java et à certaines actions prédéfinies d'être ajoutés dans un contenu statique. Depuis la version 2.0 des spécifications, la syntaxe JSP est complètement conforme au standard XML.
+En clair, un fichier JSP génère du code HTML, en effectuant les actions définies par le code JAVA qui est contenu dans les balises notées "<%%>".
+En récupérant les informations que le Servlet\protect\footnote{Voir la partie } me renvoi, nous effectuons les traitements sur les objets récupérés.
+En regardant le code source de la page, elle apparait comme une page HTMl statique.
+
+\section{Formats de données}
+
+\subsection{JavaScript Object Notation}
+
+JavaScript Object Notation ou plus communément appelé JSON est un format de données textuel et générique. Il permet de représenter de l?information structurée.
+Un document JSON ne comprend que deux éléments structurels :
+\begin{itemize}
+    \item des ensembles de paires nom / valeur
+    \item des listes ordonnées de valeurs.
+\end{itemize}
+
+Ces mêmes éléments représentent 3 types de données :
+\begin{itemize}
+\item  des objets
+\item  des tableaux
+\item  des valeurs génériques de type tableau, objet, booléen, nombre, chaîne ou null.
+\end{itemize}
+
+Pourquoi JSON ?
+Tout simplement parce que JSON est plus léger, et beaucoup plus rapide a interpréter que XML.
+Sur des un certain nombre de données, la différence est flagrante, JSON est beaucoup plus rapide XML.
+C'est suite a un besoin de performance que nous avons opté pour le JSON.
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.9\textwidth]{img/jsonxml.png}
+  \caption{Performance mesurée entre JSON et XML}
+\end{figure}
+
+
+\section{Frameworks et Libraires}
+
+\subsection{jQuery Mobile}
+
+jQuery Mobile est un framework\protect\footnote{un framework est un kit de composants logiciels} web optimisée pour Smart-phones actuellement développé par l'équipe du projet jQuery. Le développement se concentre sur la création d'un framework compatible avec une grande variété de smart-phones et tablettes, chose rendue indispensable a cause de l'explosion des marché des plateformes mobiles.
+Grâce a ce framework, nous avons pu crée la partie client de \textbf{Yuukou2}, de manière simple intuitive, et optimisé pour les plateformes mobiles.
+
+
+\subsection{Google Chart API}
+
+Le API Google Chart est un outil qui permet aux gens de créer un graphique à partir de certaines données et de l'intégrer dans une page web. Google crée une image interactive à partir des données insérés dans le tableau. De nombreux types de graphiques sont pris en charge.
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.9\textwidth]{img/googleapi.png}
+  \caption{Exemple d'affiche d'un diagramme de statistique avec Google API}
+\end{figure}
+
+ De tableaux en ligne simples à carte complexes d'arbres hiérarchiques, la galerie fournit un grand nombre de types de graphiques bien conçus. 
+
+
+\subsection{?}
+
+\clearpage

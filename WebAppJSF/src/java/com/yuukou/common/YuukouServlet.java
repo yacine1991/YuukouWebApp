@@ -4,16 +4,16 @@
  */
 package com.yuukou.common;
 
-import com.yuukou.connection.Connection;
-import com.yuukou.stats.Graph;
-import com.yuukou.data.Room;
-import com.yuukou.data.Computer;
-import com.yuukou.data.UserList;
-import com.yuukou.data.RoomList;
-import com.yuukou.data.User;
 import com.yuukou.data.TimeTable;
 import com.yuukou.data.Location;
+import com.yuukou.data.Room;
+import com.yuukou.data.UserList;
+import com.yuukou.data.Computer;
 import com.yuukou.data.LocationList;
+import com.yuukou.data.RoomList;
+import com.yuukou.data.User;
+import com.yuukou.connection.Connection;
+import com.yuukou.stats.Graph;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -50,6 +50,8 @@ public class YuukouServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    //@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/yuukou2.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.wsdl")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -76,7 +78,7 @@ public class YuukouServlet extends HttpServlet {
             url = "/roomStatistics.jsp";
             roomsStatus(rl);
             roomLocation(rl);
-            graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
+            //graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
             request.setAttribute("roomList", rl);
         } else if (type.equals("Room")) {
             url = "/roomInfos.jsp";
@@ -524,6 +526,24 @@ public class YuukouServlet extends HttpServlet {
         System.out.println("Sort de la fonction Who");
     }
     
+    /*public void searchHistoryUser(String idUser){
+        JSONParser jp = new JSONParser();
+        Object obj;
+        int i;
+        Connection c = new Connection();
+        String responseWho = c.searchHistoryUser(idUser, true, true);
+
+
+        System.out.println("Rentre dans la fonction SearchHistoryUser");
+        try {
+            obj = jp.parse(responseWho);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+          }*/
+    
     
     public File convertByteToImage(byte[] tab, String idRoom) throws IOException {
 
@@ -536,7 +556,7 @@ public class YuukouServlet extends HttpServlet {
         return fi;
     }
 
-    public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) {
+    /*public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) {
         Connection c = new Connection();
         String rqt = "select start_time_session from yuukou_last"
                 + " where start_time_session >= '" + timeStart + "'"
@@ -573,7 +593,7 @@ public class YuukouServlet extends HttpServlet {
             g.setImageType(jso.get("ImageType").toString());
 
             JSONArray joo = (JSONArray) jso.get("ContentsValues");
-            System.out.println("Size" + joo.toArray().length);
+            
 
             String[] tabContentsValues = new String[joo.size()];
             for (i = 0; i < joo.size(); i++) {
@@ -601,5 +621,5 @@ public class YuukouServlet extends HttpServlet {
             g.setJSONstate("KO");
             g.setJSONReason(jo.get("JSONReason").toString());
         }
-    }
+    }*/
 }

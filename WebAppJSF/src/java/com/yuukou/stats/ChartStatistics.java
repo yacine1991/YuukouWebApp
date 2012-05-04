@@ -1,6 +1,7 @@
 package com.yuukou.stats;
 
 import com.yuukou.data.RoomList;
+import com.yuukou.data.RoomList;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Paint;

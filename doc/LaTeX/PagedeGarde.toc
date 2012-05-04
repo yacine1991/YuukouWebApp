@@ -1,12 +1,29 @@
 \select@language {french}
-\contentsline {chapter}{\numberline {1}Introduction}{2}
-\contentsline {chapter}{\numberline {2}Remerciements}{3}
-\contentsline {chapter}{\numberline {3}London}{4}
-\contentsline {section}{\numberline {3.1}University of Westminster}{4}
-\contentsline {subsection}{\numberline {3.1.1}Pr\'esentation}{4}
-\contentsline {subsection}{\numberline {3.1.2}Campus et \'ecoles}{5}
-\contentsline {subsection}{\numberline {3.1.3}School of Electronics and Computer Science}{6}
-\contentsline {subsection}{\numberline {3.1.4}Informations et chiffres}{6}
-\contentsline {chapter}{\numberline {4}Pr\'esentation du sujet}{7}
-\contentsline {section}{\numberline {4.1}Le projet Yuukou}{7}
-\contentsline {subsection}{\numberline {4.1.1}Pr\'esentation}{7}
+\contentsline {chapter}{\numberline {1}Introduction}{3}
+\contentsline {chapter}{\numberline {2}Remerciements}{4}
+\contentsline {chapter}{\numberline {3}London}{5}
+\contentsline {section}{\numberline {3.1}University of Westminster}{5}
+\contentsline {subsection}{\numberline {3.1.1}Pr\'esentation}{5}
+\contentsline {subsection}{\numberline {3.1.2}Campus et \'ecoles}{6}
+\contentsline {subsection}{\numberline {3.1.3}School of Electronics and Computer Science}{7}
+\contentsline {subsection}{\numberline {3.1.4}Informations et chiffres}{7}
+\contentsline {chapter}{\numberline {4}Pr\'esentation du sujet}{8}
+\contentsline {section}{\numberline {4.1}Le projet Yuukou}{8}
+\contentsline {subsection}{\numberline {4.1.1}Pr\'esentation}{8}
+\contentsline {chapter}{\numberline {5}Cahier des charges}{9}
+\contentsline {chapter}{\numberline {6}Organisation et Sp\'ecifications}{10}
+\contentsline {section}{\numberline {6.1}Gestion du temps}{10}
+\contentsline {section}{\numberline {6.2}Syst\`eme d'exploitation}{10}
+\contentsline {section}{\numberline {6.3}Mat\'eriel et Logiciels}{10}
+\contentsline {subsection}{\numberline {6.3.1}Netbeans}{10}
+\contentsline {subsection}{\numberline {6.3.2}Mozilla et cie}{11}
+\contentsline {subsection}{\numberline {6.3.3}Github}{11}
+\contentsline {section}{\numberline {6.4}Les langages}{11}
+\contentsline {subsection}{\numberline {6.4.1}JAVA}{11}
+\contentsline {subsection}{\numberline {6.4.2}JavaServer Pages}{12}
+\contentsline {section}{\numberline {6.5}Formats de donn\'ees}{12}
+\contentsline {subsection}{\numberline {6.5.1}JavaScript Object Notation}{12}
+\contentsline {section}{\numberline {6.6}Frameworks et Libraires}{13}
+\contentsline {subsection}{\numberline {6.6.1}jQuery Mobile}{13}
+\contentsline {subsection}{\numberline {6.6.2}Google Chart API}{14}
+\contentsline {subsection}{\numberline {6.6.3}?}{14}

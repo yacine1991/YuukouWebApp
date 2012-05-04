@@ -4,6 +4,8 @@
  */
 package com.yuukou.data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yacine
@@ -14,6 +16,7 @@ public class User {
     private String resourceUsedByUser;
     private String StartTimeSession;
     private String roomFromResource;
+    
 
     public User() {
     }

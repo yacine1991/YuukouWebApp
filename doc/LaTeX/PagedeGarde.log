@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.4.19)  30 APR 2012 16:28
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.4.19)  4 MAY 2012 17:21
 entering extended mode
 **PagedeGarde.tex
 (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.tex
@@ -145,26 +145,26 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 \Gin@req@width=\dimen107
 )
 (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 36.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 35.
-LaTeX Info: Redefining \dots on input line 35.
-LaTeX Info: Redefining \up on input line 35.
+LaTeX Info: Redefining \degres on input line 36.
+LaTeX Info: Redefining \dots on input line 36.
+LaTeX Info: Redefining \up on input line 36.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -182,7 +182,7 @@ LaTeX Info: Redefining \up on input line 35.
 ) <img/wmin.jpg, id=1, 1434.86063pt x 290.58563pt>
 File: img/wmin.jpg Graphic file (type jpg)
  <use img/wmin.jpg>
-Package pdftex.def Info: img/wmin.jpg used on input line 52.
+Package pdftex.def Info: img/wmin.jpg used on input line 53.
 (pdftex.def)             Requested size: 358.71428pt x 72.64622pt.
  [0
 
@@ -220,14 +220,14 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (D:\YuukouWebApp\doc\LaTeX\Introduction.tex [1
 
 
-]
+] [2]
 Chapitre 1.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--10
 
  []
 
-[2
+[3
 
 ]) (D:\YuukouWebApp\doc\LaTeX\Remerciements.tex
 Chapitre 2.
@@ -237,49 +237,77 @@ Overfull \hbox (3.87114pt too wide) in paragraph at lines 9--13
 ?encadrement
  []
 
-[3
+[4
 
 
 ]) (D:\YuukouWebApp\doc\LaTeX\Lieudustage.tex
 Chapitre 3.
-<img/wmin2.jpg, id=19, 400.49625pt x 318.18875pt>
+<img/wmin2.jpg, id=22, 400.49625pt x 318.18875pt>
 File: img/wmin2.jpg Graphic file (type jpg)
  <use img/wmin2.jpg>
 Package pdftex.def Info: img/wmin2.jpg used on input line 12.
 (pdftex.def)             Requested size: 323.9978pt x 257.42558pt.
- [4
+ [5
 
 
  <D:/YuukouWebApp/doc/LaTeX/img/wmin2.jpg>]
-<img/wmin1.jpg, id=24, 451.6875pt x 301.125pt>
+<img/wmin1.jpg, id=27, 451.6875pt x 301.125pt>
 File: img/wmin1.jpg Graphic file (type jpg)
  <use img/wmin1.jpg>
 Package pdftex.def Info: img/wmin1.jpg used on input line 35.
 (pdftex.def)             Requested size: 323.9978pt x 216.01033pt.
- [5 <D:/YuukouWebApp/doc/LaTeX/img/wmin1.jpg>] [6])
+ [6 <D:/YuukouWebApp/doc/LaTeX/img/wmin1.jpg>] [7])
 (D:\YuukouWebApp\doc\LaTeX\Presentationdusujet.tex
 Chapitre 4.
-[7
+[8
 
 
-]) (D:\YuukouWebApp\doc\LaTeX\PagedeGarde.aux) ) 
+]) (D:\YuukouWebApp\doc\LaTeX\CahierdesCharges.tex
+Chapitre 5.
+[9
+
+
+]) (D:\YuukouWebApp\doc\LaTeX\OrgEtSpec.tex
+Chapitre 6.
+[10
+
+
+] [11] [12] <img/jsonxml.png, id=55, 350.30875pt x 303.1325pt>
+File: img/jsonxml.png Graphic file (type png)
+
+<use img/jsonxml.png>
+Package pdftex.def Info: img/jsonxml.png used on input line 81.
+(pdftex.def)             Requested size: 323.9978pt x 280.38393pt.
+ [13 <D:/YuukouWebApp/doc/LaTeX/img/jsonxml.png>]
+<img/googleapi.png, id=60, 486.31688pt x 346.29375pt>
+File: img/googleapi.png Graphic file (type png)
+ <use img/googleapi.png>
+Package pdftex.def Info: img/googleapi.png used on input line 99.
+(pdftex.def)             Requested size: 323.9978pt x 230.71045pt.
+
+[14 <D:/YuukouWebApp/doc/LaTeX/img/googleapi.png>])
+(D:\YuukouWebApp\doc\LaTeX\PagedeGarde.aux) ) 
 Here is how much of TeX's memory you used:
- 2210 strings out of 494045
- 30187 string characters out of 3145966
- 82335 words of memory out of 3000000
- 5471 multiletter control sequences out of 15000+200000
- 51520 words of font info for 38 fonts, out of 3000000 for 9000
+ 2235 strings out of 494045
+ 30661 string characters out of 3145966
+ 84335 words of memory out of 3000000
+ 5483 multiletter control sequences out of 15000+200000
+ 66035 words of font info for 42 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 27i,5n,24p,443b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 
-2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/
-lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb>
-Output written on PagedeGarde.pdf (8 pages, 521406 bytes).
+ 27i,6n,24p,551b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9
+/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmb
+x12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/lm/lmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmri10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri9.
+pfb>
+Output written on PagedeGarde.pdf (15 pages, 641339 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
+ 94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

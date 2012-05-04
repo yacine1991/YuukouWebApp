@@ -29,8 +29,8 @@
     </target>
     <target name="wsimport-client-YuukouServerService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/YuukouServerService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/YuukouServerService" destdir="${build.generated.dir}/jax-wsCache/YuukouServerService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/YuukouServerService/wsdl/yuukou2.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="https://yuukou2.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?WSDL" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/YuukouServerService/wsdl/yuukou2.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/YuukouServerService" destdir="${build.generated.dir}/jax-wsCache/YuukouServerService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/YuukouServerService/wsdl/yuukou-nagios.wmin.ac.uk_8080/YuukouServerService/YuukouServerService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://yuukou-nagios.wmin.ac.uk:8080/YuukouServerService/YuukouServerService?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/YuukouServerService/wsdl/yuukou-nagios.wmin.ac.uk_8080/YuukouServerService/YuukouServerService.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/YuukouServerService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
