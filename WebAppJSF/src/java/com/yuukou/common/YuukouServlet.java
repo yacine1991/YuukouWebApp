@@ -94,6 +94,13 @@ public class YuukouServlet extends HttpServlet {
             request.setAttribute("room", r);
             
         }
+        else if (type.equals("credits")) {
+            url = "/credits.jsp";
+            roomsStatus(rl);
+            roomLocation(rl);
+            //graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
+            request.setAttribute("roomList", rl);
+        }
 
 
 
@@ -206,6 +213,9 @@ public class YuukouServlet extends HttpServlet {
                 r.setPcDown(jso.get("Down").toString());
                 r.setResources(jso.get("Resources").toString());
                 r.setBusy(jso.get("Busy").toString());
+                r.setPcTotal(Integer.toString(Integer.parseInt(jso.get("Busy").toString()) +
+                             Integer.parseInt(jso.get("Available").toString()) +
+                             Integer.parseInt(jso.get("Down").toString())));
                 r.setRestriction(jso.get("Restriction").toString());
 
                 /*

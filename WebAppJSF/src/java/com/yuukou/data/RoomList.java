@@ -94,7 +94,7 @@ public class RoomList{
         return JSONcontent.size();
     }
 
-    public int getNumberMac() {
+    public int getNumberRoomsMac() {
         nbMac = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getTypeResource().equals("mc")) {
@@ -105,7 +105,7 @@ public class RoomList{
         return nbMac;
     }
 
-    public int getNumberPc() {
+    public int getNumberRoomsPc() {
         nbPc = 0;
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getTypeResource().equals("pc")) {

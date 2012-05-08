@@ -12,6 +12,7 @@ import java.io.File;
  */
 public class Room {
 
+    private String pcTotal;
     private String idRoom;
     private String healthRoom;
     private String availability;
@@ -222,6 +223,14 @@ public class Room {
         this.pcDown = pcDown;
     }
 
+     public String getPcTotal() {
+        return pcTotal;
+    }
+
+    public void setPcTotal(String pcTotal) {
+        this.pcTotal = pcTotal;
+    }
+    
     public String getResources() {
         return resources;
     }

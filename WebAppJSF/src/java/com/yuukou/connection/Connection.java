@@ -12,6 +12,7 @@ public class Connection {
     private String result;
     
     public String conhealthForAllRooms() {
+   // @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/yuukou-nagios.wmin.ac.uk_8080/YuukouServerService/YuukouServerService.wsdl")
 
 
         jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();

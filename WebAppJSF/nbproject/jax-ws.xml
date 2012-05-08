@@ -3,8 +3,8 @@
   <services/>
   <clients>
     <client name="YuukouServerService">
-      <wsdl-url>http://yuukou-nagios.wmin.ac.uk:8080/YuukouServerService/YuukouServerService?WSDL</wsdl-url>
-      <local-wsdl-file>yuukou-nagios.wmin.ac.uk_8080/YuukouServerService/YuukouServerService.wsdl</local-wsdl-file>
+      <wsdl-url>https://yuukou-ws.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?wsdl</wsdl-url>
+      <local-wsdl-file>yuukou-ws.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.wsdl</local-wsdl-file>
       <package-name>jax.webservice.server</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://yuukou-nagios.wmin.ac.uk:8080/YuukouServerService/YuukouServerService?WSDL</wsimport-option-value>
+          <wsimport-option-value>https://yuukou-ws.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

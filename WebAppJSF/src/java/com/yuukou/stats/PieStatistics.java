@@ -96,8 +96,8 @@ public class PieStatistics {
     public void drawPieMacPc(RoomList rl) {
 
 
-        int nbMac = rl.getNumberMac();
-        int nbPc = rl.getNumberPc();
+        int nbMac = rl.getNumberRoomsMac();
+        int nbPc = rl.getNumberRoomsPc();
 
         DefaultPieDataset data = new DefaultPieDataset();
         data.setValue("Macintosh", nbMac);

@@ -35,29 +35,42 @@
 
             <div data-role="header">
                 <h1>Room <%out.println(r.getIdRoom());%></h1>
-                <a href="" data-icon="Back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
+                <a href="" data-icon="back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
                 <a data-icon="refresh"  data-iconpos="notext" data-rel="dialog" data-transition="fade" href="javascript:document.location.reload();"></a>
             </div>
+                <div data-role="content">
 
-
-
-
-
-            <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\"/></center>");%>
-            <ul data-role="listview" data-theme="c">
+            <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\"/ width='90%'></center>");%>
+              <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+                    <div data-role="collapsible">
+                        <h3>Status</h3>
+                        
+		
+                        <h2>Button basics</h2>		
+		
+         <ul data-role="controlgroup" data-type="horizontal" class="localnav">
+            <a href="#buttons-<%= r.getIdRoom() %>" data-role="button" data-transition="fade" class="ui-btn-active">Basics</a>
+	    <a href="#buttons-<%= r.getIdRoom() %>-down" data-role="button" data-transition="fade">Down</a>
+	    <a href="#buttons-<%= r.getIdRoom() %>-busy" data-role="button" data-transition="fade">Busy</a>
+	    <a href="#buttons-<%= r.getIdRoom() %>-tt" data-role="button" data-transition="fade">Events</a>
+         </ul>
+                        
+                        <p>
 
                 <% if (r.getStatus().equals("Available")) {%>
-                <li><%out.println("Health Room : " + r.getHealthRoom());%></li>
-                <li><%out.println("Available Computers : " + r.getPcAvailable());%></li>
-                <li><%out.println("Computer down : " + r.getPcDown());%></li>
-                <li><%out.println("Computer Busy : " + r.getBusy());%></li>
-                <li><%out.println("Computer Types : " + r.getTypeResource());%></li>
-                <li><%out.println("Long Description : " + r.getLongDescription());%></li>
-                <li><%out.println("Restriction : " + r.getRestriction());%></li>
-                <li><%out.println("Computer Down : " + r.getHasComputersDown());%></li>
-                <li><%out.println("UserListtestState : " + ul.getJSONstate());%></li>
-
-                <%
+                <br/><%out.println("Health Room : " + r.getHealthRoom());%>
+                <br/><%out.println("Available Computers : " + r.getPcAvailable());%>
+                <br/><%out.println("Computer down : " + r.getPcDown());%>
+                <br/><%out.println("Computer Busy : " + r.getBusy());%>
+                <br/><%out.println("Computer Types : " + r.getTypeResource());%>
+                <br/><%out.println("Long Description : " + r.getLongDescription());%>
+                <br/><%out.println("Restriction : " + r.getRestriction());%>
+                <br/><%out.println("Computer Down : " + r.getHasComputersDown());%>
+                <br/><%out.println("UserListtestState : " + ul.getJSONstate());%>
+                <br/><%out.println("Computer down : " + r.getPcDown());%>
+                
+                
+                  <%
                     if (r.getComputerList() != null) {
                         for (int i = 0; i < r.getComputerList().length; i++) {
                             out.println("<li>Nom PC foutu : " + r.getComputerList()[i].getRessourceName() + "");
@@ -66,9 +79,9 @@
                             out.println("lasttimeseen : " + r.getComputerList()[i].getLastTimeSeen() + "</li>");
                         }
                     }
-                %>
+                  %>
 
-                <%
+                 <%
                     if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
                         Iterator it = ul.getJSONcontent().iterator();
                         while (it.hasNext()) {
@@ -86,7 +99,7 @@
 
                 %>
 
-                <li><%out.println("TimeTable : " + r.getHasTimeTable());
+                <br/><%out.println("TimeTable : " + r.getHasTimeTable());
                     if (r.getHasTimeTable()) {
                         System.out.print("Lenght " + r.getTimeTable().length);
                         for (int i = 0; i < r.getTimeTable().length; i++) {
@@ -101,8 +114,8 @@
                     }
 
 
-                    %></li>
-                <li><%out.println("Long location : " + r.getLongLocation());%></li>
+                    %>
+                <br/><%out.println("Long location : " + r.getLongLocation());%>
 
                 <%} else {
                         out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
@@ -113,10 +126,44 @@
                          * type : " + r.getEventType() + "</li>");
                          */
                     }%>
-            </ul>
-            <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
-
+                    </div>
+                <div data-role="collapsible">
+                    <h3>Software</h3>
+                    <p>
+                         Windows 7<br/>
+                         Build release: Kiwi 1.1<br/>
+                    </p>
+                    
+                    <div data-role="collapsible-set" data-theme="b" data-content-theme="d">
+                        
+                      <div data-role="collapsible">
+                       <h3>Baseline</h3>
+                       <p>            
+                        7-Zip 9.20<br />
+                        Adobe Authorware<br />
+                      </div>
+                        
+                       <div data-role="collapsible">
+                        <h3>ECS core</h3>
+                        <p>            
+                        Rational Rose<br />
+                        Visual Studio<br />
+                       </div>
         </div>
+                </div>
+                    <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
+                    
+                    
+            
+        
+             
+              </div>
+                </div>
+        </div>
+        
+         
+             
+                    
     </body>
 </html>
 

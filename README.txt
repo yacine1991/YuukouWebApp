@@ -114,3 +114,7 @@ location remarche, ainsi que le parsage de WHo, et healthforRoom.
 04/05/2012
 Reogranisation en packages + Allegement des fichiers non utilisés dans les bibilio
 
+08/05/2012
+Correction des bugs d'affichage pour les rooms Busy, plus integration du code de Thierry Delaitre.
+Possiblité de recupérés certaines données statistique dans la partie crédits
+Modification du WSDL. Connection via SSL chez benoit

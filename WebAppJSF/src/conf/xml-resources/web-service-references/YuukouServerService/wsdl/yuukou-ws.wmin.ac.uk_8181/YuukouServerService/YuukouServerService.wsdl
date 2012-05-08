@@ -25,7 +25,7 @@
 </wsp:Policy>
 <types>
 <xsd:schema>
-<xsd:import namespace="http://server.webservice.jax/" schemaLocation="http://yuukou-nagios.wmin.ac.uk:8080/YuukouServerService/YuukouServerService?xsd=1"/>
+<xsd:import namespace="http://server.webservice.jax/" schemaLocation="https://yuukou-ws.wmin.ac.uk:8181/YuukouServerService/YuukouServerService?xsd=1"/>
 </xsd:schema>
 </types>
 <message name="last">
@@ -390,7 +390,7 @@
 </binding>
 <service name="YuukouServerService">
 <port name="YuukouServerPort" binding="tns:YuukouServerPortBinding">
-<soap:address location="http://yuukou-nagios.wmin.ac.uk:8080/YuukouServerService/YuukouServerService"/>
+<soap:address location="https://yuukou-ws.wmin.ac.uk:8181/YuukouServerService/YuukouServerService"/>
 </port>
 </service>
 </definitions>
