@@ -40,20 +40,10 @@
             </div>
                 <div data-role="content">
 
-            <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\"/ width='90%'></center>");%>
+            <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px'></center>");%>
               <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
                     <div data-role="collapsible">
                         <h3>Status</h3>
-                        
-		
-                        <h2>Button basics</h2>		
-		
-         <ul data-role="controlgroup" data-type="horizontal" class="localnav">
-            <a href="#buttons-<%= r.getIdRoom() %>" data-role="button" data-transition="fade" class="ui-btn-active">Basics</a>
-	    <a href="#buttons-<%= r.getIdRoom() %>-down" data-role="button" data-transition="fade">Down</a>
-	    <a href="#buttons-<%= r.getIdRoom() %>-busy" data-role="button" data-transition="fade">Busy</a>
-	    <a href="#buttons-<%= r.getIdRoom() %>-tt" data-role="button" data-transition="fade">Events</a>
-         </ul>
                         
                         <p>
 
