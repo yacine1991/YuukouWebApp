@@ -27,9 +27,13 @@
                 <li><a href="YuukouServlet?choice=find">Find a PC</a>
                 </li>
                 
+                <%
+    
+        if (request.isUserInRole("admin")) 
+      { %>
                <li ><a href="YuukouServlet?choice=stats">Statistics</a>
                 </li>
-
+   <% } %>
             </ul>
         </div>
 
