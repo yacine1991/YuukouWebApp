@@ -33,7 +33,7 @@
                 <a data-icon="refresh"  data-iconpos="notext" data-rel="dialog" data-transition="fade" href="javascript:document.location.reload();"></a>
             </div>
 
-
+            <div data-role="content">
             <% RoomList rl = (RoomList) request.getAttribute("roomList");%>
 
 
@@ -98,7 +98,7 @@
                 </li>
             </ul>
 
-
+            </div>
 
             <div data-role="footer"> <h3>Yuukou 2</h3>
                 <a href="YuukouServlet?choice=credits" data-role="button" data-icon="star" data-theme="a" style="left: 10px;position: absolute;top: 0.4em;">Credits</a>
