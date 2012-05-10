@@ -7,9 +7,17 @@
         <param-value>Development</param-value>
     </context-param>
     <!-- Welcome page -->
+    <servlet>
+        <servlet-name>ImgGraphServlet</servlet-name>
+        <servlet-class>com.yuukou.common.ImgGraphServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YuukouServlet</servlet-name>
         <url-pattern>/YuukouServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImgGraphServlet</servlet-name>
+        <url-pattern>/ImgGraphServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>faces/hello.xhtml</welcome-file>
