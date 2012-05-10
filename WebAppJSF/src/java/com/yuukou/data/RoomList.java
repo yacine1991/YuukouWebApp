@@ -294,6 +294,7 @@ public class RoomList{
         }
         return nbPcBusyPerCampus;
     }
+    
 
     public ArrayList<String> getCampus() {
 
@@ -319,5 +320,18 @@ public class RoomList{
             }
         }
         return listCampus;
+    }
+    
+    public ArrayList<Room> getRoomsPerCampus(String campus) {
+
+        ArrayList<Room> listRooms = new ArrayList<Room>();
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus)) {
+                listRooms.add(JSONcontent.get(i));
+                
+            }
+
+        }
+        return listRooms;
     }
 }

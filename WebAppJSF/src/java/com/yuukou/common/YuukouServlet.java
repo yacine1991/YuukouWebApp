@@ -107,6 +107,15 @@ public class YuukouServlet extends HttpServlet {
             request.setAttribute("roomList", rl);
             request.setAttribute("graph", g);
         }
+        else if (type.equals("adminView")) {
+            url = "/adminView.jsp";
+            roomsStatus(rl);
+            roomLocation(rl);
+            getLocation(locationList);
+            request.setAttribute("locationList", locationList);
+            request.setAttribute("roomList", rl);
+            
+        }
 
 
 
