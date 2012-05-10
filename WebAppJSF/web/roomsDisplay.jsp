@@ -91,15 +91,16 @@
                                     }
                                     out.println("<p>Site: " + r.getLongDescription() + "</p>");
                                 } else {
-                                    out.println("<blink><p><font color=\"red\">Room Busy</font></p></blink>");
-                                    out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                    out.println("<p>Status:<blink><font color=\"red\"> Room Booked</font></blink></p>");
                                     
-                                    if (r.getHasTimeTable()) {
-                                        out.println("<p>What's in :");
-                                        out.println("End Time : " + r.getEndTime());
-                                        out.println("Event descritpion : " + r.getEventType()+"</p>");
+                                    
+                                    if (!r.getStartTime().equals("")) {
+                                        out.print("<p>Booking: ");
+                                        out.println(r.getStartTime()+" - "+ r.getEndTime());
+                                        out.println("</p>");
+                                        out.println("<p>Event: " + r.getEventType()+"</p>");
+                                        out.println("<p>Site: " + r.getLongDescription() + "</p>");
                                     }
-
                                 }
                                 out.println("</a>");
                             }%>
