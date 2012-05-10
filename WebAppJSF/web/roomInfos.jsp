@@ -80,7 +80,7 @@
                             System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
                             if (u.getRoomFromResource().equals(r.getIdRoom())) {
                                 out.println("<li>Id user connecté : " + u.getIdUser() + "   Resource Used" + u.getResourceUsedByUser() + "</li>");
-                            
+                                out.println("Depuis quand :"+u.getStartTimeSession());
                             }
                         }
                     } else {

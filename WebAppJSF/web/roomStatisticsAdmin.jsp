@@ -20,7 +20,7 @@
     <body>
         <h1>Hello World!</h1>
         <%
-            out.println("hasata " + g.getHasData().toString());
+            out.println("hasdaata " + g.getHasData().toString());
         %>
     </body>
 </html>
