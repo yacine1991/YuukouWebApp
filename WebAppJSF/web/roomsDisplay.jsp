@@ -22,7 +22,20 @@
         <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
-
+        <style>
+.good,
+.medium,
+.bad, .zero { font-weight:bold; text-shadow: none;}
+.good { background-color:#00FF00; }
+.medium { background-color:#FFFF00; }
+.bad { background-color:#FFAA00;}
+.zero { background-color:#FF0000; }
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
+   min-height: 60px;
+   padding-left: 55px;
+}
+.myThumb {margin-top: 20px}
+        </style>
     </head>
     <body>
         <div data-role="page">
