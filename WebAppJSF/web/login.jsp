@@ -1,5 +1,5 @@
 <%--
-   Document : Login page of the portal
+   Document : Login page
    Author   : Thierry
    Year     : 2012
 --%>
@@ -22,9 +22,9 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>UAMPortal : Authentication</title>
+            <title>UoW login</title>
         </head>
-        <body>
+        <body>          
             <div align="center">
                 <h1><html:outputText value="Authentication"/></h1>
                 <form method="POST" action="j_security_check">
@@ -49,6 +49,25 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
                 </table>
                 </form>
             </div>
+                        <div>
+                            <table width="770"  cellpadding="0" cellspacing="0" class="TableLayout" summary="footer table">
+                <tr>
+
+                    <td width="768" bgcolor="#000033" class="footer">&nbsp;
+                        
+                    </td>
+                    
+                </tr>
+                <tr>
+
+                    <td class="FooterText" colspan="5" align="right">
+                        <br>
+                        University of Westminster, Headquarters, 309 Regent Street, London W1B 2UW, +44 (0)20 7911 5000
+                    </td>
+                </tr>
+
+            </table>
+                        </div>     
         </body>
     </html>
 </core:view>

@@ -18,5 +18,24 @@
         <h1>Authentication Failed !</h1>
         <h4><a href=".">Try again !</a></h4>
         </div>
+        <div>
+                            <table width="770"  cellpadding="0" cellspacing="0" class="TableLayout" summary="footer table">
+                <tr>
+
+                    <td width="768" bgcolor="#000033" class="footer">&nbsp;
+                        
+                    </td>
+                    
+                </tr>
+                <tr>
+
+                    <td class="FooterText" colspan="5" align="right">
+                        <br>
+                        University of Westminster, Headquarters, 309 Regent Street, London W1B 2UW, +44 (0)20 7911 5000
+                    </td>
+                </tr>
+
+            </table>
+                        </div>
     </body>
 </html>
