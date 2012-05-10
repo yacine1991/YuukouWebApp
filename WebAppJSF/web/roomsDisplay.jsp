@@ -93,11 +93,11 @@
                                 } else {
                                     out.println("<blink><p><font color=\"red\">Room Busy</font></p></blink>");
                                     out.println("<p>Site: " + r.getLongDescription() + "</p>");
-                                    out.println("<p>What's in :");
+                                    
                                     if (r.getHasTimeTable()) {
-                                        
-                                        out.println("End Time : " + r.getTimeTable()[0].getEndTime());
-                                        out.println("Event descritpion : " + r.getTimeTable()[0].getEventDescription()+"</p>");
+                                        out.println("<p>What's in :");
+                                        out.println("End Time : " + r.getEndTime());
+                                        out.println("Event descritpion : " + r.getEventType()+"</p>");
                                     }
 
                                 }
