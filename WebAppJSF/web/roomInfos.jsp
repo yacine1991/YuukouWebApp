@@ -169,6 +169,9 @@
                          * type : " + r.getEventType() + "</li>");
                          */
                     }%>
+                <p>
+                    <IMG SRC="/WebAppJSF/ImgGraphServlet?timeStart=2012-05-01 00:00:00&timeEnd=2012-05-10 00:00:00&resource=<%=r.getIdRoom()%>" width='90%' style='max-width:591px;max-height:373px'>
+                <p> 
                     </div>
                 <div data-role="collapsible">
                     <h3>Software</h3>
