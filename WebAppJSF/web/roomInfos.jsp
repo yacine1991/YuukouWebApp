@@ -24,6 +24,15 @@
         <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
+        <style>
+.good,
+.medium,
+.bad, .zero { font-weight:bold; text-shadow: none;}
+.good { background-color:#00FF00; }
+.medium { background-color:#FFFF00; }
+.bad { background-color:#FFAA00;}
+.zero { background-color:#FF0000; }
+        </style>
     </head>
     <body>
         <div data-role="page">
@@ -47,40 +56,86 @@
                         
                         <p>
 
-                <% if (r.getStatus().equals("Available")) {%>
-                <br/><%out.println("Health Room : " + r.getHealthRoom());%>
-                <br/><%out.println("Available Computers : " + r.getPcAvailable());%>
-                <br/><%out.println("Computer down : " + r.getPcDown());%>
-                <br/><%out.println("Computer Busy : " + r.getBusy());%>
-                <br/><%out.println("Computer Types : " + r.getTypeResource());%>
-                <br/><%out.println("Long Description : " + r.getLongDescription());%>
-                <br/><%out.println("Restriction : " + r.getRestriction());%>
-                <br/><%out.println("Computer Down : " + r.getHasComputersDown());%>
-                <br/><%out.println("UserListtestState : " + ul.getJSONstate());%>
-                <br/><%out.println("Computer down : " + r.getPcDown());%>
+                <% if (r.getStatus().equals("Available") || r.getStatus().equals("Busy")) {%>
                 
+                <p><strong>Room Health:</strong> 
+                           <% 
+                           double health = Double.parseDouble(r.getHealthRoom());
+                           String myHealthClass;
+                           if (health > 60) myHealthClass = "good";
+                           else if (health <= 60 && health > 20 ) myHealthClass = "medium";
+                                                     else if (health <= 20 && health > 0 ) myHealthClass = "bad";
+                                                     else myHealthClass = "zero";
+                           %>
+                           
+                           <span class=" <%= myHealthClass %> "> &nbsp;<%= health %> % &nbsp; </span>
+                           </p></a>
+                
+                  <p><strong>Computer Availability:</strong> 
+                           <% 
+                           double avail = Double.parseDouble(r.getAvailability());
+                           String myAvailClass;
+                           if (avail > 60) myAvailClass = "good";
+                           else if (avail <= 60 && avail > 20 ) myAvailClass = "medium";
+                                                     else if (avail <= 20 && health > 0 ) myAvailClass = "bad";
+                                                     else myAvailClass = "zero";
+                           %>
+                           
+                           <span class=" <%= myAvailClass %> "> &nbsp;<%= avail %> % &nbsp; </span>
+                           </p></a>
+                    
+                <%out.println("Number of Computers: " + r.getPcTotal()); %>
+                <br/><%out.println("Available Computers: " + r.getPcAvailable());%>
+                <br/><%out.println("Computer down: " + r.getPcDown());%>
+                <br/><%out.println("Computer Busy: " + r.getBusy()); %>
+                
+                <% if (r.getStatus().equals("Busy"))
+                out.println("<br/>Lab Status:<blink><font color=\"red\"> booked</font></blink></li>"); %>
+                
+                <br/><%out.println("Computer Types: " + r.getTypeResource());%>
+                <br/><%out.println("Long Description: " + r.getLongDescription());%>
+                <br/><%out.println("Restriction: " + r.getRestriction());%>
+                <% if(r.getRestriction().equals("")) 
+                    out.println("none"); %>
+                <br/><%out.println("Computer Down: " + r.getHasComputersDown());%>
+                <br/><%out.println("UserListtestState: " + ul.getJSONstate());%>
+               
+                <p><strong>Computer List</strong>
                 
                   <%
                     if (r.getComputerList() != null) {
                         for (int i = 0; i < r.getComputerList().length; i++) {
-                            out.println("<li>Nom PC foutu : " + r.getComputerList()[i].getRessourceName() + "");
-                            out.println("Salle ou il est : " + r.getComputerList()[i].getRessouceRoom() + "");
-                            out.println("Status : " + r.getComputerList()[i].getRessourceStatus() + "");
-                            out.println("lasttimeseen : " + r.getComputerList()[i].getLastTimeSeen() + "</li>");
+                            
+                            //out.println("<li> " + r.getComputerList()[i].getRessourceName() + "");
+                            // out.println("Salle ou il est : " + r.getComputerList()[i].getRessouceRoom() + "");
+                              
+                            if(r.getComputerList()[i].getRessourceStatus().equals("DOWN"))
+                              out.println("<li><span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                            
+                            if(r.getComputerList()[i].getRessourceStatus().equals("DELETEME")) 
+                             out.println("<li><span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                            
+                            if(r.getComputerList()[i].getRessourceStatus().equals("OK")) 
+                             out.println("<li><span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                            
+                            out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
+                            
+                            out.println("</li>");
                         }
                     }
                   %>
 
                  <%
                     if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
+                        if(Integer.parseInt(r.getBusy()) > 0)
+                          out.println("<p><strong>Users logged-in</strong>");
                         Iterator it = ul.getJSONcontent().iterator();
                         while (it.hasNext()) {
 
                             User u = (User) it.next();
                             System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
                             if (u.getRoomFromResource().equals(r.getIdRoom())) {
-                                out.println("<li>Id user connecté : " + u.getIdUser() + "   Resource Used" + u.getResourceUsedByUser() + "</li>");
-                                out.println("Depuis quand :"+u.getStartTimeSession());
+                                out.println("<li>" + u.getIdUser() +  " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</li>");
                             }
                         }
                     } else {
@@ -98,11 +153,9 @@
                             out.println("Event type : " + r.getTimeTable()[i].getEventType() + "");
                             out.println("Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</li>");
 
-
                             r.getTimeTable()[i].getEventType();
                         }
                     }
-
 
                     %>
                 <br/><%out.println("Long location : " + r.getLongLocation());%>
@@ -142,18 +195,9 @@
         </div>
                 </div>
                     <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
-                    
-                    
-            
-        
-             
-              </div>
                 </div>
-        </div>
-        
-         
-             
-                    
+                </div>
+        </div>            
     </body>
 </html>
 
