@@ -50,7 +50,6 @@ public class YuukouServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     //@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/yuukou2.wmin.ac.uk_8181/YuukouServerService/YuukouServerService.wsdl")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -92,14 +91,20 @@ public class YuukouServlet extends HttpServlet {
 
             request.setAttribute("userlist", ul);
             request.setAttribute("room", r);
-            
-        }
-        else if (type.equals("credits")) {
+
+        } else if (type.equals("credits")) {
             url = "/credits.jsp";
             roomsStatus(rl);
             roomLocation(rl);
             //graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
             request.setAttribute("roomList", rl);
+        } else if (type.equals("stattest")) {
+            url = "/roomStatisticsAdmin.jsp";
+            roomsStatus(rl);
+            roomLocation(rl);
+            graphRequest(g, "2012-05-01 00:00:00", "2012-05-10 00:00:00", "0");
+            request.setAttribute("roomList", rl);
+            request.setAttribute("graph", g);
         }
 
 
@@ -213,9 +218,9 @@ public class YuukouServlet extends HttpServlet {
                 r.setPcDown(jso.get("Down").toString());
                 r.setResources(jso.get("Resources").toString());
                 r.setBusy(jso.get("Busy").toString());
-                r.setPcTotal(Integer.toString(Integer.parseInt(jso.get("Busy").toString()) +
-                             Integer.parseInt(jso.get("Available").toString()) +
-                             Integer.parseInt(jso.get("Down").toString())));
+                r.setPcTotal(Integer.toString(Integer.parseInt(jso.get("Busy").toString())
+                        + Integer.parseInt(jso.get("Available").toString())
+                        + Integer.parseInt(jso.get("Down").toString())));
                 r.setRestriction(jso.get("Restriction").toString());
 
                 /*
@@ -299,16 +304,16 @@ public class YuukouServlet extends HttpServlet {
         }
     }
 
-    private void roomLocation(Room r, LocationList locationList){
+    private void roomLocation(Room r, LocationList locationList) {
         String id = r.getIdRoom().split("-")[0];
-        if(locationList.contains(id)){
+        if (locationList.contains(id)) {
             Location l = locationList.get(id);
             r.setLocation(l.getId());
             r.setShortLocation(l.getShortLocation());
             r.setLongLocation(l.getLongLocation());
         }
     }
-    
+
     private void getLocation(LocationList locationList) {
         JSONParser jp = new JSONParser();
         Object obj;
@@ -328,7 +333,7 @@ public class YuukouServlet extends HttpServlet {
         if (jo.get("JSONState").equals("OK")) {
             JSONArray joo = (JSONArray) jo.get("JSONContents");
             Iterator it = joo.iterator();
-            
+
             while (it.hasNext()) {
                 JSONObject jso = (JSONObject) it.next();
 
@@ -535,26 +540,20 @@ public class YuukouServlet extends HttpServlet {
 
         System.out.println("Sort de la fonction Who");
     }
-    
-    /*public void searchHistoryUser(String idUser){
-        JSONParser jp = new JSONParser();
-        Object obj;
-        int i;
-        Connection c = new Connection();
-        String responseWho = c.searchHistoryUser(idUser, true, true);
 
-
-        System.out.println("Rentre dans la fonction SearchHistoryUser");
-        try {
-            obj = jp.parse(responseWho);
-
-        } catch (ParseException ex) {
-            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        }
-          }*/
-    
-    
+    /*
+     * public void searchHistoryUser(String idUser){ JSONParser jp = new
+     * JSONParser(); Object obj; int i; Connection c = new Connection(); String
+     * responseWho = c.searchHistoryUser(idUser, true, true);
+     *
+     *
+     * System.out.println("Rentre dans la fonction SearchHistoryUser"); try {
+     * obj = jp.parse(responseWho);
+     *
+     * } catch (ParseException ex) {
+     * Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null,
+     * ex); return; } }
+     */
     public File convertByteToImage(byte[] tab, String idRoom) throws IOException {
 
         InputStream in = new ByteArrayInputStream(tab);
@@ -566,27 +565,24 @@ public class YuukouServlet extends HttpServlet {
         return fi;
     }
 
-    /*public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) {
+    public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) {
         Connection c = new Connection();
-        String rqt = "select start_time_session from yuukou_last"
-                + " where start_time_session >= '" + timeStart + "'"
-                + " and start_time_session <= '" + timeEnd + "'"
-                + " order by start_time_session;";
+        String rqt = "select start_time_session from yuukou_last where start_time_session >= '" + timeStart + "' and start_time_session <= '" + timeEnd + "' order by start_time_session;";
         int factor = Integer.parseInt(factorStr);
-
-
+        System.out.println("Rentre dans la fonction graph");
         JSONParser jp = new JSONParser();
         Object obj;
         int i;
 
-        String responseGetGraph = c.getGraphWithRequestUsingJson(rqt, "start_time_session", "HoHoHOHOHO", timeStart, timeEnd, factor);
+        String responseGetGraph = c.getGraphWithRequestUsingJson(rqt, "start_time_session", "label", timeStart, timeEnd, factor);
         System.out.println(responseGetGraph);
-
+        System.out.println("Aavant TRY");
         try {
             obj = jp.parse(responseGetGraph);
 
         } catch (ParseException ex) {
-            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null,
+                    ex);
             return;
         }
 
@@ -603,9 +599,10 @@ public class YuukouServlet extends HttpServlet {
             g.setImageType(jso.get("ImageType").toString());
 
             JSONArray joo = (JSONArray) jso.get("ContentsValues");
-            
 
+            System.out.println("Size content 1 : " + joo.size());
             String[] tabContentsValues = new String[joo.size()];
+            System.out.println("Size content 2: " + joo.size());
             for (i = 0; i < joo.size(); i++) {
                 tabContentsValues[i] = (String) joo.get(i).toString();
             }
@@ -614,7 +611,8 @@ public class YuukouServlet extends HttpServlet {
 
             JSONArray joo2 = (JSONArray) jso.get("ContentsDates");
             String[] tabContentsDates = new String[joo2.size()];
-            for (i = 0; i < joo2.size(); i++) {
+            for (i = 0; i < joo2.size();
+                    i++) {
                 tabContentsDates[i] = (String) joo2.get(i).toString();
             }
             g.setContentsDates(tabContentsDates);
@@ -622,7 +620,8 @@ public class YuukouServlet extends HttpServlet {
             JSONArray joo3 = (JSONArray) jso.get("Image");
             String[] tabImages = new String[joo3.size()];
             for (i = 0; i < joo2.size(); i++) {
-                tabImages[i] = (String) joo3.get(i).toString();
+                tabImages[i] =
+                        (String) joo3.get(i).toString();
             }
             g.setImage(tabImages);
 
@@ -631,5 +630,5 @@ public class YuukouServlet extends HttpServlet {
             g.setJSONstate("KO");
             g.setJSONReason(jo.get("JSONReason").toString());
         }
-    }*/
+    }
 }

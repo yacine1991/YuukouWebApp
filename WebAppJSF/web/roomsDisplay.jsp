@@ -34,69 +34,77 @@
             </div>
 
             <div data-role="content">
-            <% RoomList rl = (RoomList) request.getAttribute("roomList");%>
+                <% RoomList rl = (RoomList) request.getAttribute("roomList");%>
 
 
 
-            <ul data-role="listview" data-theme="c" data-filter="true">
-                <li data-role="list-divider"> JSON State : ${roomList.JSONstate}
-                    JSON LastCycle : ${roomList.JSONlastCycle}
-                    JSON Maintenance : ${roomList.JSONmaintenance}</li>
+                <ul data-role="listview" data-theme="c" data-filter="true">
+                    <li data-role="list-divider"> JSON State : ${roomList.JSONstate}
+                        JSON LastCycle : ${roomList.JSONlastCycle}
+                        JSON Maintenance : ${roomList.JSONmaintenance}</li>
 
-                <%
-                    Iterator it = rl.getJSONcontent().iterator();
-                    while (it.hasNext()) {
-                        Room r = (Room) it.next();
-                %>
-
-
-                <li data-filtertext="<%= r.getIdRoom()%>
-                    <%= r.getShortDescription()%>
-                    <%= r.getStatus()%>
-                    <%= r.getLongLocation()%>
-                    <% if (r.getTypeResource().equals("mc")) {%> mac <% }%>
-                    <% if (r.getTypeResource().equals("pc")) {%> pc <% }%>
-                    ">
-
-                    <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
                     <%
+                        Iterator it = rl.getJSONcontent().iterator();
+                        while (it.hasNext()) {
+                            Room r = (Room) it.next();
+                    %>
+
+
+                    <li data-filtertext="<%= r.getIdRoom()%>
+                        <%= r.getShortDescription()%>
+                        <%= r.getStatus()%>
+                        <%= r.getLongLocation()%>
+                        <% if (r.getTypeResource().equals("mc")) {%> mac <% }%>
+                        <% if (r.getTypeResource().equals("pc")) {%> pc <% }%>
+                        ">
+
+                        <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
+                        <%
                         if (r.getTypeResource().equals("mc")) {%>
-                    <img src="images/apple.jpg" alt="macintosh" align="middle"/>
-                    <% } else {%>
-                    <img src="images/windows.jpg" alt="windows" align="middle"/>
-                    <% }%>
+                        <img src="images/apple.jpg" alt="macintosh" align="middle"/>
+                        <% } else {%>
+                        <img src="images/windows.jpg" alt="windows" align="middle"/>
+                        <% }%>
 
-                    <span class="ui-li-count" style="margin-top: -2.3em;">
-                        <B>Total: <%= r.getPcTotal()%> </B>
-                        <br />
-                        Free: <%= r.getPcAvailable()%>
-                        <br />
-                        Down: <%= r.getPcDown()%>
-                        <br />
-                        Busy: <%= r.getBusy()%>
-                    </span>
+                        <span class="ui-li-count" style="margin-top: -2.3em;">
+                            <B>Total: <%= r.getPcTotal()%> </B>
+                            <br />
+                            Free: <%= r.getPcAvailable()%>
+                            <br />
+                            Down: <%= r.getPcDown()%>
+                            <br />
+                            Busy: <%= r.getBusy()%>
+                        </span>
 
 
-                    <h3><% out.println(r.getIdRoom());%></h3>
+                        <h3><% out.println(r.getIdRoom());%></h3>
 
-                    <% if (r.getStatus().equals("Available")) {
-                                out.println("<p>Status : " + r.getStatus());
-                                if (Float.parseFloat(r.getAvailability()) >= 75.0) {
+                        <% if (r.getStatus().equals("Available")) {
+                                    out.println("<p>Status : " + r.getStatus());
+                                    if (Float.parseFloat(r.getAvailability()) >= 75.0) {
 
-                                    out.println("<p>Availability : <span style=\" background-color: #0DED20;\"> " + r.getAvailability() + " </span></p>");
-                                } else if (Float.parseFloat(r.getAvailability()) >= 50.0) {
-                                    out.println("<p>Availability : <span style=\" background-color: #F7B10D;\"> " + r.getAvailability() + " </span></p>");
+                                        out.println("<p>Availability : <span style=\" background-color: #0DED20;\"> " + r.getAvailability() + " </span></p>");
+                                    } else if (Float.parseFloat(r.getAvailability()) >= 50.0) {
+                                        out.println("<p>Availability : <span style=\" background-color: #F7B10D;\"> " + r.getAvailability() + " </span></p>");
+                                    } else {
+                                        out.println("<p>Availability : <span style=\" background-color: #F90909;\"> " + r.getAvailability() + " </span></p>");
+                                    }
+                                    out.println("<p>Site: " + r.getLongDescription() + "</p>");
                                 } else {
-                                    out.println("<p>Availability : <span style=\" background-color: #F90909;\"> " + r.getAvailability() + " </span></p>");
+                                    out.println("<blink><p><font color=\"red\">Room Busy</font></p></blink>");
+                                    out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                    out.println("<p>What's in :");
+                                    if (r.getHasTimeTable()) {
+                                        
+                                        out.println("End Time : " + r.getTimeTable()[0].getEndTime());
+                                        out.println("Event descritpion : " + r.getTimeTable()[0].getEventDescription()+"</p>");
+                                    }
+
                                 }
-                                out.println("<p>Site: " + r.getLongDescription() + "</p>");
-                            } else {
-                                out.println("<blink><p><font color=\"red\">Room Busy</font></p></blink>");
-                            }
-                            out.println("</a>");
-                        }%>
-                </li>
-            </ul>
+                                out.println("</a>");
+                            }%>
+                    </li>
+                </ul>
 
             </div>
 
