@@ -31,10 +31,9 @@
 .bad { background-color:#FFAA00;}
 .zero { background-color:#FF0000; }
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
-   min-height: 60px;
-   padding-left: 55px;
+  padding-left: 63px; 
 }
-.myThumb {margin-top: 20px}
+.myThumb {margin-top: 20px; width:60px;max-width: 15%;}
         </style>
     </head>
     <body>
@@ -74,9 +73,9 @@
                         <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
                         <%
                         if (r.getTypeResource().equals("mc")) {%>
-                        <img src="images/apple.jpg" alt="macintosh" align="middle"/>
+                        <img src="images/apple.jpg" alt="macintosh" align="middle" class="myThumb"/>
                         <% } else {%>
-                        <img src="images/windows.jpg" alt="windows" align="middle"/>
+                        <img src="images/windows.jpg" alt="windows" align="middle"  class="myThumb"/>
                         <% }%>
 
                         <span class="ui-li-count" style="margin-top: -2.3em;">
