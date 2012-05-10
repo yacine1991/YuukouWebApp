@@ -39,6 +39,7 @@ import org.json.simple.parser.ParseException;
  * @author Yacine
  */
 public class YuukouServlet extends HttpServlet {
+    private byte[] tabImageByte;
 
     /**
      * Processes requests for both HTTP
@@ -105,6 +106,15 @@ public class YuukouServlet extends HttpServlet {
             graphRequest(g, "2012-05-01 00:00:00", "2012-05-10 00:00:00", "0");
             request.setAttribute("roomList", rl);
             request.setAttribute("graph", g);
+        }
+        else if (type.equals("adminView")) {
+            url = "/adminView.jsp";
+            roomsStatus(rl);
+            roomLocation(rl);
+            getLocation(locationList);
+            request.setAttribute("locationList", locationList);
+            request.setAttribute("roomList", rl);
+            
         }
 
 
@@ -432,7 +442,7 @@ public class YuukouServlet extends HttpServlet {
                     tab[i] = Byte.parseByte(test);
                 }
 
-                r.setImage(convertByteToImage(tab, r.getIdRoom()));
+                r.setImage(convertByteToImage(tab, r.getIdRoom(), "jpg"));
 
                 System.out.println("Fin conversion image");
             }
@@ -554,18 +564,18 @@ public class YuukouServlet extends HttpServlet {
      * Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null,
      * ex); return; } }
      */
-    public File convertByteToImage(byte[] tab, String idRoom) throws IOException {
+    public File convertByteToImage(byte[] tab, String idRoom, String extension) throws IOException {
 
         InputStream in = new ByteArrayInputStream(tab);
         BufferedImage bImageFromConvert = ImageIO.read(in);
-        File fi = new File(getServletContext().getRealPath("/") + "/images/" + idRoom + ".jpg");
+        File fi = new File(getServletContext().getRealPath("/") + "/images/" + idRoom + "."+extension);
 
         ImageIO.write(bImageFromConvert, "jpg", fi);
 
         return fi;
     }
 
-    public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) {
+    public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) throws IOException {
         Connection c = new Connection();
         String rqt = "select start_time_session from yuukou_last where start_time_session >= '" + timeStart + "' and start_time_session <= '" + timeEnd + "' order by start_time_session;";
         int factor = Integer.parseInt(factorStr);
@@ -618,13 +628,22 @@ public class YuukouServlet extends HttpServlet {
             g.setContentsDates(tabContentsDates);
 
             JSONArray joo3 = (JSONArray) jso.get("Image");
-            String[] tabImages = new String[joo3.size()];
-            for (i = 0; i < joo2.size(); i++) {
-                tabImages[i] =
-                        (String) joo3.get(i).toString();
+            //String[] tabImages = new String[joo3.size()];
+            
+            byte[] tabImageByte = new byte[joo3.size()];
+            
+            for (i = 0; i < joo3.size(); i++) {
+                
+                Long ll = (Long) joo3.get(i);
+                String test = String.valueOf(ll);
+                tabImageByte[i] = Byte.parseByte(test);
+                
+                //tabImages[i] =(String) joo3.get(i).toString();
             }
-            g.setImage(tabImages);
-
+            
+            
+            g.setImageFile(convertByteToImage(tabImageByte, "test" ,g.getImageType()));
+           
 
         } else {
             g.setJSONstate("KO");

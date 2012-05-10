@@ -32,6 +32,8 @@
 
                 <li ><a href="YuukouServlet?choice=stattest">Statistics TEST</a>
                 </li>
+
+                <li ><a href="YuukouServlet?choice=adminView">Admin View</a></li>
                 <% } catch (Exception e) {
 
                         out.println("Error" + e.getMessage().toString());

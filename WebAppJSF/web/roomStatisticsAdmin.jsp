@@ -21,6 +21,9 @@
         <h1>Hello World!</h1>
         <%
             out.println("hasdaata " + g.getHasData().toString());
+            out.println("Image type" + g.getImageType());
+
+            out.println("<center><img src=\"images/test.png\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px'></center>");%>
         %>
     </body>
 </html>

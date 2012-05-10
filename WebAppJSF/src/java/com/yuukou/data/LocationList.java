@@ -34,4 +34,8 @@ public class LocationList {
     public boolean contains(String id) {
         return mapList.containsKey(id);
     }
+    
+    public Location[] getAllData(){
+        return mapList.values().toArray(new Location[mapList.size()]);
+    }
 }

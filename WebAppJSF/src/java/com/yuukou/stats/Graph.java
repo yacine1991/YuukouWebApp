@@ -1,5 +1,7 @@
 package com.yuukou.stats;
 
+import java.io.File;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -21,6 +23,15 @@ public class Graph{
     private String [] ContentsValues;
     private String [] ContentsDates;
     private String [] Image;
+    private File ImageFile;
+
+    public File getImageFile() {
+        return ImageFile;
+    }
+
+    public void setImageFile(File ImageFile) {
+        this.ImageFile = ImageFile;
+    }
 
     public String[] getContentsDates() {
         return ContentsDates;
