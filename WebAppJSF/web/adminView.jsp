@@ -24,7 +24,12 @@
             </div>
             <ul data-role="listview" data-theme="c">
 
-                <li><a href="YuukouServlet?choice=find">Global View</a>
+                <li>Global View
+                    <ul>
+                        <li>Status</li>
+                        <li>Utilisation</li>
+                        <li>Statistics</li>
+                    </ul>
                 </li>
 
                 <li ><a href="YuukouServlet?choice=stats">Site View</a>
