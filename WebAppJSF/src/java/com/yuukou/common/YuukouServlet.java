@@ -352,7 +352,7 @@ public class YuukouServlet extends HttpServlet {
     public void roomStatus(Room r, String idRoom) throws IOException {
         JSONParser jp = new JSONParser();
         Object obj;
-        int i;
+        int i, j, k;
         Connection c = new Connection();
         String responsehealthForRoom = c.healthForRoom(idRoom);
 
@@ -392,9 +392,9 @@ public class YuukouServlet extends HttpServlet {
 
             if (jso.get("HasGroups").toString().equals("YES")) {
                 r.setHasGroups(jso.get("HasGroups").toString());
-                JSONArray joo = (JSONArray) jso.get("GroupContents");
+                JSONArray joo = (JSONArray) jso.get("GroupsContents");
                 ArrayList<GroupSoftwares> groupSwap = new ArrayList<GroupSoftwares>();
-                for (int j = 0; j < joo.size(); j++) {
+                for (j = 0; j < joo.size(); j++) {
                     JSONObject joGroup = (JSONObject) joo.get(j);
                     GroupSoftwares gs = new GroupSoftwares();
                     gs.setIdGroup(joGroup.get("Group").toString());
@@ -404,7 +404,7 @@ public class YuukouServlet extends HttpServlet {
                     if (gs.getHasSoftwareContents().equals("YES")) {
 
                         JSONArray joo2 = (JSONArray) joGroup.get("SoftwaresContents");
-                        for (int k = 0; k < joo2.size(); k++) {
+                        for (k = 0; k < joo2.size(); k++) {
                             JSONObject joSoft = (JSONObject) joo2.get(k);
                             String swap1 = joSoft.get("Software").toString();
                             String swap2 = joSoft.get("Description").toString();
@@ -425,7 +425,7 @@ public class YuukouServlet extends HttpServlet {
             } else {
                 r.setHasGroups("NO");
             }
-           
+
             if (jso.get("State").equals("Busy")) {
                 if (jso.get("HasTimeTable").equals("YES")) {
 
@@ -555,6 +555,10 @@ public class YuukouServlet extends HttpServlet {
                 u.setIdUser(jso.get("User").toString());
                 u.setResourceUsedByUser(jso.get("Resource").toString());
                 u.setStartTimeSession(jso.get("StartTimeSession").toString());
+                if (!jso.get("IdPicture").toString().isEmpty() || jso.get("IdPicture").toString() != null) {
+                    String swap = jso.get("IdPicture").toString().replace("'\'", "");
+                    u.setIdPicture(swap);
+                }
                 ul.addUser(u);
                 r.setHasUserOnline(true);
             }
