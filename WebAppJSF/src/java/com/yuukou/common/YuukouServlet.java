@@ -388,6 +388,7 @@ public class YuukouServlet extends HttpServlet {
             r.setRoomUrl(jso.get("Url").toString());
             r.setRestriction(jso.get("Restriction").toString());
             healthResourceForRoom(r);
+            
             if (jso.get("HasGroups").toString().equals("YES")) {
                 r.setHasGroups(jso.get("HasGroups").toString());
                 JSONArray joo = (JSONArray) jso.get("GroupContents");
@@ -400,9 +401,10 @@ public class YuukouServlet extends HttpServlet {
                     gs.setHasSoftwareContents(joGroup.get("HasSoftwareContent").toString());
                     ArrayList<Software> softSwap = new ArrayList<Software>();
                     if (gs.getHasSoftwareContents().equals("YES")) {
+                       
                         JSONArray joo2 = (JSONArray) joGroup.get("SoftwaresContents");
                         for (int k = 0; k < joo2.size(); k++) {
-                            JSONObject joSoft = (JSONObject) joo2.get(j);
+                            JSONObject joSoft = (JSONObject) joo2.get(k);
                             String swap1 = joSoft.get("Software").toString();
                             String swap2 = joSoft.get("Description").toString();
                             Software st = new Software(swap1, swap2);
@@ -423,6 +425,7 @@ public class YuukouServlet extends HttpServlet {
             else {
                 r.setHasGroups("NO");
             }
+            
                 if (jso.get("State").equals("Busy")) {
                     if (jso.get("HasTimeTable").equals("YES")) {
 
