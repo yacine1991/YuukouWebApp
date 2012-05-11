@@ -16,6 +16,7 @@ public class User {
     private String resourceUsedByUser;
     private String StartTimeSession;
     private String roomFromResource;
+    private String idPicture;
     
 
     public User() {
@@ -34,6 +35,14 @@ public class User {
 
     public String getStartTimeSession() {
         return StartTimeSession;
+    }
+
+    public String getIdPicture() {
+        return idPicture;
+    }
+
+    public void setIdPicture(String idPicture) {
+        this.idPicture = idPicture;
     }
 
     public void setStartTimeSession(String StartTimeSession) {

@@ -5,6 +5,7 @@
 package com.yuukou.data;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Room {
     private String busy;
     private String ShortDescription;
     private String LongDescription;
-    private String Description;
+    private String LetterDescription;
     private boolean HasImage = false;
     private File Image;
     private String JSONstate;
@@ -36,16 +37,45 @@ public class Room {
     private String JSONReason;
     private String Restriction;
     private String RoomUrl;
+    private String RoomDescription;
+    private String HasGroups;
+    private ArrayList<GroupSoftwares> GroupsSoftwareList;    
     private TimeTable[] TimeTable;
     private Computer[] ComputerList;
     private boolean HasTimeTable = false;
     private boolean HasComputersDown = false;
     private boolean HasUserOnline = false;
+    private String HasSoftware;
+
+    public String getHasSoftware() {
+        return HasSoftware;
+    }
+
+    public void setHasSoftware(String HasSoftware) {
+        this.HasSoftware = HasSoftware;
+    }
 
     public Computer[] getComputerList() {
         return ComputerList;
     }
 
+    public ArrayList<GroupSoftwares> getGroupsSoftwareList() {
+        return GroupsSoftwareList;
+    }
+
+    public void setGroupsSoftwareList(ArrayList<GroupSoftwares> GroupsSoftwareList) {
+        this.GroupsSoftwareList = GroupsSoftwareList;
+    }
+
+    public String getHasGroups() {
+        return HasGroups;
+    }
+
+    public void setHasGroups(String HasGroups) {
+        this.HasGroups = HasGroups;
+    }
+
+    
     public void setComputerList(Computer[] ComputerList) {
         this.ComputerList = ComputerList;
     }
@@ -135,13 +165,23 @@ public class Room {
         return Image;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getLetterDescription() {
+        return LetterDescription;
     }
 
-    public void setLocation(String Description) {
-        this.Description = Description;
+    public void setLetterDescription(String LetterDescription) {
+        this.LetterDescription = LetterDescription;
     }
+
+    public String getRoomDescription() {
+        return RoomDescription;
+    }
+
+    public void setRoomDescription(String RoomDescription) {
+        this.RoomDescription = RoomDescription;
+    }
+
+   
 
     public String getLongLocation() {
         return LongDescription;

@@ -69,12 +69,12 @@
                         <p>
 
                             <% if (r.getStatus().equals("Available") || r.getStatus().equals("Busy")) {%>
-                      
+
                         <p><strong>Room Health:</strong> 
                             <%
                                 String myHealthClass = "novalue";
                                 float health = 0;
-                                System.out.println("R.gethealth : "+r.getHealthRoom());
+                                System.out.println("R.gethealth : " + r.getHealthRoom());
                                 if (r.getHealthRoom() != null) {
 
                                     health = Float.parseFloat(r.getHealthRoom());
@@ -133,7 +133,8 @@
                         <br/><%out.println("Computer Types: " + r.getTypeResource());%>
                         <br/><%out.println("Long Description: " + r.getLongDescription());%>
                         <br/><%out.println("Restriction: " + r.getRestriction());%>
-                        
+                        <br/><%out.println("RoomDescription: " + r.getRoomDescription());%>
+
                         <br/><%out.println("Computer Down: " + r.getHasComputersDown());%>
                         <br/><%out.println("UserListtestState: " + ul.getJSONstate());%>
 
@@ -157,7 +158,7 @@
                                         if (r.getComputerList()[i].getRessourceStatus().equals("OK")) {
                                             out.println("<li><span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
                                         }
-                                     
+
                                         out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
 
                                         out.println("</li>");
@@ -167,9 +168,9 @@
 
                             <%
                                 if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
-                                    
-                                        out.println("<p><strong>Users logged-in</strong>");
-                                    
+
+                                    out.println("<p><strong>Users logged-in</strong>");
+
                                     Iterator it = ul.getJSONcontent().iterator();
                                     while (it.hasNext()) {
 
@@ -177,6 +178,7 @@
                                         // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
                                         if (u.getRoomFromResource().equals(r.getIdRoom())) {
                                             out.println("<li>" + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</li>");
+                                            out.println("Image : "+ u.getIdPicture());
                                         }
                                     }
                                 } else {
@@ -254,26 +256,36 @@
                                 
                     <div data-role="collapsible">
                         <h3>Software</h3>
-                        <p>
-                            Windows 7<br/>
-                            Build release: Kiwi 1.1<br/>
-                        </p>
-
+                       
                         <div data-role="collapsible-set" data-theme="b" data-content-theme="d">
+                            <%  if (r.getHasGroups().equals("YES")) {
+                                    int index;
 
-                            <div data-role="collapsible">
-                                <h3>Baseline</h3>
-                                <p>            
-                                    7-Zip 9.20<br />
-                                    Adobe Authorware<br />
-                            </div>
 
-                            <div data-role="collapsible">
-                                <h3>ECS core</h3>
-                                <p>            
-                                    Rational Rose<br />
-                                    Visual Studio<br />
-                            </div>
+                                    for (index = 0; index < r.getGroupsSoftwareList().size(); index++) {
+
+                                        out.println("<div data-role=\"collapsible-set\" data-theme=\"b\" data-content-theme=\"d\">");
+                                        out.println("<h3>" + r.getGroupsSoftwareList().get(index).getIdGroup() + "</h3>");
+                                        out.println("<p>");
+                                        for (int f = 0; f < r.getGroupsSoftwareList().get(index).getSoftwareContents().size(); f++) {
+                                            out.println("Name Soft : " + r.getGroupsSoftwareList().get(index).getSoftwareContents().get(f).getIdSoftware());
+
+                                            if (r.getGroupsSoftwareList().get(index).getSoftwareContents().get(f).getDescriptionSoftware() == "null") {
+                                                out.println("Description Soft :" + r.getGroupsSoftwareList().get(index).getSoftwareContents().get(f).getDescriptionSoftware());
+
+                                            }
+                                            out.println("<br/>");
+                                        }
+
+                                        out.println("</p>");
+                                        out.println("</div>");
+                                    }
+                                } else {
+                                    System.out.println("NOTHING");
+                                }
+
+                            %>
+
                         </div>
                     </div>
                     <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
