@@ -123,6 +123,7 @@
                         <br/><%out.println("Computer Types: " + r.getTypeResource());%>
                         <br/><%out.println("Long Description: " + r.getLongDescription());%>
                         <br/><%out.println("Restriction: " + r.getRestriction());%>
+                         <br/><%out.println("RoomDescription: " + r.getRoomDescription());%>
                         
                         <br/><%out.println("Computer Down: " + r.getHasComputersDown());%>
                         <br/><%out.println("UserListtestState: " + ul.getJSONstate());%>

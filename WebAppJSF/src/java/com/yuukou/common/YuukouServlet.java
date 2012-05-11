@@ -39,6 +39,7 @@ import org.json.simple.parser.ParseException;
  * @author Yacine
  */
 public class YuukouServlet extends HttpServlet {
+
     private byte[] tabImageByte;
 
     /**
@@ -103,15 +104,14 @@ public class YuukouServlet extends HttpServlet {
             graphRequest(g, "2012-05-01 00:00:00", "2012-05-10 00:00:00", "0");
             request.setAttribute("roomList", rl);
             request.setAttribute("graph", g);
-        }
-        else if (type.equals("adminView")) {
+        } else if (type.equals("adminView")) {
             url = "/adminView.jsp";
             roomsStatus(rl);
             roomLocation(rl);
             getLocation(locationList);
             request.setAttribute("locationList", locationList);
             request.setAttribute("roomList", rl);
-            
+
         }
 
 
@@ -190,7 +190,7 @@ public class YuukouServlet extends HttpServlet {
     public void roomsStatus(RoomList rl) throws IOException {
         JSONParser jp = new JSONParser();
         Object obj;
-        
+
         Connection c = new Connection();
         String responsehealthForAllRooms = c.conhealthForAllRooms();
 
@@ -284,8 +284,8 @@ public class YuukouServlet extends HttpServlet {
 
                         r.setShortLocation(jso.get("ShortLocation").toString());
                         r.setLongLocation(jso.get("LongLocation").toString());
-                      
-                        r.setLocation(jso.get("Location").toString());
+
+                        r.setLetterDescription(jso.get("Location").toString());
 
                         loop = true;
                     }
@@ -307,7 +307,7 @@ public class YuukouServlet extends HttpServlet {
         String id = r.getIdRoom().split("-")[0];
         if (locationList.contains(id)) {
             Location l = locationList.get(id);
-            r.setLocation(l.getId());
+            r.setLetterDescription(l.getId());
             r.setShortLocation(l.getShortLocation());
             r.setLongLocation(l.getLongLocation());
         }
@@ -354,7 +354,7 @@ public class YuukouServlet extends HttpServlet {
         Connection c = new Connection();
         String responsehealthForRoom = c.healthForRoom(idRoom);
 
-     
+
         try {
             obj = jp.parse(responsehealthForRoom);
 
@@ -373,21 +373,20 @@ public class YuukouServlet extends HttpServlet {
 
             JSONObject jso = (JSONObject) jo.get("JSONContents");
             r.setIdRoom(jso.get("Room").toString());
+            r.setRoomDescription(jso.get("Description").toString());
+            r.setRoomUrl(jso.get("Url").toString());
             r.setStatus(jso.get("State").toString());
             r.setTypeResource(jso.get("TypeResources").toString());
-
-           
-                //a finir ajouter une listRooms pour l'
-                r.setHealthRoom(jso.get("Health").toString());
-                r.setAvailability(jso.get("Availability").toString());
-                r.setPcAvailable(jso.get("Available").toString());
-                r.setPcDown(jso.get("Down").toString());
-                r.setResources(jso.get("Resources").toString());
-                r.setBusy(jso.get("Busy").toString());
-                r.setRoomUrl(jso.get("Url").toString());
-                r.setRestriction(jso.get("Restriction").toString());
-                healthResourceForRoom(r);
-            if(jso.get("State").equals("Busy")){
+             r.setHealthRoom(jso.get("Health").toString());
+            r.setAvailability(jso.get("Availability").toString());
+            r.setPcAvailable(jso.get("Available").toString());
+            r.setPcDown(jso.get("Down").toString());
+            r.setResources(jso.get("Resources").toString());
+            r.setBusy(jso.get("Busy").toString());
+            r.setRoomUrl(jso.get("Url").toString());
+            r.setRestriction(jso.get("Restriction").toString());
+            healthResourceForRoom(r);
+            if (jso.get("State").equals("Busy")) {
                 if (jso.get("HasTimeTable").equals("YES")) {
 
                     r.setHasTimeTable(true);
@@ -413,7 +412,7 @@ public class YuukouServlet extends HttpServlet {
             }
             if (jso.get("HasImage").equals("YES")) {
                 r.setHasImage(true);
-               
+
                 JSONArray jab = (JSONArray) jso.get("Image");
                 byte[] tab = new byte[jab.size()];
                 for (i = 0; i < jab.size(); i++) {
@@ -425,7 +424,7 @@ public class YuukouServlet extends HttpServlet {
 
                 r.setImage(convertByteToImage(tab, r.getIdRoom(), "jpg"));
 
-                
+
             }
 
 
@@ -438,7 +437,7 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
-        
+
     }
 
     public void healthResourceForRoom(Room r) {
@@ -447,7 +446,7 @@ public class YuukouServlet extends HttpServlet {
         JSONParser jp = new JSONParser();
         Object obj = null;
 
-       
+
         try {
             obj = jp.parse(responseHealthResourceForRoom);
 
@@ -492,7 +491,7 @@ public class YuukouServlet extends HttpServlet {
         String responseWho = c.who();
 
 
-      
+
         try {
             obj = jp.parse(responseWho);
 
@@ -547,7 +546,7 @@ public class YuukouServlet extends HttpServlet {
 
         InputStream in = new ByteArrayInputStream(tab);
         BufferedImage bImageFromConvert = ImageIO.read(in);
-        File fi = new File(getServletContext().getRealPath("/") + "/images/" + idRoom + "."+extension);
+        File fi = new File(getServletContext().getRealPath("/") + "/images/" + idRoom + "." + extension);
 
         ImageIO.write(bImageFromConvert, "jpg", fi);
 
@@ -558,13 +557,13 @@ public class YuukouServlet extends HttpServlet {
         Connection c = new Connection();
         String rqt = "select start_time_session from yuukou_last where start_time_session >= '" + timeStart + "' and start_time_session <= '" + timeEnd + "' order by start_time_session;";
         int factor = Integer.parseInt(factorStr);
-       
+
         JSONParser jp = new JSONParser();
         Object obj;
         int i;
 
         String responseGetGraph = c.getGraphWithRequestUsingJson(rqt, "start_time_session", "label", timeStart, timeEnd, factor);
- 
+
         try {
             obj = jp.parse(responseGetGraph);
 
@@ -589,7 +588,7 @@ public class YuukouServlet extends HttpServlet {
             JSONArray joo = (JSONArray) jso.get("ContentsValues");
 
             String[] tabContentsValues = new String[joo.size()];
-          
+
             for (i = 0; i < joo.size(); i++) {
                 tabContentsValues[i] = (String) joo.get(i).toString();
             }
@@ -606,21 +605,21 @@ public class YuukouServlet extends HttpServlet {
 
             JSONArray joo3 = (JSONArray) jso.get("Image");
             //String[] tabImages = new String[joo3.size()];
-            
+
             byte[] tabImageByte = new byte[joo3.size()];
-            
+
             for (i = 0; i < joo3.size(); i++) {
-                
+
                 Long ll = (Long) joo3.get(i);
                 String test = String.valueOf(ll);
                 tabImageByte[i] = Byte.parseByte(test);
-                
+
                 //tabImages[i] =(String) joo3.get(i).toString();
             }
-            
-            
-            g.setImageFile(convertByteToImage(tabImageByte, "test" ,g.getImageType()));
-           
+
+
+            g.setImageFile(convertByteToImage(tabImageByte, "test", g.getImageType()));
+
 
         } else {
             g.setJSONstate("KO");
