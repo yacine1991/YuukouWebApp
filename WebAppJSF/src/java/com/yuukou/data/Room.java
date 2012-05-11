@@ -45,6 +45,15 @@ public class Room {
     private boolean HasTimeTable = false;
     private boolean HasComputersDown = false;
     private boolean HasUserOnline = false;
+    private String HasSoftware;
+
+    public String getHasSoftware() {
+        return HasSoftware;
+    }
+
+    public void setHasSoftware(String HasSoftware) {
+        this.HasSoftware = HasSoftware;
+    }
 
     public Computer[] getComputerList() {
         return ComputerList;
