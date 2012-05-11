@@ -83,13 +83,10 @@ public class YuukouServlet extends HttpServlet {
         } else if (type.equals("Room")) {
             url = "/roomInfos.jsp";
             String id = request.getParameter("id");
-            //r.setLongLocation("Ai ai ai ai");
-
             roomStatus(r, id);
             getLocation(locationList);
             roomLocation(r, locationList);
             parseWho(ul, r);
-
             request.setAttribute("userlist", ul);
             request.setAttribute("room", r);
 
@@ -193,7 +190,7 @@ public class YuukouServlet extends HttpServlet {
     public void roomsStatus(RoomList rl) throws IOException {
         JSONParser jp = new JSONParser();
         Object obj;
-        int i;
+        
         Connection c = new Connection();
         String responsehealthForAllRooms = c.conhealthForAllRooms();
 
@@ -232,14 +229,6 @@ public class YuukouServlet extends HttpServlet {
                         + Integer.parseInt(jso.get("Available").toString())
                         + Integer.parseInt(jso.get("Down").toString())));
                 r.setRestriction(jso.get("Restriction").toString());
-
-                /*
-                 * if (jso.get("HasImage").equals("YES")) { r.setHasImage(true);
-                 *
-                 *
-                 *
-                 * }
-                 */
 
                 if (jso.get("State").equals("Busy")) {
                     r.setStartTime(jso.get("StartTime").toString());
@@ -295,7 +284,7 @@ public class YuukouServlet extends HttpServlet {
 
                         r.setShortLocation(jso.get("ShortLocation").toString());
                         r.setLongLocation(jso.get("LongLocation").toString());
-                        System.out.println("Long Location : " + r.getLongLocation());
+                      
                         r.setLocation(jso.get("Location").toString());
 
                         loop = true;
@@ -365,7 +354,7 @@ public class YuukouServlet extends HttpServlet {
         Connection c = new Connection();
         String responsehealthForRoom = c.healthForRoom(idRoom);
 
-        System.out.println("Rentre dans la fonction");
+     
         try {
             obj = jp.parse(responsehealthForRoom);
 
@@ -387,7 +376,7 @@ public class YuukouServlet extends HttpServlet {
             r.setStatus(jso.get("State").toString());
             r.setTypeResource(jso.get("TypeResources").toString());
 
-            if (jso.get("State").equals("Available")) {
+           
                 //a finir ajouter une listRooms pour l'
                 r.setHealthRoom(jso.get("Health").toString());
                 r.setAvailability(jso.get("Availability").toString());
@@ -398,8 +387,7 @@ public class YuukouServlet extends HttpServlet {
                 r.setRoomUrl(jso.get("Url").toString());
                 r.setRestriction(jso.get("Restriction").toString());
                 healthResourceForRoom(r);
-                System.out.println("Parsage jusqua a hasImage");
-            } else {
+            if(jso.get("State").equals("Busy")){
                 if (jso.get("HasTimeTable").equals("YES")) {
 
                     r.setHasTimeTable(true);
@@ -420,19 +408,12 @@ public class YuukouServlet extends HttpServlet {
                     }
                     r.setTimeTable(tabTimeTable);
 
-
                 }
 
-
-
-
             }
-
             if (jso.get("HasImage").equals("YES")) {
                 r.setHasImage(true);
-                System.out.println("Has image" + jso.get("HasImage"));
-
-
+               
                 JSONArray jab = (JSONArray) jso.get("Image");
                 byte[] tab = new byte[jab.size()];
                 for (i = 0; i < jab.size(); i++) {
@@ -444,7 +425,7 @@ public class YuukouServlet extends HttpServlet {
 
                 r.setImage(convertByteToImage(tab, r.getIdRoom(), "jpg"));
 
-                System.out.println("Fin conversion image");
+                
             }
 
 
@@ -457,7 +438,7 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
-        System.out.println("Fin de la focntion roomStatus");
+        
     }
 
     public void healthResourceForRoom(Room r) {
@@ -466,7 +447,7 @@ public class YuukouServlet extends HttpServlet {
         JSONParser jp = new JSONParser();
         Object obj = null;
 
-        System.out.println("Rentre dans la fonction heatlhRessource");
+       
         try {
             obj = jp.parse(responseHealthResourceForRoom);
 
@@ -511,7 +492,7 @@ public class YuukouServlet extends HttpServlet {
         String responseWho = c.who();
 
 
-        System.out.println("Rentre dans la fonction Who");
+      
         try {
             obj = jp.parse(responseWho);
 
@@ -547,8 +528,6 @@ public class YuukouServlet extends HttpServlet {
 
 
         }
-
-        System.out.println("Sort de la fonction Who");
     }
 
     /*
@@ -579,14 +558,13 @@ public class YuukouServlet extends HttpServlet {
         Connection c = new Connection();
         String rqt = "select start_time_session from yuukou_last where start_time_session >= '" + timeStart + "' and start_time_session <= '" + timeEnd + "' order by start_time_session;";
         int factor = Integer.parseInt(factorStr);
-        System.out.println("Rentre dans la fonction graph");
+       
         JSONParser jp = new JSONParser();
         Object obj;
         int i;
 
         String responseGetGraph = c.getGraphWithRequestUsingJson(rqt, "start_time_session", "label", timeStart, timeEnd, factor);
-        System.out.println(responseGetGraph);
-        System.out.println("Aavant TRY");
+ 
         try {
             obj = jp.parse(responseGetGraph);
 
@@ -610,9 +588,8 @@ public class YuukouServlet extends HttpServlet {
 
             JSONArray joo = (JSONArray) jso.get("ContentsValues");
 
-            System.out.println("Size content 1 : " + joo.size());
             String[] tabContentsValues = new String[joo.size()];
-            System.out.println("Size content 2: " + joo.size());
+          
             for (i = 0; i < joo.size(); i++) {
                 tabContentsValues[i] = (String) joo.get(i).toString();
             }

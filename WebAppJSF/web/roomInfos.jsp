@@ -3,6 +3,7 @@
     Created on : 28 mars 2012, 16:20:37
     Author     : Yacine
 --%>
+<%@page import="org.jfree.ui.about.SystemProperties"%>
 <%@page import="com.yuukou.data.User"%>
 <%@page import="com.yuukou.data.UserList"%>
 <%@page import="com.yuukou.data.TimeTable"%>
@@ -25,13 +26,14 @@
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
         <style>
-.good,
-.medium,
-.bad, .zero { font-weight:bold; text-shadow: none;}
-.good { background-color:#00FF00; }
-.medium { background-color:#FFFF00; }
-.bad { background-color:#FFAA00;}
-.zero { background-color:#FF0000; }
+            .good,
+            .medium,
+            .bad, .zero { font-weight:bold; text-shadow: none;}
+            .good { background-color:#00FF00; }
+            .medium { background-color:#FFFF00; }
+            .bad { background-color:#FFAA00;}
+            .zero { background-color:#FF0000; }
+            .novalues { background-color:#100000; }
         </style>
     </head>
     <body>
@@ -47,159 +49,190 @@
                 <a href="" data-icon="back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
                 <a data-icon="refresh"  data-iconpos="notext" data-rel="dialog" data-transition="fade" href="javascript:document.location.reload();"></a>
             </div>
-                <div data-role="content">
+            <div data-role="content">
 
-            <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px'></center>");%>
-              <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+                <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px'></center>");%>
+                <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
                     <div data-role="collapsible">
                         <h3>Status</h3>
-                        
+
                         <p>
 
-                <% if (r.getStatus().equals("Available") || r.getStatus().equals("Busy")) {%>
-                
-                <p><strong>Room Health:</strong> 
-                           <% 
-                           double health = Double.parseDouble(r.getHealthRoom());
-                           String myHealthClass;
-                           if (health > 60) myHealthClass = "good";
-                           else if (health <= 60 && health > 20 ) myHealthClass = "medium";
-                                                     else if (health <= 20 && health > 0 ) myHealthClass = "bad";
-                                                     else myHealthClass = "zero";
-                           %>
-                           
-                           <span class=" <%= myHealthClass %> "> &nbsp;<%= health %> % &nbsp; </span>
-                           </p></a>
-                
-                  <p><strong>Computer Availability:</strong> 
-                           <% 
-                           double avail = Double.parseDouble(r.getAvailability());
-                           String myAvailClass;
-                           if (avail > 60) myAvailClass = "good";
-                           else if (avail <= 60 && avail > 20 ) myAvailClass = "medium";
-                                                     else if (avail <= 20 && health > 0 ) myAvailClass = "bad";
-                                                     else myAvailClass = "zero";
-                           %>
-                           
-                           <span class=" <%= myAvailClass %> "> &nbsp;<%= avail %> % &nbsp; </span>
-                           </p></a>
-                    
-                <%out.println("Number of Computers: " + r.getPcTotal()); %>
-                <br/><%out.println("Available Computers: " + r.getPcAvailable());%>
-                <br/><%out.println("Computer down: " + r.getPcDown());%>
-                <br/><%out.println("Computer Busy: " + r.getBusy()); %>
-                
-                <% if (r.getStatus().equals("Busy"))
-                out.println("<br/>Lab Status:<blink><font color=\"red\"> booked</font></blink></li>"); %>
-                
-                <br/><%out.println("Computer Types: " + r.getTypeResource());%>
-                <br/><%out.println("Long Description: " + r.getLongDescription());%>
-                <br/><%out.println("Restriction: " + r.getRestriction());%>
-                <% if(r.getRestriction().equals("")) 
-                    out.println("none"); %>
-                <br/><%out.println("Computer Down: " + r.getHasComputersDown());%>
-                <br/><%out.println("UserListtestState: " + ul.getJSONstate());%>
-               
-                <p><strong>Computer List</strong>
-                
-                  <%
-                    if (r.getComputerList() != null) {
-                        for (int i = 0; i < r.getComputerList().length; i++) {
-                            
-                            //out.println("<li> " + r.getComputerList()[i].getRessourceName() + "");
-                            // out.println("Salle ou il est : " + r.getComputerList()[i].getRessouceRoom() + "");
-                              
-                            if(r.getComputerList()[i].getRessourceStatus().equals("DOWN"))
-                              out.println("<li><span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
-                            
-                            if(r.getComputerList()[i].getRessourceStatus().equals("DELETEME")) 
-                             out.println("<li><span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
-                            
-                            if(r.getComputerList()[i].getRessourceStatus().equals("OK")) 
-                             out.println("<li><span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
-                            
-                            out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
-                            
-                            out.println("</li>");
-                        }
-                    }
-                  %>
+                            <% if (r.getStatus().equals("Available") || r.getStatus().equals("Busy")) {%>
+                            <%out.println("HEEEEEAAALLTH : " + r.getHealthRoom());%>
+                        <p><strong>Room Health:</strong> 
+                            <%
+                                String myHealthClass = "novalue";
+                                float health = 0;
+                                /*System.out.println("R.gethealth : "+r.getHealthRoom());
+                                if (r.getHealthRoom() != null) {
 
-                 <%
-                    if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
-                        if(Integer.parseInt(r.getBusy()) > 0)
-                          out.println("<p><strong>Users logged-in</strong>");
-                        Iterator it = ul.getJSONcontent().iterator();
-                        while (it.hasNext()) {
+                                    health = Float.parseFloat(r.getHealthRoom());
 
-                            User u = (User) it.next();
-                            System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
-                            if (u.getRoomFromResource().equals(r.getIdRoom())) {
-                                out.println("<li>" + u.getIdUser() +  " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</li>");
-                            }
-                        }
-                    } else {
-                        out.println("<li>Personne</li>");
-                    }
+                                    if (health > 60.0) {
+                                        myHealthClass = "good";
+                                    } else if (health <= 60.0 && health > 20.0) {
+                                        myHealthClass = "medium";
+                                    } else if (health <= 20.0 && health > 0.0) {
+                                        myHealthClass = "bad";
+                                    } else {
+                                        myHealthClass = "zero";
+                                    }
+                                } else {
+                                    out.println("GethealthRoom est null");
+                                    myHealthClass = "novalue";
+                                }*/
+                            %>
 
-                %>
+                            <span class=" <%= myHealthClass%> "> &nbsp;<%= health%> % &nbsp; </span>
+                        </p>
 
-                <br/><%out.println("TimeTable : " + r.getHasTimeTable());
-                    if (r.getHasTimeTable()) {
-                        System.out.print("Lenght " + r.getTimeTable().length);
-                        for (int i = 0; i < r.getTimeTable().length; i++) {
-                            out.println("<li>Start time : " + r.getTimeTable()[i].getStartTime() + "");
-                            out.println("End Time : " + r.getTimeTable()[i].getEndTime() + "");
-                            out.println("Event type : " + r.getTimeTable()[i].getEventType() + "");
-                            out.println("Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</li>");
+                        <p><strong>Computer Availability:</strong> 
+                            <%String myAvailClass = "novalue";
+                                float avail = 0;
+                                /*if (r.getAvailability() != null) {
+                                    avail = Float.parseFloat(r.getAvailability());
 
-                            r.getTimeTable()[i].getEventType();
-                        }
-                    }
+                                    if (avail > 60.0) {
+                                        myAvailClass = "good";
+                                    } else if (avail <= 60.0 && avail > 20.0) {
+                                        myAvailClass = "medium";
+                                    } else if (avail <= 20.0 && avail > 0.0) {
+                                        myAvailClass = "bad";
+                                    } else {
+                                        myAvailClass = "zero";
+                                    }
+                                } else {
+                                    out.println("Soucis pour availability");
+                                    myAvailClass = "novalue";
+                                }*/
+                            %>
 
-                    %>
-                <br/><%out.println("Long location : " + r.getLongLocation());%>
+                            <span class=" <%= myAvailClass%> "> &nbsp;<%= avail%> % &nbsp; </span>
+                        </p>
 
-                <%} else {
-                        out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
-                        /*
-                         * out.println("<li>Start time : " + r.getStartTime() +
-                         * "</li>"); out.println("<li>End Time : " +
-                         * r.getEndTime() + "</li>"); out.println("<li>Event
-                         * type : " + r.getEventType() + "</li>");
-                         */
-                    }%>
-                <p>
-                    <IMG SRC="/WebAppJSF/ImgGraphServlet?timeStart=2012-05-01 00:00:00&timeEnd=2012-05-10 00:00:00&resource=<%=r.getIdRoom()%>" width='90%' style='max-width:591px;max-height:373px'>
-                <p> 
+                        <%out.println("Number of Computers: " + r.getPcTotal());%>
+                        <br/><%out.println("Available Computers: " + r.getPcAvailable());%>
+                        <br/><%out.println("Computer down: " + r.getPcDown());%>
+                        <br/><%out.println("Computer Busy: " + r.getBusy());%>
+
+                        <% if (r.getStatus().equals("Busy")) {
+                                out.println("<br/>Lab Status:<blink><font color=\"red\"> booked</font></blink></li>");
+                            }%>
+
+                        <br/><%out.println("Computer Types: " + r.getTypeResource());%>
+                        <br/><%out.println("Long Description: " + r.getLongDescription());%>
+                        <br/><%out.println("Restriction: " + r.getRestriction());%>
+                        
+                        <br/><%out.println("Computer Down: " + r.getHasComputersDown());%>
+                        <br/><%out.println("UserListtestState: " + ul.getJSONstate());%>
+
+                        <p><strong>Computer List</strong>
+
+                            <%
+                                if (r.getComputerList() != null) {
+                                    for (int i = 0; i < r.getComputerList().length; i++) {
+
+                                        //out.println("<li> " + r.getComputerList()[i].getRessourceName() + "");
+                                        // out.println("Salle ou il est : " + r.getComputerList()[i].getRessouceRoom() + "");
+
+                                        if (r.getComputerList()[i].getRessourceStatus().equals("DOWN")) {
+                                            out.println("<li><span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                        }
+
+                                        if (r.getComputerList()[i].getRessourceStatus().equals("DELETEME")) {
+                                            out.println("<li><span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                        }
+
+                                        if (r.getComputerList()[i].getRessourceStatus().equals("OK")) {
+                                            out.println("<li><span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                        }
+
+                                        out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
+
+                                        out.println("</li>");
+                                    }
+                                }
+                            %>
+
+                            <%
+                                if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
+                                    
+                                        out.println("<p><strong>Users logged-in</strong>");
+                                    
+                                    Iterator it = ul.getJSONcontent().iterator();
+                                    while (it.hasNext()) {
+
+                                        User u = (User) it.next();
+                                        System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
+                                        if (u.getRoomFromResource().equals(r.getIdRoom())) {
+                                            out.println("<li>" + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</li>");
+                                        }
+                                    }
+                                } else {
+                                    out.println("<li>Personne</li>");
+                                }
+
+                            %>
+
+                            <br/><%out.println("TimeTable : " + r.getHasTimeTable());
+                                if (r.getHasTimeTable()) {
+                                    System.out.print("Lenght " + r.getTimeTable().length);
+                                    for (int i = 0; i < r.getTimeTable().length; i++) {
+                                        out.println("<li>Start time : " + r.getTimeTable()[i].getStartTime() + "");
+                                        out.println("End Time : " + r.getTimeTable()[i].getEndTime() + "");
+                                        out.println("Event type : " + r.getTimeTable()[i].getEventType() + "");
+                                        out.println("Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</li>");
+
+                                        r.getTimeTable()[i].getEventType();
+                                    }
+                                }
+
+                            %>
+                            <br/><%out.println("Long location : " + r.getLongLocation());%>
+
+                            <%} else {
+                                    out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
+                                    /*
+                                     * out.println("<li>Start time : " +
+                                     * r.getStartTime() + "</li>");
+                                     * out.println("<li>End Time : " +
+                                     * r.getEndTime() + "</li>");
+                                     * out.println("<li>Event type : " +
+                                     * r.getEventType() + "</li>");
+                                     */
+                                }%>
+                        <p>
+                            <img src="/WebAppJSF/ImgGraphServlet?timeStart=2012-05-01 00:00:00&timeEnd=2012-05-10 00:00:00&resource=<%=r.getIdRoom()%>" width='90%' style='max-width:591px;max-height:373px'/>
+                        <p> 
                     </div>
-                <div data-role="collapsible">
-                    <h3>Software</h3>
-                    <p>
-                         Windows 7<br/>
-                         Build release: Kiwi 1.1<br/>
-                    </p>
-                    
-                    <div data-role="collapsible-set" data-theme="b" data-content-theme="d">
-                        
-                      <div data-role="collapsible">
-                       <h3>Baseline</h3>
-                       <p>            
-                        7-Zip 9.20<br />
-                        Adobe Authorware<br />
-                      </div>
-                        
-                       <div data-role="collapsible">
-                        <h3>ECS core</h3>
-                        <p>            
-                        Rational Rose<br />
-                        Visual Studio<br />
-                       </div>
-        </div>
-                </div>
+                    <div data-role="collapsible">
+                        <h3>Software</h3>
+                        <p>
+                            Windows 7<br/>
+                            Build release: Kiwi 1.1<br/>
+                        </p>
+
+                        <div data-role="collapsible-set" data-theme="b" data-content-theme="d">
+
+                            <div data-role="collapsible">
+                                <h3>Baseline</h3>
+                                <p>            
+                                    7-Zip 9.20<br />
+                                    Adobe Authorware<br />
+                            </div>
+
+                            <div data-role="collapsible">
+                                <h3>ECS core</h3>
+                                <p>            
+                                    Rational Rose<br />
+                                    Visual Studio<br />
+                            </div>
+                        </div>
+                    </div>
                     <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
                 </div>
-                </div>
+            </div>
         </div>            
     </body>
 </html>

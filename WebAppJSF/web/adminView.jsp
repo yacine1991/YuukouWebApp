@@ -45,16 +45,17 @@
                 <li ><a href="YuukouServlet?choice=stats">Site View</a>
                     <ul data-role="listview" data-theme="c" data-filter="true">
                         <li data-role="list-divider"> Campus</li>
-                        <li>
+                        
                             <%
 
                                 Location[] tabLocations = locaList.getAllData();
                                 for (int i = 0; i < tabLocations.length; i++) {
-
+                                    out.println("<li>");
                                     out.println("<a>");
                                     out.println(tabLocations[i].getLongLocation());
-                                    out.println("</li>");
                                     out.println("</a>");
+                                    out.println("</li>");
+                                    
                                 
                             %>
                         
