@@ -13,12 +13,14 @@ import com.yuukou.data.LocationList;
 import com.yuukou.data.RoomList;
 import com.yuukou.data.User;
 import com.yuukou.connection.Connection;
+import com.yuukou.data.*;
 import com.yuukou.stats.Graph;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -377,7 +379,7 @@ public class YuukouServlet extends HttpServlet {
             r.setRoomUrl(jso.get("Url").toString());
             r.setStatus(jso.get("State").toString());
             r.setTypeResource(jso.get("TypeResources").toString());
-             r.setHealthRoom(jso.get("Health").toString());
+            r.setHealthRoom(jso.get("Health").toString());
             r.setAvailability(jso.get("Availability").toString());
             r.setPcAvailable(jso.get("Available").toString());
             r.setPcDown(jso.get("Down").toString());
@@ -386,59 +388,96 @@ public class YuukouServlet extends HttpServlet {
             r.setRoomUrl(jso.get("Url").toString());
             r.setRestriction(jso.get("Restriction").toString());
             healthResourceForRoom(r);
-            if (jso.get("State").equals("Busy")) {
-                if (jso.get("HasTimeTable").equals("YES")) {
+            if (jso.get("HasGroups").toString().equals("YES")) {
+                r.setHasGroups(jso.get("HasGroups").toString());
+                JSONArray joo = (JSONArray) jso.get("GroupContents");
+                ArrayList<GroupSoftwares> groupSwap = new ArrayList<GroupSoftwares>();
+                for (int j = 0; j < joo.size(); j++) {
+                    JSONObject joGroup = (JSONObject) joo.get(j);
+                    GroupSoftwares gs = new GroupSoftwares();
+                    gs.setIdGroup(joGroup.get("Group").toString());
+                    gs.setDescriptionGroup(joGroup.get("Description").toString());
+                    gs.setHasSoftwareContents(joGroup.get("HasSoftwareContent").toString());
+                    ArrayList<Software> softSwap = new ArrayList<Software>();
+                    if (gs.getHasSoftwareContents().equals("YES")) {
+                        JSONArray joo2 = (JSONArray) joGroup.get("SoftwaresContents");
+                        for (int k = 0; k < joo2.size(); k++) {
+                            JSONObject joSoft = (JSONObject) joo2.get(j);
+                            String swap1 = joSoft.get("Software").toString();
+                            String swap2 = joSoft.get("Description").toString();
+                            Software st = new Software(swap1, swap2);
+                            softSwap.add(st);
+                        }
+                        gs.setSoftwareContents(softSwap);
 
-                    r.setHasTimeTable(true);
+                    } else {
+                        gs.setHasSoftwareContents("NO");
+                    }
+                    groupSwap.add(gs);
 
-                    JSONArray joo = (JSONArray) jso.get("TimeTable");
-                    TimeTable[] tabTimeTable = new TimeTable[joo.size()];
+                }
+                r.setGroupsSoftwareList(groupSwap);
+                
+                
+            }
+            else {
+                r.setHasGroups("NO");
+            }
+                if (jso.get("State").equals("Busy")) {
+                    if (jso.get("HasTimeTable").equals("YES")) {
 
-                    for (i = 0; i < joo.size(); i++) {
-                        JSONObject joTimeTable = (JSONObject) joo.get(i);
-                        String swap1 = (String) joTimeTable.get("StartTime");
-                        String swap2 = (String) joTimeTable.get("EndTime");
-                        String swap3 = (String) joTimeTable.get("EventType");
-                        String swap4 = (String) joTimeTable.get("EventDescription");
-                        TimeTable tb = new TimeTable(swap1, swap2, swap3, swap4);
+                        r.setHasTimeTable(true);
 
-                        tabTimeTable[i] = tb;
+                        JSONArray joo = (JSONArray) jso.get("TimeTable");
+                        TimeTable[] tabTimeTable = new TimeTable[joo.size()];
+
+                        for (i = 0; i < joo.size(); i++) {
+                            JSONObject joTimeTable = (JSONObject) joo.get(i);
+                            String swap1 = (String) joTimeTable.get("StartTime");
+                            String swap2 = (String) joTimeTable.get("EndTime");
+                            String swap3 = (String) joTimeTable.get("EventType");
+                            String swap4 = (String) joTimeTable.get("EventDescription");
+                            TimeTable tb = new TimeTable(swap1, swap2, swap3, swap4);
+
+                            tabTimeTable[i] = tb;
+
+                        }
+                        r.setTimeTable(tabTimeTable);
 
                     }
-                    r.setTimeTable(tabTimeTable);
+
+                }
+                if (jso.get("HasImage").equals("YES")) {
+                    r.setHasImage(true);
+
+                    JSONArray jab = (JSONArray) jso.get("Image");
+                    byte[] tab = new byte[jab.size()];
+                    for (i = 0; i < jab.size(); i++) {
+                        Long ll = (Long) jab.get(i);
+                        String test = String.valueOf(ll);
+
+                        tab[i] = Byte.parseByte(test);
+                    }
+
+                    r.setImage(convertByteToImage(tab, r.getIdRoom(), "jpg"));
+
 
                 }
 
-            }
-            if (jso.get("HasImage").equals("YES")) {
-                r.setHasImage(true);
 
-                JSONArray jab = (JSONArray) jso.get("Image");
-                byte[] tab = new byte[jab.size()];
-                for (i = 0; i < jab.size(); i++) {
-                    Long ll = (Long) jab.get(i);
-                    String test = String.valueOf(ll);
 
-                    tab[i] = Byte.parseByte(test);
-                }
 
-                r.setImage(convertByteToImage(tab, r.getIdRoom(), "jpg"));
+            } else {
+                r.setJSONstate("KO");
+                r.setJSONReason(jo.get("JSONReason").toString());
+
 
 
             }
-
-
-
-
-        } else {
-            r.setJSONstate("KO");
-            r.setJSONReason(jo.get("JSONReason").toString());
-
-
 
         }
 
-    }
+    
 
     public void healthResourceForRoom(Room r) {
         Connection c = new Connection();

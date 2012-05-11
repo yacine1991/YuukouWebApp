@@ -5,6 +5,7 @@
 package com.yuukou.data;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,7 +38,8 @@ public class Room {
     private String Restriction;
     private String RoomUrl;
     private String RoomDescription;
-    
+    private String HasGroups;
+    private ArrayList<GroupSoftwares> GroupsSoftwareList;    
     private TimeTable[] TimeTable;
     private Computer[] ComputerList;
     private boolean HasTimeTable = false;
@@ -48,6 +50,23 @@ public class Room {
         return ComputerList;
     }
 
+    public ArrayList<GroupSoftwares> getGroupsSoftwareList() {
+        return GroupsSoftwareList;
+    }
+
+    public void setGroupsSoftwareList(ArrayList<GroupSoftwares> GroupsSoftwareList) {
+        this.GroupsSoftwareList = GroupsSoftwareList;
+    }
+
+    public String getHasGroups() {
+        return HasGroups;
+    }
+
+    public void setHasGroups(String HasGroups) {
+        this.HasGroups = HasGroups;
+    }
+
+    
     public void setComputerList(Computer[] ComputerList) {
         this.ComputerList = ComputerList;
     }
