@@ -70,7 +70,7 @@ public class ImgGraphServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // processRequest(request, response);
-
+        
         // Get the value of a request parameter; the name is case-sensitive
     String timeStartname = "timeStart";
     String timeStart = request.getParameter(timeStartname);
