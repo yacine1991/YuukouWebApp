@@ -59,12 +59,12 @@
                         <p>
 
                             <% if (r.getStatus().equals("Available") || r.getStatus().equals("Busy")) {%>
-                            <%out.println("HEEEEEAAALLTH : " + r.getHealthRoom());%>
+                      
                         <p><strong>Room Health:</strong> 
                             <%
                                 String myHealthClass = "novalue";
                                 float health = 0;
-                                /*System.out.println("R.gethealth : "+r.getHealthRoom());
+                                System.out.println("R.gethealth : "+r.getHealthRoom());
                                 if (r.getHealthRoom() != null) {
 
                                     health = Float.parseFloat(r.getHealthRoom());
@@ -81,7 +81,7 @@
                                 } else {
                                     out.println("GethealthRoom est null");
                                     myHealthClass = "novalue";
-                                }*/
+                                }
                             %>
 
                             <span class=" <%= myHealthClass%> "> &nbsp;<%= health%> % &nbsp; </span>
@@ -90,7 +90,7 @@
                         <p><strong>Computer Availability:</strong> 
                             <%String myAvailClass = "novalue";
                                 float avail = 0;
-                                /*if (r.getAvailability() != null) {
+                                if (r.getAvailability() != null) {
                                     avail = Float.parseFloat(r.getAvailability());
 
                                     if (avail > 60.0) {
@@ -105,7 +105,7 @@
                                 } else {
                                     out.println("Soucis pour availability");
                                     myAvailClass = "novalue";
-                                }*/
+                                }
                             %>
 
                             <span class=" <%= myAvailClass%> "> &nbsp;<%= avail%> % &nbsp; </span>
@@ -147,7 +147,7 @@
                                         if (r.getComputerList()[i].getRessourceStatus().equals("OK")) {
                                             out.println("<li><span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
                                         }
-
+                                     
                                         out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
 
                                         out.println("</li>");
