@@ -3,6 +3,10 @@
     Created on : 28 mars 2012, 16:20:37
     Author     : Yacine
 --%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="org.jfree.ui.about.SystemProperties"%>
 <%@page import="com.yuukou.data.User"%>
 <%@page import="com.yuukou.data.UserList"%>
@@ -22,9 +26,15 @@
         <title>Rooms Infos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <!--  
         <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
         <script src="jquery-1.7.1.min.js"></script>
         <script src="jquery.mobile-1.0.1.min.js"></script>
+        -->
+        <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+        <script src="http://jquerymobile.com/branches/popup-widget/js/"></script> 
+  
         <style>
             .good,
             .medium,
@@ -164,7 +174,7 @@
                                     while (it.hasNext()) {
 
                                         User u = (User) it.next();
-                                        System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
+                                        // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
                                         if (u.getRoomFromResource().equals(r.getIdRoom())) {
                                             out.println("<li>" + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</li>");
                                         }
@@ -203,9 +213,45 @@
                                      */
                                 }%>
                         <p>
-                            <img src="/WebAppJSF/ImgGraphServlet?timeStart=2012-05-01 00:00:00&timeEnd=2012-05-10 00:00:00&resource=<%=r.getIdRoom()%>" width='90%' style='max-width:591px;max-height:373px'/>
-                        <p> 
-                    </div>
+                            <%
+                                Date today = new Date();
+                                SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+
+                                Calendar cal = new GregorianCalendar();
+                                cal.setTime(today);
+                                cal.add(Calendar.DAY_OF_MONTH, -1);
+                                Date today1 = cal.getTime();
+                                cal.add(Calendar.DAY_OF_MONTH, -7);
+                                Date today7 = cal.getTime();
+                                cal.add(Calendar.DAY_OF_MONTH, -30);
+                                Date today30 = cal.getTime();
+                                 
+                                //out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today1) 
+                                //        + "&timeEnd=" + ft.format(today) + "&resource=" + r.getIdRoom() + '\"'
+                                //        + "width='90%' style='max-width:591px;max-height:373px'/");
+                                
+                                //out.println("<br />");
+                                
+                                //out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today7) 
+                                //        + "&timeEnd=" + ft.format(today) + "&resource=" + r.getIdRoom() + '\"'
+                                //        + "width='90%' style='max-width:591px;max-height:373px'/");
+                                
+                                //out.println("<br />");
+                                
+                                //out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today30) 
+                                //        + "&timeEnd=" + ft.format(today) + "&resource=" + r.getIdRoom() + '\"'
+                                //        + "width='90%' style='max-width:591px;max-height:373px'/");
+ 
+                                %>
+                            
+                      <p>Now on to some cool examples</p>
+		<a href="#day" data-rel="popup" data-role="button" data-inline="true" data-transition="slidup">Day</a>
+		<a href="#week" data-rel="popup" data-role="button" data-inline="true" data-transition="fade">Week</a>
+		<a href="#month" data-rel="popup" data-role="button" data-inline="true" data-transition="slide">Month</a>
+                      </div>
+                
+              
+                                
                     <div data-role="collapsible">
                         <h3>Software</h3>
                         <p>
@@ -233,7 +279,29 @@
                     <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
                 </div>
             </div>
-        </div>            
+                
+                <div data-role="popup" id="day" data-overlay-theme="a">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-popup-btn-close">Close</a>
+		<% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today1) 
+                                        + "&timeEnd=" + ft.format(today) + "&resource=" + r.getIdRoom() + '\"'
+                                        + "style=\"max-width:100%;\"/>"); %>
+                </div>
+                     
+                <div data-role="popup" id="week" data-overlay-theme="a">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-popup-btn-close">Close</a>
+		<% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today7) 
+                                        + "&timeEnd=" + ft.format(today) + "&resource=" + r.getIdRoom() + '\"'
+                                        + "style=\"max-width:100%;\"/>"); %>
+                </div>
+
+                <div data-role="popup" id="month" data-overlay-theme="a">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-popup-btn-close">Close</a>
+                <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today30) 
+                                        + "&timeEnd=" + ft.format(today) + "&resource=" + r.getIdRoom() + '\"'
+                                        + "style=\"max-width:100%;\"/>"); %>
+		</div>
+        </div>       
+                 
     </body>
 </html>
 
