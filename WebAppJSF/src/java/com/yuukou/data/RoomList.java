@@ -22,6 +22,7 @@ public class RoomList{
     private int nbPcDown;
     private int nbRoomAvailable;
     private int nbRoomBusy;
+   
 
     public RoomList() {
         JSONcontent = new ArrayList<Room>();
@@ -334,4 +335,16 @@ public class RoomList{
         }
         return listRooms;
     }
+     public int getNumberComputerTotalPerCampus(String campus) {
+         int nbPcTotal = 0;
+        
+         if(campus!=null)
+        {
+            nbPcTotal =  getNumberComputerAvailablePerCampus(campus) +
+            getNumberComputerDownPerCampus(campus) +
+            getNumberComputerBusyPerCampus(campus);
+        }
+         return nbPcTotal;
+    }
+    
 }
