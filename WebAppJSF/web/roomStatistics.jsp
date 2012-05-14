@@ -40,7 +40,7 @@
             google.setOnLoadCallback(drawChart);
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Task', 'Hours per Day'],
+                    ['Task', 'Rooms per Campus'],
                     ['Cavensih',     <%=rl.getNbComputerRoomsCavendish()%>],
                     ['ECS',      <%=rl.getNbComputerRoomsECS()%>],
                     ['Harrow',  <%=rl.getNbComputerRoomsHarrow()%>],

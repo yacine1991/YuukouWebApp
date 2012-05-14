@@ -82,4 +82,7 @@ public class UserList {
         return UserforRoom;
     }
     
+    public int size(){
+        return this.JSONcontent.size();
+    }
 }
