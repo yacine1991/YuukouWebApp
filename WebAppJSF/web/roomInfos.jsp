@@ -225,7 +225,7 @@
 
                                     for (index = 0; index < r.getGroupsSoftwareList().size(); index++) {
 
-                                        out.println("<div data-role=\"collapsible-set\" data-theme=\"b\" data-content-theme=\"d\">");
+                                        out.println("<div data-role=\"collapsible\" data-theme=\"b\" data-content-theme=\"d\">");
                                         out.println("<h3>" + r.getGroupsSoftwareList().get(index).getIdGroup() + "</h3>");
                                         out.println("<p>");
                                         for (int f = 0; f < r.getGroupsSoftwareList().get(index).getSoftwareContents().size(); f++) {
