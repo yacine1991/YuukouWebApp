@@ -1,7 +1,6 @@
 package com.yuukou.stats;
 
 import com.yuukou.data.RoomList;
-import com.yuukou.data.RoomList;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Paint;
@@ -16,7 +15,6 @@ import org.jfree.chart.axis.SubCategoryAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.GroupedStackedBarRenderer;
-import org.jfree.data.KeyToGroupMap;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.GradientPaintTransformType;

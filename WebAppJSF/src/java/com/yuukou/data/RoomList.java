@@ -354,4 +354,59 @@ public class RoomList {
         }
         return nbPcTotal;
     }
+
+    public ArrayList<Room> getRoomsForVirtualGroup(String virtualGroup) {
+
+        ArrayList<Room> listRoomsVirtual = new ArrayList<Room>();
+        String idRoomsVirtual;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            idRoomsVirtual = JSONcontent.get(i).getIdRoom();
+
+            if (idRoomsVirtual.contains(virtualGroup)) {
+                listRoomsVirtual.add(JSONcontent.get(i));
+
+            }
+        }
+        return listRoomsVirtual;
+    }
+
+    public int getNumberRoomsForVirtualGroup(String virtualGroup) {
+
+        int numberRooms = 0;
+        String idRoomsVirtual;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            idRoomsVirtual = JSONcontent.get(i).getIdRoom();
+
+            if (idRoomsVirtual.contains(virtualGroup)) {
+                numberRooms = numberRooms + 1;
+
+            }
+        }
+        return numberRooms;
+    }
+
+    public int getNumberComputerPerRoomsForVirtualGroupWithParam(String virtualGroup, String Status) {
+        int numberComputerForRoom = 0;
+        int numberComputer = 0;
+        String idRoomsVirtual;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            idRoomsVirtual = JSONcontent.get(i).getIdRoom();
+
+            if (idRoomsVirtual.contains(virtualGroup)) {
+                if (Status.equals("")) {
+                    numberComputerForRoom = Integer.parseInt(JSONcontent.get(i).getPcTotal());
+                } else if (Status.equals("Available")) {
+                    numberComputerForRoom = Integer.parseInt(JSONcontent.get(i).getPcAvailable());
+                } else if (Status.equals("Busy")) {
+                    numberComputerForRoom = Integer.parseInt(JSONcontent.get(i).getBusy());
+                } else if (Status.equals("Down")) {
+                    numberComputerForRoom = Integer.parseInt(JSONcontent.get(i).getPcDown());
+                }
+                
+                numberComputer = numberComputer + numberComputerForRoom;
+
+            }
+        }
+        return numberComputer;
+    }
 }
