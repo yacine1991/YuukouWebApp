@@ -2,9 +2,8 @@ package com.yuukou.data;
 
 import java.util.ArrayList;
 
-public class RoomList{
+public class RoomList {
 
-    
     private String JSONstate;
     private String JSONmaintenance;
     private String JSONlastCycle;
@@ -22,7 +21,6 @@ public class RoomList{
     private int nbPcDown;
     private int nbRoomAvailable;
     private int nbRoomBusy;
-   
 
     public RoomList() {
         JSONcontent = new ArrayList<Room>();
@@ -257,6 +255,17 @@ public class RoomList{
         return nbRoomAvailablePerCampus;
     }
 
+    public int getNumberRoomTotalPerCampus(String campus) {
+        int nbRoomTotalPerCampus = 0;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            if (JSONcontent.get(i).getLongLocation().equals(campus)) {
+                nbRoomTotalPerCampus = nbRoomTotalPerCampus + 1;
+            }
+        }
+
+        return nbRoomTotalPerCampus;
+    }
+
     public int getNumberComputerAvailablePerCampus(String campus) {
         int nbPcAvailablePerCampus = 0;
         int swap;
@@ -295,7 +304,6 @@ public class RoomList{
         }
         return nbPcBusyPerCampus;
     }
-    
 
     public ArrayList<String> getCampus() {
 
@@ -322,29 +330,28 @@ public class RoomList{
         }
         return listCampus;
     }
-    
+
     public ArrayList<Room> getRoomsPerCampus(String campus) {
 
         ArrayList<Room> listRooms = new ArrayList<Room>();
         for (int i = 0; i < JSONcontent.size(); i++) {
             if (JSONcontent.get(i).getLongLocation().equals(campus)) {
                 listRooms.add(JSONcontent.get(i));
-                
+
             }
 
         }
         return listRooms;
     }
-     public int getNumberComputerTotalPerCampus(String campus) {
-         int nbPcTotal = 0;
-        
-         if(campus!=null)
-        {
-            nbPcTotal =  getNumberComputerAvailablePerCampus(campus) +
-            getNumberComputerDownPerCampus(campus) +
-            getNumberComputerBusyPerCampus(campus);
+
+    public int getNumberComputerTotalPerCampus(String campus) {
+        int nbPcTotal = 0;
+
+        if (campus != null) {
+            nbPcTotal = getNumberComputerAvailablePerCampus(campus)
+                    + getNumberComputerDownPerCampus(campus)
+                    + getNumberComputerBusyPerCampus(campus);
         }
-         return nbPcTotal;
+        return nbPcTotal;
     }
-    
 }
