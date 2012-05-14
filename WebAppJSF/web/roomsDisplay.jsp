@@ -39,7 +39,7 @@
     <body>
         <div data-role="page">
 
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <h3>Rooms</h3>
                 <a href="" data-icon="home" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
                 <a data-icon="refresh"  data-iconpos="notext" data-rel="dialog" data-transition="fade" href="javascript:document.location.reload();"></a>
@@ -121,7 +121,7 @@
 
             </div>
 
-            <div data-role="footer"> <h3>Yuukou 2</h3>
+            <div data-role="footer" data-position="fixed"> <h3>Yuukou 2</h3>
                 <a href="YuukouServlet?choice=credits" data-role="button" data-icon="star" data-theme="a" style="left: 10px;position: absolute;top: 0.4em;">Credits</a>
                 <a href="info.jsp" data-role="button" data-icon="info" data-theme="a" style="position: absolute; right: 10px; top: 0.4em;">Info</a>
             </div>
