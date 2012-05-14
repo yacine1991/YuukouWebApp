@@ -387,7 +387,7 @@ public class YuukouServlet extends HttpServlet {
             r.setBusy(jso.get("Busy").toString());
             r.setRoomUrl(jso.get("Url").toString());
             r.setRestriction(jso.get("Restriction").toString());
-            r.setHasSoftware(jso.get("HasSoftwares").toString());
+            r.setHasSoftware(jso.get("HasSoftware").toString());
             healthResourceForRoom(r);
 
             if (jso.get("HasGroups").toString().equals("YES")) {
@@ -399,11 +399,11 @@ public class YuukouServlet extends HttpServlet {
                     GroupSoftwares gs = new GroupSoftwares();
                     gs.setIdGroup(joGroup.get("Group").toString());
                     gs.setDescriptionGroup(joGroup.get("Description").toString());
-                    gs.setHasSoftwareContents(joGroup.get("HasSoftwares").toString());
+                    gs.setHasSoftwareContents(joGroup.get("HasSoftware").toString());
                     ArrayList<Software> softSwap = new ArrayList<Software>();
                     if (gs.getHasSoftwareContents().equals("YES")) {
 
-                        JSONArray joo2 = (JSONArray) joGroup.get("SoftwaresContents");
+                        JSONArray joo2 = (JSONArray) joGroup.get("SoftwareContents");
                         for (k = 0; k < joo2.size(); k++) {
                             JSONObject joSoft = (JSONObject) joo2.get(k);
                             String swap1 = joSoft.get("Software").toString();
@@ -526,11 +526,10 @@ public class YuukouServlet extends HttpServlet {
     public void parseWho(UserList ul, Room r) {
         JSONParser jp = new JSONParser();
         Object obj;
-        int i;
+
         Connection c = new Connection();
         String responseWho = c.who();
-
-
+        String startRoom = r.getIdRoom();
 
         try {
             obj = jp.parse(responseWho);
@@ -550,19 +549,24 @@ public class YuukouServlet extends HttpServlet {
 
             JSONArray joo = (JSONArray) jo.get("JSONContents");
             for (Iterator it = joo.iterator(); it.hasNext();) {
-                User u = new User();
                 JSONObject jso = (JSONObject) it.next();
-                u.setIdUser(jso.get("User").toString());
-                u.setResourceUsedByUser(jso.get("Resource").toString());
-                u.setStartTimeSession(jso.get("StartTimeSession").toString());
-                if (!jso.get("IdPicture").toString().isEmpty() || jso.get("IdPicture").toString() != null) {
-                    String swap = jso.get("IdPicture").toString().replace("'\'", "");
-                    u.setIdPicture(swap);
-                }
-                ul.addUser(u);
-                r.setHasUserOnline(true);
-            }
+                
 
+                if (((String) jso.get("Resource")).startsWith(startRoom)) {
+                    User u = new User();
+                    u.setIdUser(jso.get("User").toString());
+                    u.setResourceUsedByUser(jso.get("Resource").toString());
+                    u.setStartTimeSession(jso.get("StartTimeSession").toString());
+                    if (!jso.get("IdPicture").toString().isEmpty() || jso.get("IdPicture").toString() != null) {
+                        String swap = jso.get("IdPicture").toString().replace("'\'", "");
+                        u.setIdPicture(swap);
+                    }
+                    searchHistoryUser(u);
+                    ul.addUser(u);
+                    r.setHasUserOnline(true);
+                }
+            }
+            System.out.println("LALA : " + ul.size() + " *** " + startRoom);
         } else {
 
             ul.setJSONstate("KO");
@@ -573,19 +577,66 @@ public class YuukouServlet extends HttpServlet {
         }
     }
 
-    /*
-     * public void searchHistoryUser(String idUser){ JSONParser jp = new
-     * JSONParser(); Object obj; int i; Connection c = new Connection(); String
-     * responseWho = c.searchHistoryUser(idUser, true, true);
-     *
-     *
-     * System.out.println("Rentre dans la fonction SearchHistoryUser"); try {
-     * obj = jp.parse(responseWho);
-     *
-     * } catch (ParseException ex) {
-     * Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null,
-     * ex); return; } }
-     */
+    public void searchHistoryUser(User u) {
+        JSONParser jp = new JSONParser();
+        Object obj = null;
+        Connection c = new Connection();
+        String responseSearchHistoryUser = c.searchHistoryUser(u.getIdUser(), true, true);
+
+
+        System.out.println("Rentre dans la fonction SearchHistoryUser");
+        try {
+            obj = jp.parse(responseSearchHistoryUser);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null,
+                    ex);
+        }
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            ArrayList<History> historySwap = new ArrayList<History>();
+            u.setJSONState(jo.get("JSONState").toString());
+            JSONObject joo = (JSONObject) jo.get("JSONContents");
+
+            u.setNameUser(joo.get("Fullname").toString());
+            System.out.println("joo.get(haslast) : " + joo.get("HasLast"));
+            if (joo.get("HasLast").equals("YES")) {
+                u.setHasHistory(true);
+                JSONArray joo2 = (JSONArray) joo.get("ContentsLast");
+
+                for (Iterator it2 = joo2.iterator(); it2.hasNext();) {
+                    JSONObject jso2 = (JSONObject) it2.next();
+                    String swap1 = jso2.get("Resource").toString();
+                    System.out.println("swap 1 : " + swap1);
+                    String swap2 = jso2.get("State").toString();
+                    String swap3 = jso2.get("StartTimeSession").toString();
+                    String swap4 = jso2.get("EndTimeSession").toString();
+
+                    System.out.println("swap 2 " + swap2);
+                    System.out.println("swap 3 : " + swap3);
+                    System.out.println("swap 4 : " + swap4);
+
+                    History h = new History(swap1, swap2, swap3, swap4);
+                    System.out.println("h.to String : " + h.toString());
+
+                    historySwap.add(h);
+
+                }
+
+
+            } else {
+                u.setHasHistory(false);
+            }
+
+            u.setAllHistoryUser(historySwap);
+            System.out.println(u.getAllHistoryUser().size());
+        } else {
+            u.setJSONState(jo.get("JSONState").toString());
+        }
+
+    }
+
     public File convertByteToImage(byte[] tab, String idRoom, String extension) throws IOException {
 
         InputStream in = new ByteArrayInputStream(tab);

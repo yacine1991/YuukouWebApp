@@ -13,10 +13,14 @@ import java.util.ArrayList;
 public class User {
 
     private String idUser;
+    private String nameUser;
     private String resourceUsedByUser;
     private String StartTimeSession;
     private String roomFromResource;
     private String idPicture;
+    private ArrayList<History> AllHistoryUser;
+    private boolean hasHistory;
+    private String JSONState;
     
 
     public User() {
@@ -72,4 +76,39 @@ public class User {
     public String getRoomFromResource() {
         return roomFromResource;
     }
+
+    public ArrayList<History> getAllHistoryUser() {
+        return AllHistoryUser;
+    }
+
+    public void setAllHistoryUser(ArrayList<History> AllHistoryUser) {
+        this.AllHistoryUser = AllHistoryUser;
+    }
+
+  
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public boolean isHasHistory() {
+        return hasHistory;
+    }
+
+    public void setHasHistory(boolean hasHistory) {
+        this.hasHistory = hasHistory;
+    }
+
+    public String getJSONState() {
+        return JSONState;
+    }
+
+    public void setJSONState(String JSONState) {
+        this.JSONState = JSONState;
+    }
+    
 }
