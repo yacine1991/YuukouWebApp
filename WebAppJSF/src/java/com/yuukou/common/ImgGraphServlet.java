@@ -87,27 +87,39 @@ public class ImgGraphServlet extends HttpServlet {
      } else if ("".equals(timeEnd)) 
      {
      }
+    String rqt = "";
+    String tmp = "select start_time_session from yuukou_last"
+                    + " where start_time_session >= '" + timeStart + "'"
+                    + " and start_time_session <= '" + timeEnd + "'";
     
     String resourcename = "resource";
     String resource = request.getParameter(resourcename);
+    
     if (resource == null) 
      {
      } else if ("".equals(resource)) 
      {
      }
     
+    if(resource != null)   
+     if(resource.length() > 0)
+      rqt = tmp + " and id_resource LIKE '%" + resource + "%'";
+     
+    if(rqt.isEmpty())
+         rqt = tmp;
+    
         ImageTransfered imgt = null;
        
           //  String timeStart = "2012-03-16 00:00:00";
           //  String timeEnd = "2012-03-24 00:00:00";
-            String rqt = "select start_time_session from yuukou_last"
-                    + " where start_time_session >= '" + timeStart + "'"
-                    + " and start_time_session <= '" + timeEnd + "'"
-                    + " and id_resource LIKE '" + resource + "%'" 
-                    + " order by start_time_session;";
+            
+            System.out.println(rqt);
+            
             int factor = 86400;
 
-            imgt = getGraphWithRequest(rqt, "start_time_session",
+            // System.out.println(rqt);
+            
+            imgt = getGraphWithRequest(rqt + " order by start_time_session;", "start_time_session",
                     "Logged-in users", timeStart, timeEnd, factor);
  
         ServletOutputStream out = null;
