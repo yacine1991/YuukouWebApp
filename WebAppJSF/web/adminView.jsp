@@ -91,8 +91,6 @@
     </script>
       
     <% } %>
-    
-   
     </head>
     
     <body>
@@ -102,43 +100,35 @@
                 <h1>Administrator</h1>
             </div>
             <div data-role="content">
-            <ul data-role="listview" data-theme="c">
+             <ul data-role="listview" data-theme="c">
                 <li><a href="#globalview">Global View</a></li>
                 <li><a href="#groupview">Group View</a></li>
                 <li><a href="YuukouServlet?choice=find">Room View</a></li>
-            </ul>
+             </ul>
             </div>
         </div>
-                   <div data-role="page" data-add-back-btn="true" id="groupview">
-            <div data-role="header"><h3>Site</h3></div>
-            <div data-role="content">
-        <ul data-role="listview" data-theme="c" data-filter="false">
+        <div data-role="page" data-add-back-btn="true" id="groupview">
+          <div data-role="header"><h3>Site</h3></div>
+           <div data-role="content">
+                <ul data-role="listview" data-theme="c" data-filter="false">
                         <li data-role="list-divider">Site</li>
-                        
                             <%
-
                                 tabLocations = locaList.getAllData();
                                 for (int i = 0; i < tabLocations.length; i++) {
-                                    %>
+                            %>
                                     <li>
                                         <a href="#RoomView_<%= tabLocations[i].getId() %>"><%= tabLocations[i].getLongLocation() %></a>
                                     </li>
-                        <%}
-                                %>
-                         <li data-role="list-divider"> Virtual Groups</li>
-                               <li>
-                                        <a href="#VirtualGroup_ncslib">NCS Library</a>
-                               </li>
-                               <li>
-                                        <a href="#VirtualGroup_uowlib">UoW Library</a>
-                               </li>
-                               <li>
-                                        <a href="#VirtualGroup_ecsmac">ECS MAC</a>
-                               </li>
-                    </ul>
+                            <%}
+                             %>
+                        <li data-role="list-divider"> Virtual Groups</li>
+                          <li><a href="#VirtualGroup_ncslib">NCS Library</a></li>
+                          <li><a href="#VirtualGroup_uowlib">UoW Library</a></li>
+                          <li><a href="#VirtualGroup_ecsmac">ECS MAC</a></li>
+                </ul>
+         </div>
         </div>
-        </div>
-                    <!-- -->
+                    
                     
                     <%          tabLocations = locaList.getAllData();
                                 for (int i = 0; i < tabLocations.length; i++) {
@@ -152,6 +142,7 @@
             <div data-role="content">
                 <ul data-role="listview" data-theme="c" data-filter="false">
                     <li><a href="#<%= tabLocations[i].getId() %>-status">Status</a></li>
+                    <li><a href="#<%= tabLocations[i].getId() %>-report">Computer Down Report</a></li>
                     <li><a href="#<%= tabLocations[i].getId() %>">Room View</a></li>
                 </ul>
                     </div>
@@ -267,6 +258,38 @@
                                             </div>
                                         </div>
                                         
+                                        <div data-role="page" id="<%=tabLocations[i].getId() %>-report" data-add-back-btn="true">
+                                             <div data-role="header">
+                                            <h1>Computer Down Report <%= tabLocations[i].getShortLocation() %></h1>
+                                            </div>
+                                            <div data-role="content">
+                         <ul>
+                            <%
+                            
+                            al = rl.getRoomsPerCampus(tabLocations[i].getLongLocation());
+                            it = al.iterator();
+                                    while (it.hasNext()) {
+                                        Room r = (Room) it.next();
+                            
+                            if (r.getComputerList() != null) {
+                                    for (int j = 0; j < r.getComputerList().length; j++) {
+                                        if (r.getComputerList()[j].getRessourceStatus().equals("DOWN")) {
+                                            out.println("<li><span class=\"bad\">" + r.getComputerList()[j].getRessourceName() + "</span>");
+                                        }
+
+                                        if (r.getComputerList()[j].getRessourceStatus().equals("DELETEME")) {
+                                            out.println("<li><span class=\"zero\">" + r.getComputerList()[j].getRessourceName() + "</span>");
+                                        }
+
+                                        out.println("Lastseen: " + r.getComputerList()[j].getLastTimeSeen() + "");
+                                        out.println("</li>");
+                                    }
+                                }
+                              }
+                            %>
+                        </ul>
+                                            </div>
+                                        </div>
 
                                         <% } %>
                     <!-- -->
