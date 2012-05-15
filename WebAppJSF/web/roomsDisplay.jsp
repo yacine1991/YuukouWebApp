@@ -18,10 +18,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rooms Infos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
-        <script src="jquery-1.7.1.min.js"></script>
-        <script src="jquery.mobile-1.0.1.min.js"></script>
+         <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+        <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
         <style>
 .good,
 .medium,
