@@ -239,7 +239,7 @@
                                             <div data-role="content">
                                                 <center><table><tr><td>
                                               <br /><strong>Computer Rooms Total:</strong>  <%= rl.getNumberRoomTotalPerCampus(tabLocations[i].getLongLocation()) %> 
-                                              <br /><strong>Computer Rooms booked:</strong>  <%= rl.getNumberComputerBusyPerCampus(tabLocations[i].getLongLocation()) %> 
+                                              <br /><strong>Computer Rooms booked:</strong>  <%= rl.getNumberRoomBusyPerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Total:</strong>  <%= rl.getNumberComputerTotalPerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Available:</strong>  <%= rl.getNumberComputerAvailablePerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Busy:</strong>  <%= rl.getNumberComputerBusyPerCampus(tabLocations[i].getLongLocation()) %>
