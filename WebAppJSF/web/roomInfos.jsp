@@ -184,6 +184,7 @@
                                     if (u.getRoomFromResource().equals(r.getIdRoom())) {
                                         out.println("<li> <a href=\"#" + u.getIdUser() + "\" data-rel=\"popup\" data-role=\"button\" data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
                                                 + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</a></li>");
+                                        out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">lien</a>");
                                         out.println("hasHistory : "+u.isHasHistory());
                                         out.println("name : "+u.getNameUser());
                                         if (u.isHasHistory() == true) {
