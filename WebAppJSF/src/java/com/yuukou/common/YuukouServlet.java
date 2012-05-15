@@ -114,6 +114,11 @@ public class YuukouServlet extends HttpServlet {
             request.setAttribute("locationList", locationList);
             request.setAttribute("roomList", rl);
 
+        } else if(type.equals("findUser")){
+            url = "/userInfos.jsp";
+            String idUser = request.getParameter("idUser");
+            searchHistoryUser(u, idUser);
+            request.setAttribute("user", u);
         }
 
 
@@ -561,7 +566,7 @@ public class YuukouServlet extends HttpServlet {
                         String swap = jso.get("IdPicture").toString().replace("'\'", "");
                         u.setIdPicture(swap);
                     }
-                    searchHistoryUser(u);
+                    //searchHistoryUser(u);
                     ul.addUser(u);
                     r.setHasUserOnline(true);
                 }
@@ -577,11 +582,11 @@ public class YuukouServlet extends HttpServlet {
         }
     }
 
-    public void searchHistoryUser(User u) {
+    public void searchHistoryUser(User u, String idUser) {
         JSONParser jp = new JSONParser();
         Object obj = null;
         Connection c = new Connection();
-        String responseSearchHistoryUser = c.searchHistoryUser(u.getIdUser(), true, true);
+        String responseSearchHistoryUser = c.searchHistoryUser(idUser, true, true);
 
 
         System.out.println("Rentre dans la fonction SearchHistoryUser");
