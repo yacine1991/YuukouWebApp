@@ -409,4 +409,36 @@ public class RoomList {
         }
         return numberComputer;
     }
+    
+    public int getNumberRoomPerCampusForType(String type, String campus){
+        int numberRoom = 0;        
+        
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            String roomType = JSONcontent.get(i).getTypeResource();
+
+            if ((type.equals(roomType)) && (JSONcontent.get(i).getLongLocation().equals(campus))){
+                
+                numberRoom = numberRoom + 1;
+
+            }
+        }
+        
+        return numberRoom;
+    }
+    
+    public int getNumberRoomPerGroupForType(String type, String virutalGroup){
+        int numberRoom = 0;    
+        
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            String roomType = JSONcontent.get(i).getTypeResource();
+
+            if ((type.equals(roomType)) && (JSONcontent.get(i).getIdRoom().contains(virutalGroup))){
+                
+                numberRoom = numberRoom + 1;
+
+            }
+        }
+        
+        return numberRoom;
+    }
 }
