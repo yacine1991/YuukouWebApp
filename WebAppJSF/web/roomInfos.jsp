@@ -18,6 +18,12 @@
 <%@page import="java.util.Properties"%>
 <%@page import="java.io.PrintWriter"%>
 
+<%
+    Room r = (Room) request.getAttribute("room");
+    UserList ul = (UserList) request.getAttribute("userlist");
+    String siteletter = r.getLetterDescription();
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,36 +31,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rooms Infos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <!--  
-        <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
-        <script src="jquery-1.7.1.min.js"></script>
-        <script src="jquery.mobile-1.0.1.min.js"></script>
-        -->
         <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
+        <style>
+.good,
+.medium,
+.bad, .zero { font-weight:bold; text-shadow: none;}
+.good { background-color:#00FF00; }
+.medium { background-color:#FFFF00; }
+.bad { background-color:#FFAA00;}
+.zero { background-color:#FF0000; }
+.novalues { background-color:#100000; }
+        </style>
         <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
         <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-
-        <style>
-            .good,
-            .medium,
-            .bad, .zero { font-weight:bold; text-shadow: none;}
-            .good { background-color:#00FF00; }
-            .medium { background-color:#FFFF00; }
-            .bad { background-color:#FFAA00;}
-            .zero { background-color:#FF0000; }
-            .novalues { background-color:#100000; }
-        </style>
+        <% String gmap_file = "gmap/gmap-" + siteletter + ".js"; %>
+        <jsp:include page='<%= gmap_file %>' />        
+        
+<style type="text/css">
+    #map_canvas { 
+    border: thin solid;
+    height: 220px;
+    <!--left: 18px;
+    position: relative;
+    top: 18px;-->
+      padding: 5% 5% 5% 5%;
+    vertical-align: middle;
+    width: 420px; 
+      overflow: hidden;
+      max-width:100%;
+      margin-left: 5%; 
+    }
+</style> 
     </head>
-    <body>
+    <body onload="initialize()">
         <div data-role="page">
-            <%
-                Room r = (Room) request.getAttribute("room");
-                UserList ul = (UserList) request.getAttribute("userlist");
-            %>
-
-
             <div data-role="header">
                 <h1>Room <%out.println(r.getIdRoom());%></h1>
                 <a href="" data-icon="back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
@@ -62,7 +74,7 @@
             </div>
             <div data-role="content">
 
-                <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px'></center>");%>
+                <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px' /></center>");%>
                 <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
                     <div data-role="collapsible">
                         <h3>Status</h3>
@@ -158,7 +170,7 @@
                                 }
                             %>
                         </ul>
-
+                        <ul>
                         <%
                             if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
 
@@ -181,12 +193,12 @@
                                     }
                                 }
                             } else {
-                                out.println("<li>Personne</li>");
+                                out.println("<li>No logged-in users</li>");
                             }
 
 
                         %>
-
+                        </ul>
                         <br/><%out.println("TimeTable : " + r.getHasTimeTable());
                             if (r.getHasTimeTable()) {
                                 
@@ -251,15 +263,27 @@
                                     out.println("</div>");
                                 }
                             } else {
-                               out.println("NOTHING");
+                               out.println("Software content to be populated");
                             }
 
                         %>
 
                     </div>
                 </div>
-                <a href="campusLocations.html" data-role="button" data-icon="search">View on Google Map</a>
-
+                <div data-role="footer" data-position="fixed"> <h3>Yuukou 2</h3>
+                <a href="#popupMap" style="left: 10px;position: absolute;top: 0.4em;" data-icon="star" data-rel="popup" data-role="button" data-inline="true">Map</a>
+                <a href="#popuphowtogetthere" style="right: 10px;position: absolute;top: 0.4em;" data-icon="info" data-rel="popup" data-role="button" data-inline="true">How to get there</a>
+                
+            </div>
+                        
+                <div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="c"  data-inset="true" style="width:460px; height: 260px; max-width:90%;" >
+                <div id="map_canvas"></div>
+    		</div>
+                
+                <div data-role="popup" id="popuphowtogetthere" data-overlay-theme="a" data-theme="c"  data-inset="true" >
+                <% String siteinfo_file = "siteinfo/site-" + siteletter + ".js"; %>
+                <jsp:include page='<%= siteinfo_file %>' />
+                </div>
 
                 <div data-role="popup" id="<%= r.getIdRoom()%>-day" data-overlay-theme="a"  data-corners="false">
                     <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today1)
