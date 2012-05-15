@@ -39,10 +39,21 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
-        <script src="jquery-1.7.1.min.js"></script>
-        <script src="jquery.mobile-1.0.1.min.js"></script>
+     
+        <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
+        <style>
+.good,
+.medium,
+.bad, .zero { font-weight:bold; text-shadow: none;}
+.good { background-color:#00FF00; }
+.medium { background-color:#FFFF00; }
+.bad { background-color:#FFAA00;}
+.zero { background-color:#FF0000; }
+.novalues { background-color:#100000; }
+        </style>
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+        <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
+        
          <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['gauge']});
@@ -98,11 +109,7 @@
             </ul>
             </div>
         </div>
-                   
-        
-              
-        <---------------
-        <div data-role="page" data-add-back-btn="true" id="groupview">
+                   <div data-role="page" data-add-back-btn="true" id="groupview">
             <div data-role="header"><h3>Site</h3></div>
             <div data-role="content">
         <ul data-role="listview" data-theme="c" data-filter="false">
@@ -125,10 +132,12 @@
                                <li>
                                         <a href="#VirtualGroup_uowlib">UoW Library</a>
                                </li>
+                               <li>
+                                        <a href="#VirtualGroup_ecsmac">ECS MAC</a>
+                               </li>
                     </ul>
         </div>
         </div>
-        ----------------->
                     <!-- -->
                     
                     <%          tabLocations = locaList.getAllData();
@@ -229,12 +238,13 @@
                                             </div>
                                             <div data-role="content">
                                                 <center><table><tr><td>
-                                              <br /><strong>Computer Rooms:</strong>  <%= rl.getNumberRoomAvailablePerCampus(tabLocations[i].getLongLocation()) %> 
+                                              <br /><strong>Computer Rooms Total:</strong>  <%= rl.getNumberRoomTotalPerCampus(tabLocations[i].getLongLocation()) %> 
+                                              <br /><strong>Computer Rooms booked:</strong>  <%= rl.getNumberComputerBusyPerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Total:</strong>  <%= rl.getNumberComputerTotalPerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Available:</strong>  <%= rl.getNumberComputerAvailablePerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Busy:</strong>  <%= rl.getNumberComputerBusyPerCampus(tabLocations[i].getLongLocation()) %>
                                               <br /><strong>Computer Down:</strong>  <%= rl.getNumberComputerDownPerCampus(tabLocations[i].getLongLocation()) %>
-                                              <br />  
+                                              <br /> 
                                                         </td><td>
                                               <div id="visualization<%= tabLocations[i].getShortLocation() %>" style="width: 400px; height: 300px;"></div>
                                                         </td></tr>
@@ -260,6 +270,7 @@
 
                                         <% } %>
                     <!-- -->
+                    
                     <div data-role="page" id="VirtualGroup_ncslib" data-add-back-btn="true">
                           <div data-role="header">
                 <h1>NCS Library</h1>
@@ -267,12 +278,27 @@
             <div data-role="content">
                 <ul data-role="listview" data-theme="c" data-filter="false">
                     <li><a href="#ncslib-status">Status</a></li>
-                    <li><a href="#ncslib">Room View</a></li>
+                    <li><a href="#ncslib-listview">Room View</a></li>
+                </ul>
+                    </div>
+                    </div>
+                    
+                    <div data-role="page" id="VirtualGroup_ecsmac" data-add-back-btn="true">
+                          <div data-role="header">
+                <h1>ECS MAC</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-theme="c" data-filter="false">
+                    <li><a href="#ecsmac-status">Status</a></li>
+                    <li><a href="#ecsmac-listview">Room View</a></li>
                 </ul>
                     </div>
                     </div>
                     
       <div data-role="page" id="ncslib-status" data-add-back-btn="true">
+          <div data-role="header">
+       <h1>NCS Library</h1>
+      </div>
        <div data-role="content">
           <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today1) 
                        + "&timeEnd=" + ft.format(today) + "&resource=" + "n-lib" + '\"'
@@ -286,6 +312,25 @@
                                         
                                             </div>
                                         </div>
+                                            
+      <div data-role="page" id="ecsmac-status" data-add-back-btn="true">
+          <div data-role="header">
+       <h1>ECS MAC</h1>
+      </div>
+       <div data-role="content">
+          <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today1) 
+                       + "&timeEnd=" + ft.format(today) + "&resource=" + "e-n411" + '\"'
+                       + " style=\"max-width:100%; vertical-align:middle;\"/>"); %>
+                        <br />
+                                                
+                                            <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today7) 
+                                        + "&timeEnd=" + ft.format(today) + "&resource=" + "e-n411" + '\"'
+                                        + " style=\"max-width:100%; vertical-align:middle;\"/>"); %>
+                                            <br />
+                                        
+                                            </div>
+                                        </div>
+                                            
       <div data-role="page" id="VirtualGroup_uowlib" data-add-back-btn="true">
        <div data-role="header">
        <h1>UoW Library</h1>
@@ -293,7 +338,7 @@
        <div data-role="content">
          <ul data-role="listview" data-theme="c" data-filter="false">
             <li><a href="#uowlib-status">Status</a></li>
-            <li><a href="#uowlib">Room View</a></li>
+            <li><a href="#uowlib-listview">Room View</a></li>
          </ul>
        </div>
       </div>
@@ -319,7 +364,215 @@
                                         + " style=\"max-width:100%; \"/>"); %>
                          
             </div>
-      </div>                                      
+      </div>
+                                        
+      <div data-role="page" data-add-back-btn="true" id="ncslib-listview">
+          <div data-role="header"><h3>NCS Library</h3></div>
+          <div data-role="content">
+                    <ul data-role="listview" data-theme="c" data-filter="true">
+                     <%
+                                    ArrayList al = rl.getRoomsForVirtualGroup("n-lib");
+                                    Iterator it = al.iterator();
+                                    while (it.hasNext()) {
+                                        Room r = (Room) it.next();
+                     %>
+                                
+                                <li data-filtertext="<%= r.getIdRoom()%>
+                                    <%= r.getShortDescription()%>
+                                    <%= r.getStatus()%>
+                                    <%= r.getLongLocation()%>
+                                    <% if (r.getTypeResource().equals("mc")) {%> mac <% }%>
+                                    <% if (r.getTypeResource().equals("pc")) {%> pc <% }%>
+                                    ">
+
+                                    <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
+                                    <%
+                                        if (r.getTypeResource().equals("mc")) {%>
+                                    <img src="images/apple.jpg" alt="macintosh" align="middle"/>
+                                    <% } else {%>
+                                    <img src="images/windows.jpg" alt="windows" align="middle"/>
+                                    <% }%>
+
+                                    <span class="ui-li-count" style="margin-top: -2.3em;">
+                                        <B>Total: <%= r.getPcTotal()%> </B>
+                                        <br />
+                                        Free: <%= r.getPcAvailable()%>
+                                        <br />
+                                        Down: <%= r.getPcDown()%>
+                                        <br />
+                                        Busy: <%= r.getBusy()%>
+                                    </span>
+                                    
+                                    <h3><% out.println(r.getIdRoom());%></h3>
+
+                                    <% if (r.getStatus().equals("Available")) {
+                                                out.println("<p>Status : " + r.getStatus());
+                                                if (Float.parseFloat(r.getAvailability()) >= 75.0) {
+
+                                                    out.println("<p>Availability : <span style=\" background-color: #0DED20;\"> " + r.getAvailability() + " </span></p>");
+                                                } else if (Float.parseFloat(r.getAvailability()) >= 50.0) {
+                                                    out.println("<p>Availability : <span style=\" background-color: #F7B10D;\"> " + r.getAvailability() + " </span></p>");
+                                                } else {
+                                                    out.println("<p>Availability : <span style=\" background-color: #F90909;\"> " + r.getAvailability() + " </span></p>");
+                                                }
+                                                out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                            } else {
+                                                out.println("<p>Status:<blink><font color=\"red\"> Room Booked</font></blink></p>");
+
+
+                                                if (!r.getStartTime().equals("")) {
+                                                    out.print("<p>Booking: ");
+                                                    out.println(r.getStartTime() + " - " + r.getEndTime());
+                                                    out.println("</p>");
+                                                    out.println("<p>Event: " + r.getEventType() + "</p>");
+                                                    out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                                }
+                                            }
+                                            out.println("</a></li>");
+
+                                        }%>
+                                </ul>
+            </div>       
+      </div>
+    
+    <div data-role="page" data-add-back-btn="true" id="uowlib-listview">
+          <div data-role="header"><h3>NCS Library</h3></div>
+          <div data-role="content">
+                    <ul data-role="listview" data-theme="c" data-filter="true">
+                     <%
+                                    al = rl.getRoomsForVirtualGroup("lib");
+                                    it = al.iterator();
+                                    while (it.hasNext()) {
+                                        Room r = (Room) it.next();
+                     %>
+                                
+                                <li data-filtertext="<%= r.getIdRoom()%>
+                                    <%= r.getShortDescription()%>
+                                    <%= r.getStatus()%>
+                                    <%= r.getLongLocation()%>
+                                    <% if (r.getTypeResource().equals("mc")) {%> mac <% }%>
+                                    <% if (r.getTypeResource().equals("pc")) {%> pc <% }%>
+                                    ">
+
+                                    <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
+                                    <%
+                                        if (r.getTypeResource().equals("mc")) {%>
+                                    <img src="images/apple.jpg" alt="macintosh" align="middle"/>
+                                    <% } else {%>
+                                    <img src="images/windows.jpg" alt="windows" align="middle"/>
+                                    <% }%>
+
+                                    <span class="ui-li-count" style="margin-top: -2.3em;">
+                                        <B>Total: <%= r.getPcTotal()%> </B>
+                                        <br />
+                                        Free: <%= r.getPcAvailable()%>
+                                        <br />
+                                        Down: <%= r.getPcDown()%>
+                                        <br />
+                                        Busy: <%= r.getBusy()%>
+                                    </span>
+                                    
+                                    <h3><% out.println(r.getIdRoom());%></h3>
+
+                                    <% if (r.getStatus().equals("Available")) {
+                                                out.println("<p>Status : " + r.getStatus());
+                                                if (Float.parseFloat(r.getAvailability()) >= 75.0) {
+
+                                                    out.println("<p>Availability : <span style=\" background-color: #0DED20;\"> " + r.getAvailability() + " </span></p>");
+                                                } else if (Float.parseFloat(r.getAvailability()) >= 50.0) {
+                                                    out.println("<p>Availability : <span style=\" background-color: #F7B10D;\"> " + r.getAvailability() + " </span></p>");
+                                                } else {
+                                                    out.println("<p>Availability : <span style=\" background-color: #F90909;\"> " + r.getAvailability() + " </span></p>");
+                                                }
+                                                out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                            } else {
+                                                out.println("<p>Status:<blink><font color=\"red\"> Room Booked</font></blink></p>");
+
+
+                                                if (!r.getStartTime().equals("")) {
+                                                    out.print("<p>Booking: ");
+                                                    out.println(r.getStartTime() + " - " + r.getEndTime());
+                                                    out.println("</p>");
+                                                    out.println("<p>Event: " + r.getEventType() + "</p>");
+                                                    out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                                }
+                                            }
+                                            out.println("</a></li>");
+
+                                        }%>
+                                </ul>
+            </div>       
+      </div>
+             
+   <div data-role="page" data-add-back-btn="true" id="ecsmac-listview">
+          <div data-role="header"><h3>ECS MAC</h3></div>
+          <div data-role="content">
+                    <ul data-role="listview" data-theme="c" data-filter="true">
+                     <%
+                                    al = rl.getRoomsForVirtualGroup("e-n411");
+                                    it = al.iterator();
+                                    while (it.hasNext()) {
+                                        Room r = (Room) it.next();
+                     %>
+                                
+                                <li data-filtertext="<%= r.getIdRoom()%>
+                                    <%= r.getShortDescription()%>
+                                    <%= r.getStatus()%>
+                                    <%= r.getLongLocation()%>
+                                    <% if (r.getTypeResource().equals("mc")) {%> mac <% }%>
+                                    <% if (r.getTypeResource().equals("pc")) {%> pc <% }%>
+                                    ">
+
+                                    <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
+                                    <%
+                                        if (r.getTypeResource().equals("mc")) {%>
+                                    <img src="images/apple.jpg" alt="macintosh" align="middle"/>
+                                    <% } else {%>
+                                    <img src="images/windows.jpg" alt="windows" align="middle"/>
+                                    <% }%>
+
+                                    <span class="ui-li-count" style="margin-top: -2.3em;">
+                                        <B>Total: <%= r.getPcTotal()%> </B>
+                                        <br />
+                                        Free: <%= r.getPcAvailable()%>
+                                        <br />
+                                        Down: <%= r.getPcDown()%>
+                                        <br />
+                                        Busy: <%= r.getBusy()%>
+                                    </span>
+                                    
+                                    <h3><% out.println(r.getIdRoom());%></h3>
+
+                                    <% if (r.getStatus().equals("Available")) {
+                                                out.println("<p>Status : " + r.getStatus());
+                                                if (Float.parseFloat(r.getAvailability()) >= 75.0) {
+
+                                                    out.println("<p>Availability : <span style=\" background-color: #0DED20;\"> " + r.getAvailability() + " </span></p>");
+                                                } else if (Float.parseFloat(r.getAvailability()) >= 50.0) {
+                                                    out.println("<p>Availability : <span style=\" background-color: #F7B10D;\"> " + r.getAvailability() + " </span></p>");
+                                                } else {
+                                                    out.println("<p>Availability : <span style=\" background-color: #F90909;\"> " + r.getAvailability() + " </span></p>");
+                                                }
+                                                out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                            } else {
+                                                out.println("<p>Status:<blink><font color=\"red\"> Room Booked</font></blink></p>");
+
+
+                                                if (!r.getStartTime().equals("")) {
+                                                    out.print("<p>Booking: ");
+                                                    out.println(r.getStartTime() + " - " + r.getEndTime());
+                                                    out.println("</p>");
+                                                    out.println("<p>Event: " + r.getEventType() + "</p>");
+                                                    out.println("<p>Site: " + r.getLongDescription() + "</p>");
+                                                }
+                                            }
+                                            out.println("</a></li>");
+
+                                        }%>
+                                </ul>
+            </div>       
+      </div>
+                                       
                    
     </body>
 </html>
