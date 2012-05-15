@@ -103,7 +103,7 @@ public class YuukouServlet extends HttpServlet {
             url = "/roomStatisticsAdmin.jsp";
             roomsStatus(rl);
             roomLocation(rl);
-            graphRequest(g, "2012-05-01 00:00:00", "2012-05-10 00:00:00", "0");
+            graphRequest(g, "2012-05-01 00:00:00", "2012-05-10 00:00:00", 0);
             request.setAttribute("roomList", rl);
             request.setAttribute("graph", g);
         } else if (type.equals("adminView")) {
@@ -114,7 +114,7 @@ public class YuukouServlet extends HttpServlet {
             request.setAttribute("locationList", locationList);
             request.setAttribute("roomList", rl);
 
-        } else if(type.equals("findUser")){
+        } else if (type.equals("findUser")) {
             url = "/userInfos.jsp";
             String idUser = request.getParameter("idUser");
             searchHistoryUser(u, idUser);
@@ -555,7 +555,7 @@ public class YuukouServlet extends HttpServlet {
             JSONArray joo = (JSONArray) jo.get("JSONContents");
             for (Iterator it = joo.iterator(); it.hasNext();) {
                 JSONObject jso = (JSONObject) it.next();
-                
+
 
                 if (((String) jso.get("Resource")).startsWith(startRoom)) {
                     User u = new User();
@@ -571,7 +571,7 @@ public class YuukouServlet extends HttpServlet {
                     r.setHasUserOnline(true);
                 }
             }
-            System.out.println("LALA : " + ul.size() + " *** " + startRoom);
+
         } else {
 
             ul.setJSONstate("KO");
@@ -603,9 +603,13 @@ public class YuukouServlet extends HttpServlet {
             ArrayList<History> historySwap = new ArrayList<History>();
             u.setJSONState(jo.get("JSONState").toString());
             JSONObject joo = (JSONObject) jo.get("JSONContents");
-
+            u.setIdUser(joo.get("User").toString());
             u.setNameUser(joo.get("Fullname").toString());
-            System.out.println("joo.get(haslast) : " + joo.get("HasLast"));
+            if (!joo.get("IdPicture").toString().isEmpty() || joo.get("IdPicture").toString() != null) {
+                String swap = joo.get("IdPicture").toString().replace("'\'", "");
+                u.setIdPicture(swap);
+            }
+
             if (joo.get("HasLast").equals("YES")) {
                 u.setHasHistory(true);
                 JSONArray joo2 = (JSONArray) joo.get("ContentsLast");
@@ -623,7 +627,6 @@ public class YuukouServlet extends HttpServlet {
                     System.out.println("swap 4 : " + swap4);
 
                     History h = new History(swap1, swap2, swap3, swap4);
-                    System.out.println("h.to String : " + h.toString());
 
                     historySwap.add(h);
 
@@ -632,8 +635,25 @@ public class YuukouServlet extends HttpServlet {
 
             } else {
                 u.setHasHistory(false);
+
             }
 
+
+
+            if (joo.get("HasWho").equals("YES")) {
+                u.setOnline(true);
+                //JSONObject job2 = (JSONObject) jo.get("ContentsWho");
+                JSONArray joo3 = (JSONArray) joo.get("ContentsWho");
+                for (Iterator it3 = joo3.iterator(); it3.hasNext();) {
+                    JSONObject jso3 = (JSONObject) it3.next();
+                    u.setResourceUsedByUser(jso3.get("Resource").toString());
+                    u.setActualState(jso3.get("State").toString());
+                    u.setActualSession(jso3.get("StartTimeSession").toString());
+
+                }
+            } else {
+                u.setOnline(false);
+            }
             u.setAllHistoryUser(historySwap);
             System.out.println(u.getAllHistoryUser().size());
         } else {
@@ -653,16 +673,16 @@ public class YuukouServlet extends HttpServlet {
         return fi;
     }
 
-    public void graphRequest(Graph g, String timeStart, String timeEnd, String factorStr) throws IOException {
+    public void graphRequest(Graph g, String timeStart, String timeEnd, int factorStr) throws IOException {
         Connection c = new Connection();
-        String rqt = "select start_time_session from yuukou_last where start_time_session >= '" + timeStart + "' and start_time_session <= '" + timeEnd + "' order by start_time_session;";
-        int factor = Integer.parseInt(factorStr);
+
+        int factor = factorStr;
 
         JSONParser jp = new JSONParser();
         Object obj;
         int i;
 
-        String responseGetGraph = c.getGraphWithRequestUsingJson(rqt, "start_time_session", "label", timeStart, timeEnd, factor);
+        String responseGetGraph = c.getGraphWithRequestUsingJson("start_time_session", "label", timeStart, timeEnd, null, factor);
 
         try {
             obj = jp.parse(responseGetGraph);

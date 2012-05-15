@@ -20,7 +20,10 @@ public class User {
     private String idPicture;
     private ArrayList<History> AllHistoryUser;
     private boolean hasHistory;
+    private boolean online;
     private String JSONState;
+    private String actualState;
+    private String actualSession;
     
 
     public User() {
@@ -35,6 +38,14 @@ public class User {
             this.roomFromResource = tab[0] + "-" + tab[1];
         }
         this.StartTimeSession = StartTimeSession;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 
     public String getStartTimeSession() {
@@ -109,6 +120,22 @@ public class User {
 
     public void setJSONState(String JSONState) {
         this.JSONState = JSONState;
+    }
+
+    public String getActualState() {
+        return actualState;
+    }
+
+    public void setActualState(String actualState) {
+        this.actualState = actualState;
+    }
+
+    public String getActualSession() {
+        return actualSession;
+    }
+
+    public void setActualSession(String actualSession) {
+        this.actualSession = actualSession;
     }
     
 }
