@@ -65,7 +65,7 @@
     }
 </style> 
     </head>
-    <body onload="initialize()">
+    <body onload="initialize();">
         <div data-role="page">
             <div data-role="header">
                 <h1>Room <%out.println(r.getIdRoom());%></h1>
@@ -182,9 +182,10 @@
                                     User u = (User) it.next();
                                     // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
                                     if (u.getRoomFromResource().equals(r.getIdRoom())) {
-                                        out.println("<li> <a href=\"#" + u.getIdUser() + "\" data-rel=\"popup\" data-role=\"button\" data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
+                                        out.println("<li> <a href=\"#" +u.getIdUser() + "\" data-rel=\"popup\" data-role=\"button\" data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
                                                 + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</a></li>");
-                                        out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">More about this User</a>");
+                                        
+                                        //out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">More about this User</a>");
                                        
                                     
                                     }
@@ -310,6 +311,10 @@
 
                 <div data-role="popup" id="<%= u.getIdUser()%>" data-overlay-theme="a" data-corners="false">
                     <img src="<%= u.getIdPicture()%>" style="width:180px; max-width:100%; vertical-align:middle;" />
+                    <br />
+                    
+                    <a href="YuukouServlet?choice=findUser&idUser=<%= u.getIdUser() %>" data-role="button" data-inline="true" data-rel="dialog">More about this User</a>"
+                                       
                 </div>
                 <%  }
                         }
