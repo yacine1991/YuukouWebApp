@@ -441,4 +441,21 @@ public class RoomList {
         
         return numberRoom;
     }
+   
+    public int getNumberAllRooms() {
+        nbPc = 0;
+        return JSONcontent.size();
+    }
+
+    
+    public int getNumberAllComputerForAllCampus() {
+        nbPc= 0;
+        int swap;
+        for (int i = 0; i < JSONcontent.size(); i++) {
+            swap = Integer.parseInt(JSONcontent.get(i).getResources());
+            nbPc = nbPc + swap;
+
+        }
+        return nbPc;
+    }
 }
