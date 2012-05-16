@@ -9,12 +9,11 @@ package com.yuukou.connection;
  * @author Yacine
  */
 public class Connection {
+
     private String result;
-    
+
     public String conhealthForAllRooms() {
-   // @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/yuukou-nagios.wmin.ac.uk_8080/YuukouServerService/YuukouServerService.wsdl")
-
-
+        // @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/yuukou-nagios.wmin.ac.uk_8080/YuukouServerService/YuukouServerService.wsdl")
         jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
         jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
         // TODO process result here
@@ -38,7 +37,6 @@ public class Connection {
         return port.healthForRoom(idRoom);
     }
 
-    
     public String healthResourcesReportForRoom(java.lang.String idRoom) {
         jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
         jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
@@ -62,7 +60,10 @@ public class Connection {
         jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
         return port.getGraphWithRequestUsingJson(rqtLqbel, label, startTime, endTime, addToRqt, factor);
     }
-    
-    
-    
+
+    public String searchHistoryResource(java.lang.String idResource, boolean who, boolean last, int numberLast) {
+        jax.webservice.server.YuukouServerService service = new jax.webservice.server.YuukouServerService();
+        jax.webservice.server.YuukouServer port = service.getYuukouServerPort();
+        return port.searchHistoryResource(idResource, who, last, numberLast);
+    }
 }

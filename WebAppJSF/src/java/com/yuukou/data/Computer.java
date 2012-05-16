@@ -4,6 +4,8 @@
  */
 package com.yuukou.data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yacine
@@ -19,6 +21,24 @@ public class Computer {
     private String JSONmaintenance;
     private String JSONReason;
     private boolean HasContents;
+    private boolean HasPreviousUser;
+    private ArrayList<User> PreviousUsers;
+
+    public ArrayList<User> getPreviousUsers() {
+        return PreviousUsers;
+    }
+
+    public boolean isHasPreviousUser() {
+        return HasPreviousUser;
+    }
+
+    public void setHasPreviousUser(boolean HasPreviousUser) {
+        this.HasPreviousUser = HasPreviousUser;
+    }
+
+    public void setPreviousUsers(ArrayList<User> PreviousUsers) {
+        this.PreviousUsers = PreviousUsers;
+    }
     
 
     public Computer() {

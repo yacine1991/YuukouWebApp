@@ -152,6 +152,7 @@
                             <%
                                 if (r.getComputerList() != null) {
                                     for (int i = 0; i < r.getComputerList().length; i++) {
+                                        out.println("<a data-role=\"button\" href=\"YuukouServlet?choice=computerInfo&idPc="+r.getComputerList()[i].getRessourceName()+"\">");
                                         if (r.getComputerList()[i].getRessourceStatus().equals("DOWN")) {
                                             out.println("<li><span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
                                         }
@@ -165,7 +166,10 @@
                                         }
 
                                         out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
+                                        out.println(r.getComputerList().length);
                                         out.println("</li>");
+                                        out.println("</a>");
+                                        out.println("<br />");
                                     }
                                 }
                             %>

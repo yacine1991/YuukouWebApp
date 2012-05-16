@@ -24,6 +24,11 @@ public class User {
     private String JSONState;
     private String actualState;
     private String actualSession;
+
+    public User(String idUser, String nameUser) {
+        this.idUser = idUser;
+        this.nameUser = nameUser;
+    }
     
 
     public User() {

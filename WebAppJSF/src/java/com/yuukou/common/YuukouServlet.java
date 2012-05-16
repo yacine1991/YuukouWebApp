@@ -68,6 +68,7 @@ public class YuukouServlet extends HttpServlet {
         UserList ul = new UserList();
         User u = new User();
         LocationList locationList = new LocationList();
+        Computer cp = new Computer();
 
 
         String url = null;
@@ -86,7 +87,7 @@ public class YuukouServlet extends HttpServlet {
         } else if (type.equals("Room")) {
             url = "/roomInfos.jsp";
             String id = request.getParameter("id");
-            roomStatus(r, id);
+            roomStatus(r, id, cp);
             getLocation(locationList);
             roomLocation(r, locationList);
             parseWho(ul, r);
@@ -119,6 +120,11 @@ public class YuukouServlet extends HttpServlet {
             String idUser = request.getParameter("idUser");
             searchHistoryUser(u, idUser);
             request.setAttribute("user", u);
+        } else if (type.equals("computerInfo")) {
+            url = "/computerInfos.jsp";
+            String idPc = request.getParameter("idPc");
+            searchHistoryResource(cp, idPc);
+            request.setAttribute("computer", cp);
         }
 
 
@@ -354,7 +360,7 @@ public class YuukouServlet extends HttpServlet {
         }
     }
 
-    public void roomStatus(Room r, String idRoom) throws IOException {
+    public void roomStatus(Room r, String idRoom, Computer cp) throws IOException {
         JSONParser jp = new JSONParser();
         Object obj;
         int i, j, k;
@@ -507,7 +513,9 @@ public class YuukouServlet extends HttpServlet {
                     String swap2 = (String) joComputers.get("Resource").toString();
                     String swap3 = (String) joComputers.get("LastTimeSeen").toString();
 
-
+                    /*cp.setRessourceStatus(swap1);
+                    cp.setLastTimeSeen(swap3);
+                    cp.setRessourceName(swap2);*/
                     Computer cpt2 = new Computer(swap4, swap2, swap3, swap1);
                     tabComputer[i] = cpt2;
                     r.setHasComputersDown(true);
@@ -720,6 +728,59 @@ public class YuukouServlet extends HttpServlet {
         } else {
             g.setJSONstate("KO");
             g.setJSONReason(jo.get("JSONReason").toString());
+        }
+    }
+
+    public void searchHistoryResource(Computer cp, String idPc) {
+        JSONParser jp = new JSONParser();
+        Object obj = null;
+        Connection c = new Connection();
+        String responseSearchHistoryPc = c.searchHistoryResource(idPc, true, true, 5);
+
+
+        System.out.println("Rentre dans la fonction SearchHistoryPC");
+        try {
+            obj = jp.parse(responseSearchHistoryPc);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(YuukouServlet.class.getName()).log(Level.SEVERE, null,
+                    ex);
+        }
+        JSONObject jo = (JSONObject) obj;
+
+        if (jo.get("JSONState").equals("OK")) {
+            ArrayList<User> PreviousSwap = new ArrayList<User>();
+
+            JSONObject joo = (JSONObject) jo.get("JSONContents");
+            cp.setRessourceName(idPc);
+            cp.setRessourceStatus(joo.get("Status").toString());
+            cp.setLastTimeSeen(joo.get("LastTimeSeen").toString());
+
+            if (joo.get("HasLast").equals("YES")) {
+                cp.setHasPreviousUser(true);
+                JSONArray joo2 = (JSONArray) joo.get("ContentsLast");
+
+                for (Iterator it2 = joo2.iterator(); it2.hasNext();) {
+                    JSONObject jso2 = (JSONObject) it2.next();
+                    String swap1 = jso2.get("Fullname").toString();
+                    String swap5 = jso2.get("User").toString();
+                    String swap2 = jso2.get("State").toString();
+                    String swap3 = jso2.get("StartTimeSession").toString();
+                    String swap4 = jso2.get("EndTimeSession").toString();
+
+                    System.out.println("swap 2 " + swap2);
+                    System.out.println("swap 3 : " + swap3);
+                    System.out.println("swap 4 : " + swap4);
+
+                    User u = new User(swap5, swap1);
+                    PreviousSwap.add(u);
+                }
+
+            } else {
+                cp.setHasPreviousUser(false);
+            }
+
+            cp.setPreviousUsers(PreviousSwap);
         }
     }
 }

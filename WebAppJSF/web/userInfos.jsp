@@ -38,6 +38,7 @@
                     %>
                         </th></tr><tr><td>
                     <%
+                    out.println(u.getIdUser());
                     out.println("<img src=\"" + u.getIdPicture() + "\" style=\"width:180px; max-width:100%; vertical-align:middle;\" />");
                     %>
                         </td><td>
