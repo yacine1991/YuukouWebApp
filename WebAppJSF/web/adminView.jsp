@@ -142,7 +142,7 @@
             <div data-role="content">
                 <ul data-role="listview" data-theme="c" data-filter="false">
                     <li><a href="#<%= tabLocations[i].getId() %>-status">Status</a></li>
-                    <li><a href="#<%= tabLocations[i].getId() %>-report">Computer Down Report</a></li>
+                    <!--<li><a href="#<%= tabLocations[i].getId() %>-report">Computer Down Report</a></li>-->
                     <li><a href="#<%= tabLocations[i].getId() %>">Room View</a></li>
                 </ul>
                     </div>
@@ -229,13 +229,18 @@
                                             </div>
                                             <div data-role="content">
                                                 <center><table><tr><td>
-                                              <br /><strong>Computer Rooms Total:</strong>  <%= rl.getNumberRoomTotalPerCampus(tabLocations[i].getLongLocation()) %> 
+                                              <p>
+                                              <strong>Computer Rooms Total:</strong>  <%= rl.getNumberRoomTotalPerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Rooms booked:</strong>  <%= rl.getNumberRoomBusyPerCampus(tabLocations[i].getLongLocation()) %> 
-                                              <br /><strong>Computer Total:</strong>  <%= rl.getNumberComputerTotalPerCampus(tabLocations[i].getLongLocation()) %> 
+                                              <br /><strong>Computer Rooms PC:</strong>  <%= rl.getNumberRoomPerCampusForType("pc", tabLocations[i].getLongLocation()) %> 
+                                              <br /><strong>Computer Rooms MAC:</strong>  <%= rl.getNumberRoomPerCampusForType("mc", tabLocations[i].getLongLocation()) %> 
+                                              </p>
+                                              <p>
+                                              <strong>Computer Total:</strong>  <%= rl.getNumberComputerTotalPerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Available:</strong>  <%= rl.getNumberComputerAvailablePerCampus(tabLocations[i].getLongLocation()) %> 
                                               <br /><strong>Computer Busy:</strong>  <%= rl.getNumberComputerBusyPerCampus(tabLocations[i].getLongLocation()) %>
                                               <br /><strong>Computer Down:</strong>  <%= rl.getNumberComputerDownPerCampus(tabLocations[i].getLongLocation()) %>
-                                              <br /> 
+                                              </p> 
                                                         </td><td>
                                               <div id="visualization<%= tabLocations[i].getShortLocation() %>" style="width: 400px; height: 300px;"></div>
                                                         </td></tr>
@@ -270,6 +275,8 @@
                             it = al.iterator();
                                     while (it.hasNext()) {
                                         Room r = (Room) it.next();
+                                        
+                            out.println("<p><strong>" + r.getIdRoom() + "</strong><br />");
                             
                             if (r.getComputerList() != null) {
                                     for (int j = 0; j < r.getComputerList().length; j++) {
@@ -285,6 +292,7 @@
                                         out.println("</li>");
                                     }
                                 }
+                            out.println("</p>");
                               }
                             %>
                         </ul>
@@ -323,6 +331,7 @@
        <h1>NCS Library</h1>
       </div>
        <div data-role="content">
+            
           <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today1) 
                        + "&timeEnd=" + ft.format(today) + "&resource=" + "n-lib" + '\"'
                        + " style=\"max-width:100%; vertical-align:middle;\"/>"); %>
