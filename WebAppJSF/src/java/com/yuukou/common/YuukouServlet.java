@@ -466,20 +466,12 @@ public class YuukouServlet extends HttpServlet {
 
                     tab[i] = Byte.parseByte(test);
                 }
-
                 r.setImage(convertByteToImage(tab, r.getIdRoom(), "jpg"));
-
-
             }
-
-
-
 
         } else {
             r.setJSONstate("KO");
             r.setJSONReason(jo.get("JSONReason").toString());
-
-
 
         }
 
@@ -524,8 +516,6 @@ public class YuukouServlet extends HttpServlet {
                 r.setComputerList(tabComputer);
             }
         }
-
-
     }
 
     public void parseWho(UserList ul, Room r) {
@@ -586,7 +576,7 @@ public class YuukouServlet extends HttpServlet {
         JSONParser jp = new JSONParser();
         Object obj = null;
         Connection c = new Connection();
-        String responseSearchHistoryUser = c.searchHistoryUser(idUser, true, true);
+        String responseSearchHistoryUser = c.searchHistoryUser(idUser, true, true, 5);
 
 
         System.out.println("Rentre dans la fonction SearchHistoryUser");
@@ -629,17 +619,11 @@ public class YuukouServlet extends HttpServlet {
                     History h = new History(swap1, swap2, swap3, swap4);
 
                     historySwap.add(h);
-
                 }
-
 
             } else {
                 u.setHasHistory(false);
-
             }
-
-
-
             if (joo.get("HasWho").equals("YES")) {
                 u.setOnline(true);
                 //JSONObject job2 = (JSONObject) jo.get("ContentsWho");
@@ -649,7 +633,6 @@ public class YuukouServlet extends HttpServlet {
                     u.setResourceUsedByUser(jso3.get("Resource").toString());
                     u.setActualState(jso3.get("State").toString());
                     u.setActualSession(jso3.get("StartTimeSession").toString());
-
                 }
             } else {
                 u.setOnline(false);
@@ -659,7 +642,6 @@ public class YuukouServlet extends HttpServlet {
         } else {
             u.setJSONState(jo.get("JSONState").toString());
         }
-
     }
 
     public File convertByteToImage(byte[] tab, String idRoom, String extension) throws IOException {
@@ -667,9 +649,7 @@ public class YuukouServlet extends HttpServlet {
         InputStream in = new ByteArrayInputStream(tab);
         BufferedImage bImageFromConvert = ImageIO.read(in);
         File fi = new File(getServletContext().getRealPath("/") + "/images/" + idRoom + "." + extension);
-
         ImageIO.write(bImageFromConvert, "jpg", fi);
-
         return fi;
     }
 
@@ -736,11 +716,7 @@ public class YuukouServlet extends HttpServlet {
 
                 //tabImages[i] =(String) joo3.get(i).toString();
             }
-
-
             g.setImageFile(convertByteToImage(tabImageByte, "test", g.getImageType()));
-
-
         } else {
             g.setJSONstate("KO");
             g.setJSONReason(jo.get("JSONReason").toString());

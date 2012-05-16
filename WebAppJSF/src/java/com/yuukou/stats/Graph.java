@@ -25,13 +25,9 @@ public class Graph{
     private String [] Image;
     private File ImageFile;
 
-    public File getImageFile() {
-        return ImageFile;
-    }
+   
 
-    public void setImageFile(File ImageFile) {
-        this.ImageFile = ImageFile;
-    }
+   
 
     public String[] getContentsDates() {
         return ContentsDates;
@@ -108,6 +104,20 @@ public class Graph{
     public void setJSONstate(String JSONstate) {
         this.JSONstate = JSONstate;
     }
+
+    public File getImageFile() {
+        return ImageFile;
+    }
+
+    public void setImageFile(File ImageFile) {
+        this.ImageFile = ImageFile;
+    }
+
+
+
+
+
+
     
  
     
