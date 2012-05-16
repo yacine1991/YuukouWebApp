@@ -387,15 +387,32 @@
       <div data-role="page" data-add-back-btn="true" id="globalview">
             <div data-role="header"><h3>Global View</h3></div>
             <div data-role="content">
-             
-                <img src="http://localhost:8080/WebApplication2/ComboChartServlet" /> 
-                <br />
-                    
-                <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today7) 
-                                        + "&timeEnd=" + ft.format(today) + '\"'
-                                        + " style=\"max-width:100%; \"/>"); %>
-                         
-            </div>
+              <center>
+                  <table><tr><td>
+                                              <p>
+                                              <strong>Computer Rooms Total:</strong>  <%= rl.getNumberAllRooms() %> 
+                                              <br /><strong>Computer Rooms booked:</strong>  <%= rl.getNumberRoomAvailableForAllCampus() %>                                              
+                                              <br /><strong>Computer Rooms booked:</strong>  <%= rl.getNumberRoomBusyForAllCampus() %> 
+                                              <br /><strong>Computer Rooms PC:</strong>  <%= rl.getNumberRoomsPc() %> 
+                                              <br /><strong>Computer Rooms MAC:</strong>  <%= rl.getNumberRoomsMac() %> 
+                                              </p>
+                                              <p>
+                                              <strong>Computer Total:</strong>  <%= rl.getNumberAllComputerForAllCampus() %> 
+                                              <br /><strong>Computer Available:</strong>  <%= rl.getNumberComputerAvailableForAllCampus() %> 
+                                              <br /><strong>Computer Busy:</strong>  <%= rl.getNumberComputerBusyForAllCampus() %>
+                                              <br /><strong>Computer Down:</strong>  <%= rl.getNumberComputerDownForAllCampus() %>
+                                              </p> 
+                                                        </td><td>
+                                            <img src="http://localhost:8080/WebApplication2/ComboChartServlet" />
+                                                        </td></tr>
+                                            <% out.println("<img src=\"/WebAppJSF/ImgGraphServlet?timeStart=" + ft.format(today7) 
+                                                         + "&timeEnd=" + ft.format(today) + '\"'
+                                                         + " style=\"max-width:100%; \"/>"); %>
+                                                        </td></tr>
+                                                        <tr><td colspan="2">
+                                                        </td></tr>
+                  </table></center>
+               </div>
       </div>
                                         
       <div data-role="page" data-add-back-btn="true" id="ncslib-listview">
