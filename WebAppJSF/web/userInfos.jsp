@@ -17,39 +17,46 @@
 
         <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
         <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
-
-
-
+        <style>
+            .stylea{background-color: #cccccc;
+            }
+            .styleb{background-color: #666666;}
+        </style>
     </head>
     <% User u = (User) request.getAttribute("user");%>
     <body>
-        <div data-role="page">
+        
+        <div data-role="page" id="<%= u.getIdUser()%>">
             <div data-role="header">
                 <h1>User <%out.println(u.getIdUser());%></h1>
-                <a href="" data-icon="back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
-                <a data-icon="refresh"  data-iconpos="notext" data-rel="dialog" data-transition="fade" href="javascript:document.location.reload();"></a>
-            </div>
+               </div>
             <div data-role="content">
+                <table><tr><th colspan="2">
                 <%
-                    out.println("<p>User " + u.getNameUser() + "</p>");
-                    out.println("</br>");
+                
+                    out.println("User " + u.getNameUser() );
+                    %>
+                        </th></tr><tr><td>
+                    <%
+                    out.println("<img src=\"" + u.getIdPicture() + "\" style=\"width:180px; max-width:100%; vertical-align:middle;\" />");
+                    %>
+                        </td><td>
+                            <%
                     out.println("Session " + u.getActualSession());
-                    out.println("</br>");
+                    out.println("<br />");
                     out.println("ActualState " + u.getActualState());
-                    out.println("</br>");
-                    out.println("User url pict " + u.getIdPicture());
-                    out.println("</br>");
+                    out.println("<br />");
                     for (int i = 0; i < u.getAllHistoryUser().size(); i++) {
-                        out.println("History of PC used " + u.getAllHistoryUser().get(i).getPcUsed());
+                        out.println("<div class=\"styleb\">History of PC used " + u.getAllHistoryUser().get(i).getPcUsed());
                         out.println("Start" + u.getAllHistoryUser().get(i).getStartTimeSession());
                         out.println("END" + u.getAllHistoryUser().get(i).getEndTimeSession());
 
-                        out.println("</br>");
+                        out.println("</div><br />");
                     }
 
-                    out.println("<img src=\"" + u.getIdPicture() + "\" style=\"width:180px; max-width:100%; vertical-align:middle;\" />");
+                    
                 %>
-
+                        </td></tr></table>
             </div>
         </div>
 
