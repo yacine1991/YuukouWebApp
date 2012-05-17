@@ -18,25 +18,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rooms Infos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-         <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
+        <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
         <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
         <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
         <style>
-.good,
-.medium,
-.bad, .zero { font-weight:bold; text-shadow: none;}
-.good { background-color:#00FF00; }
-.medium { background-color:#FFFF00; }
-.bad { background-color:#FFAA00;}
-.zero { background-color:#FF0000; }
-.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
-  padding-left: 63px; 
-}
-.myThumb {margin-top: 20px; width:60px;max-width: 15%;}
+            .good,
+            .medium,
+            .bad, .zero { font-weight:bold; text-shadow: none;}
+            .good { background-color:#00FF00; }
+            .medium { background-color:#FFFF00; }
+            .bad { background-color:#FFAA00;}
+            .zero { background-color:#FF0000; }
+            .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
+                padding-left: 63px; 
+            }
+            .myThumb {margin-top: 20px; width:60px;max-width: 15%;}
         </style>
     </head>
     <body>
-        <div data-role="page">
+        <div data-role="page" data-add-back-btn="true" data-theme="d">
 
             <div data-role="header" data-position="fixed">
                 <h3>Rooms</h3>
@@ -49,10 +49,22 @@
 
 
 
-                <ul data-role="listview" data-theme="c" data-filter="true">
-                    <li data-role="list-divider"> JSON State : ${roomList.JSONstate}
-                        JSON LastCycle : ${roomList.JSONlastCycle}
-                        JSON Maintenance : ${roomList.JSONmaintenance}</li>
+                <ul data-role="listview" data-theme="d" data-filter="true">
+                    <li data-role="list-divider" data-theme="a">
+                        <a href="#why" data-rel="popup" data-inline="true" data-mini="true" >
+                            <%if (rl.getJSONstate().equals("KO")) {
+                                    out.println("Server is under maintenance, data will be back in few minutes");
+                                } else {
+                                    out.print("Rooms List");
+
+                                }
+                                /*
+                                 * JSON State : ${roomList.JSONstate} JSON
+                                 * LastCycle : ${roomList.JSONlastCycle} JSON
+                                 * Maintenance : ${roomList.JSONmaintenance}
+                                 */
+                            %></a>
+                    </li>
 
                     <%
                         Iterator it = rl.getJSONcontent().iterator();
@@ -71,7 +83,7 @@
 
                         <% out.println("<a href='YuukouServlet?choice=Room&id=" + r.getIdRoom() + "'>");%>
                         <%
-                        if (r.getTypeResource().equals("mc")) {%>
+                            if (r.getTypeResource().equals("mc")) {%>
                         <img src="images/apple.jpg" alt="macintosh" align="middle" class="myThumb"/>
                         <% } else {%>
                         <img src="images/windows.jpg" alt="windows" align="middle"  class="myThumb"/>
@@ -103,13 +115,13 @@
                                     out.println("<p>Site: " + r.getLongDescription() + "</p>");
                                 } else {
                                     out.println("<p>Status:<blink><font color=\"red\"> Room Booked</font></blink></p>");
-                                    
-                                    
+
+
                                     if (!r.getStartTime().equals("")) {
                                         out.print("<p>Booking: ");
-                                        out.println(r.getStartTime()+" - "+ r.getEndTime());
+                                        out.println(r.getStartTime() + " - " + r.getEndTime());
                                         out.println("</p>");
-                                        out.println("<p>Event: " + r.getEventType()+"</p>");
+                                        out.println("<p>Event: " + r.getEventType() + "</p>");
                                         out.println("<p>Site: " + r.getLongDescription() + "</p>");
                                     }
                                 }
@@ -124,7 +136,25 @@
                 <a href="YuukouServlet?choice=credits" data-role="button" data-icon="star" data-theme="a" style="left: 10px;position: absolute;top: 0.4em;">Credits</a>
                 <a href="info.jsp" data-role="button" data-icon="info" data-theme="a" style="position: absolute; right: 10px; top: 0.4em;">Info</a>
             </div>
-        </div>    
+
+            <div data-role="popup" id="why" data-overlay-theme="a" data-corners="false">
+                <P>
+                    Data quality : ${roomList.JSONstate}
+                    <br />
+                    Serveur LastCycle : ${roomList.JSONlastCycle}
+                    <br />
+                    Maintenance : ${roomList.JSONmaintenance}
+                    <br />
+                    <%
+                        if (rl.getJSONstate().equals("KO")) {
+                            out.println("Reason : " + rl.getJSONReason());
+                        }
+                    %>
+                </p>
+            </div>
+
+        </div>   
+
     </body>
 </html>
 

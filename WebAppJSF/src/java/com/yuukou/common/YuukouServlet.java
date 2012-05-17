@@ -94,12 +94,6 @@ public class YuukouServlet extends HttpServlet {
             request.setAttribute("userlist", ul);
             request.setAttribute("room", r);
 
-        } else if (type.equals("credits")) {
-            url = "/credits.jsp";
-            roomsStatus(rl);
-            roomLocation(rl);
-            //graphRequest(g, "2012-04-16 00:00:00", "2012-04-17 00:00:00", "0");
-            request.setAttribute("roomList", rl);
         } else if (type.equals("stattest")) {
             url = "/roomStatisticsAdmin.jsp";
             roomsStatus(rl);
@@ -513,9 +507,10 @@ public class YuukouServlet extends HttpServlet {
                     String swap2 = (String) joComputers.get("Resource").toString();
                     String swap3 = (String) joComputers.get("LastTimeSeen").toString();
 
-                    /*cp.setRessourceStatus(swap1);
-                    cp.setLastTimeSeen(swap3);
-                    cp.setRessourceName(swap2);*/
+                    /*
+                     * cp.setRessourceStatus(swap1); cp.setLastTimeSeen(swap3);
+                     * cp.setRessourceName(swap2);
+                     */
                     Computer cpt2 = new Computer(swap4, swap2, swap3, swap1);
                     tabComputer[i] = cpt2;
                     r.setHasComputersDown(true);
@@ -734,6 +729,7 @@ public class YuukouServlet extends HttpServlet {
     public void searchHistoryResource(Computer cp, String idPc) {
         JSONParser jp = new JSONParser();
         Object obj = null;
+        String swapPict = null;
         Connection c = new Connection();
         String responseSearchHistoryPc = c.searchHistoryResource(idPc, true, true, 5);
 
@@ -767,12 +763,12 @@ public class YuukouServlet extends HttpServlet {
                     String swap2 = jso2.get("State").toString();
                     String swap3 = jso2.get("StartTimeSession").toString();
                     String swap4 = jso2.get("EndTimeSession").toString();
+                    if (!jso2.get("IdPicture").toString().isEmpty() || jso2.get("IdPicture").toString() != null) {
+                        swapPict = jso2.get("IdPicture").toString().replace("'\'", "");
+                        
+                    }
 
-                    System.out.println("swap 2 " + swap2);
-                    System.out.println("swap 3 : " + swap3);
-                    System.out.println("swap 4 : " + swap4);
-
-                    User u = new User(swap5, swap1);
+                    User u = new User(swap5, swap1, swap3, swapPict, swap4, swap2);
                     PreviousSwap.add(u);
                 }
 

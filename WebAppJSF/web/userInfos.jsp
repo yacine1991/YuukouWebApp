@@ -25,38 +25,41 @@
     </head>
     <% User u = (User) request.getAttribute("user");%>
     <body>
-        
-        <div data-role="page" id="<%= u.getIdUser()%>">
+
+        <div data-role="page" id="<%= u.getIdUser()%>" data-theme="d">
             <div data-role="header">
-                <h1>User <%out.println(u.getIdUser());%></h1>
-               </div>
+                <h1><%out.println("ID User " + u.getIdUser());%></h1>
+            </div>
             <div data-role="content">
                 <table><tr><th colspan="2">
-                <%
-                
-                    out.println("User " + u.getNameUser() );
-                    %>
+                            <%
+
+                                out.println(u.getNameUser());
+                            %>
                         </th></tr><tr><td>
-                    <%
-                    out.println(u.getIdUser());
-                    out.println("<img src=\"" + u.getIdPicture() + "\" style=\"width:180px; max-width:100%; vertical-align:middle;\" />");
-                    %>
+                        <%
+                            out.println(u.getIdUser());
+                            out.println("<img src=\"" + u.getIdPicture() + "\" style=\"width:180px; max-width:100%; vertical-align:middle;\" />");
+                        %>
                         </td><td>
                             <%
-                    out.println("Session " + u.getActualSession());
-                    out.println("<br />");
-                    out.println("ActualState " + u.getActualState());
-                    out.println("<br />");
-                    for (int i = 0; i < u.getAllHistoryUser().size(); i++) {
-                        out.println("<div class=\"styleb\">History of PC used " + u.getAllHistoryUser().get(i).getPcUsed());
-                        out.println("Start" + u.getAllHistoryUser().get(i).getStartTimeSession());
-                        out.println("END" + u.getAllHistoryUser().get(i).getEndTimeSession());
+                                out.println("Actual state : " + u.getActualState());
 
-                        out.println("</div><br />");
-                    }
+                                out.println("<br />");
+                                out.println("Actual Session Started at : " + u.getActualSession());
+                                out.println("<br />");
+                                for (int i = 0; i < u.getAllHistoryUser().size(); i++) {
+                                    out.println("<div class=\"styleb\"> <br /><font color=\"blue\"><strong>Pc Name :</strong></font>" + u.getAllHistoryUser().get(i).getPcUsed());
+                                    out.println("<br />");
+                                    out.println("<font color=\"green\"><strong>Start : </strong></font>" + u.getAllHistoryUser().get(i).getStartTimeSession());
+                                    out.println("<br />");
+                                    out.println("<font color=\"red\"><strong>End : </strong></font>" + u.getAllHistoryUser().get(i).getEndTimeSession());
 
-                    
-                %>
+                                    out.println("</div><br />");
+                                }
+
+
+                            %>
                         </td></tr></table>
             </div>
         </div>

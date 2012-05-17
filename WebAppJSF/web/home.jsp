@@ -17,23 +17,23 @@
         <title>Yuukou2WebApp Main Page</title>
     </head>
     <body>
-        <div data-role="page">
+        <div data-role="page" data-theme="d">
 
             <div data-role="header">
                 <h1>Home</h1>
             </div>
-            <ul data-role="listview" data-theme="c">
+            <ul data-role="listview">
                 <% try {%>
-                <li><a href="YuukouServlet?choice=find">Find a PC</a>
+                <li data-icon="search" data-iconpos="left"><a href="YuukouServlet?choice=find" >Find a PC</a>
                 </li>
 
                 <li ><a href="YuukouServlet?choice=stats">Statistics</a>
                 </li>
 
-                <li ><a href="YuukouServlet?choice=stattest">Statistics TEST</a>
+                <li ><a href="YuukouServlet?choice=stattest">Statistics Test page</a>
                 </li>
 
-                <li ><a href="YuukouServlet?choice=adminView">Admin View</a></li>
+                <li data-icon="gear" data-iconpos="left" ><a href="YuukouServlet?choice=adminView" >Administator View</a></li>
                 <% } catch (Exception e) {
 
                         out.println("Error" + e.getMessage().toString());

@@ -94,7 +94,7 @@
     </head>
     
     <body>
-        <div data-role="page" data-add-back-btn="true">
+        <div data-role="page" data-add-back-btn="true" data-theme="d">
 
             <div data-role="header">
                 <h1>Administrator</h1>

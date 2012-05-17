@@ -61,7 +61,7 @@
     </head>
 
     <body onload="javascript:lancerCompteur(20);">
-        <div data-role="page">
+        <div data-role="page" data-add-back-btn="true" data-theme="d">
 
             <div data-role="header">
                 <h1>Statistics</h1>

@@ -18,10 +18,8 @@
         <title>Yuukou credits</title>
     </head>
     <body>
-        <%
-            RoomList rl = (RoomList) request.getAttribute("roomList");
-        %>
-        <div data-role="page" class="page_map">
+       
+        <div data-role="page" class="page_map" data-theme="d">
 
             <div data-role="header" data-position="fixed">
                 <a href="" data-icon="back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
@@ -43,12 +41,7 @@
                 <P>
                     One important feature of this new version is the support for mobile devices thanks to the JQuery Mobile API.
             </div>
-            <div>
-                <%
-                    out.println("Number Rooms PCs : " + rl.getNumberRoomsPc());
-
-                %>
-            </div>
+            
             <center>
                 University of Westminster, Headquarters, 309 Regent Street, London W1B 2UW, +44 (0)20 7911 5000 
             </center>

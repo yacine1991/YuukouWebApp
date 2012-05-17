@@ -33,40 +33,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
         <style>
-.good,
-.medium,
-.bad, .zero { font-weight:bold; text-shadow: none;}
-.good { background-color:#00FF00; }
-.medium { background-color:#FFFF00; }
-.bad { background-color:#FFAA00;}
-.zero { background-color:#FF0000; }
-.novalues { background-color:#100000; }
+            .good,
+            .medium,
+            .bad, .zero { font-weight:bold; text-shadow: none;}
+            .good { background-color:#00FF00; }
+            .medium { background-color:#FFFF00; }
+            .bad { background-color:#FFAA00;}
+            .zero { background-color:#FF0000; }
+            .novalues { background-color:#100000; }
         </style>
         <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
         <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-        <% String gmap_file = "gmap/gmap-" + siteletter + ".js"; %>
-        <jsp:include page='<%= gmap_file %>' />        
-        
-<style type="text/css">
-    #map_canvas { 
-    border: thin solid;
-    height: 220px;
-    <!--left: 18px;
-    position: relative;
-    top: 18px;-->
-      padding: 5% 5% 5% 5%;
-    vertical-align: middle;
-    width: 420px; 
-      overflow: hidden;
-      max-width:100%;
-      margin-left: 5%; 
-    }
-</style> 
+        <% String gmap_file = "gmap/gmap-" + siteletter + ".js";%>
+        <jsp:include page='<%= gmap_file%>' />        
+
+        <style type="text/css">
+            #map_canvas { 
+                border: thin solid;
+                height: 220px;
+                <!--left: 18px;
+                position: relative;
+                top: 18px;-->
+                padding: 5% 5% 5% 5%;
+                vertical-align: middle;
+                width: 420px; 
+                overflow: hidden;
+                max-width:100%;
+                margin-left: 5%; 
+            }
+        </style> 
     </head>
     <body onload="initialize();">
-        <div data-role="page">
+        <div data-role="page" data-theme="d">
             <div data-role="header">
                 <h1>Room <%out.println(r.getIdRoom());%></h1>
                 <a href="" data-icon="back" data-iconpos="notext" data-rel="back" data-direction="reverse">Back</a> 
@@ -75,6 +75,7 @@
             <div data-role="content">
 
                 <%out.println("<center><img src=\"images/" + r.getIdRoom() + ".jpg\" alt=\"salle\" width='90%' style='max-width:400px;max-height:300px' /></center>");%>
+                <br/><%out.println("<center>" + r.getRoomDescription() + "</center>");%>
                 <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
                     <div data-role="collapsible">
                         <h3>Status</h3>
@@ -83,7 +84,7 @@
                             <%
                                 String myHealthClass = "novalue";
                                 float health = 0;
-                               
+
                                 if (r.getHealthRoom() != null) {
 
                                     health = Float.parseFloat(r.getHealthRoom());
@@ -122,7 +123,7 @@
                                         myAvailClass = "zero";
                                     }
                                 } else {
-                                    out.println("Soucis pour availability");
+
                                     myAvailClass = "novalue";
                                 }
                             %>
@@ -130,92 +131,98 @@
                             <span class=" <%= myAvailClass%> "> &nbsp;<%= avail%> % &nbsp; </span>
                         </p>
 
-                        <%out.println("Number of Computers: " + r.getPcTotal());%>
-                        <br/><%out.println("Available Computers: " + r.getPcAvailable());%>
-                        <br/><%out.println("Computer down: " + r.getPcDown());%>
+
+                        <br/><%out.println("Available Computers: " + r.getPcAvailable());%>                        
                         <br/><%out.println("Computer Busy: " + r.getBusy());%>
 
                         <% if (r.getStatus().equals("Busy")) {
                                 out.println("<br/>Lab Status:<blink><font color=\"red\"> booked</font></blink></li>");
                             }%>
 
-                        <br/><%out.println("Computer Types: " + r.getTypeResource());%>
-                        <br/><%out.println("Long Description: " + r.getLongDescription());%>
+                        <br/><%out.println("Computer Types: " + r.getTypeResource().toUpperCase());%>
+                        <br/><%out.println("Location: " + r.getLongDescription());%>
                         <br/><%out.println("Restriction: " + r.getRestriction());%>
-                        <br/><%out.println("RoomDescription: " + r.getRoomDescription());%>
+                        <br/>
+                        <br/><br/>
+                        <br/>
 
-                        <br/><%out.println("Computer Down: " + r.getHasComputersDown());%>
-                        <br/><%out.println("UserListtestState: " + ul.getJSONstate());%>
 
-                        <p><strong>Computer List</strong></p>
-                        <ul>
+                        <ul data-role="listview" data-theme="d" data-filter="true">
+                            <li data-role="list-divider" data-theme="a"> Computer List</li>
                             <%
                                 if (r.getComputerList() != null) {
                                     for (int i = 0; i < r.getComputerList().length; i++) {
-                                        out.println("<a data-role=\"button\" href=\"YuukouServlet?choice=computerInfo&idPc="+r.getComputerList()[i].getRessourceName()+"\">");
+
+                                        out.println("<li><a href=\"YuukouServlet?choice=computerInfo&idPc=" + r.getComputerList()[i].getRessourceName() + "\">");
                                         if (r.getComputerList()[i].getRessourceStatus().equals("DOWN")) {
-                                            out.println("<li><span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            out.println("<span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
                                         }
 
                                         if (r.getComputerList()[i].getRessourceStatus().equals("DELETEME")) {
-                                            out.println("<li><span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            out.println("<span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
                                         }
 
                                         if (r.getComputerList()[i].getRessourceStatus().equals("OK")) {
-                                            out.println("<li><span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            out.println("<span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
                                         }
 
                                         out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
-                                        out.println(r.getComputerList().length);
-                                        out.println("</li>");
+
+
                                         out.println("</a>");
-                                        out.println("<br />");
+                                        out.println("</li>");
+
+
                                     }
+
                                 }
                             %>
                         </ul>
-                        <ul>
-                        <%
-                            if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
+                        <br/>
+                        <br/>
+                        <ul data-role="listview" data-theme="d" data-filter="true">
+                            <li data-role="list-divider" data-theme="a"> Users logged-in</li>
+                            <%
+                                if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
 
-                                out.println("<p><strong>Users logged-in</strong></p>");
 
-                                Iterator it = ul.getJSONcontent().iterator();
-                                while (it.hasNext()) {
 
-                                    User u = (User) it.next();
-                                    // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
-                                    if (u.getRoomFromResource().equals(r.getIdRoom())) {
-                                        out.println("<li> <a href=\"#" +u.getIdUser() + "\" data-rel=\"popup\" data-role=\"button\" data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
-                                                + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</a></li>");
-                                        
-                                        //out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">More about this User</a>");
-                                       
-                                    
+                                    Iterator it = ul.getJSONcontent().iterator();
+                                    while (it.hasNext()) {
+
+                                        User u = (User) it.next();
+                                        // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
+                                        if (u.getRoomFromResource().equals(r.getIdRoom())) {
+                                            out.println("<li> <a href=\"#" + u.getIdUser() + "\" data-rel=\"popup\"  data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
+                                                    + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</a></li>");
+
+                                            //out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">More about this User</a>");
+
+
+                                        }
                                     }
+                                } else {
+                                    out.println("<li>No logged-in users</li>");
                                 }
-                            } else {
-                                out.println("<li>No logged-in users</li>");
-                            }
 
 
-                        %>
+                            %>
                         </ul>
-                        <br/><%out.println("TimeTable : " + r.getHasTimeTable());
+                        <br/><%
                             if (r.getHasTimeTable()) {
-                                
+                                out.println("<ul data-role=\"listview\" data-inset=\"true\">");
                                 for (int i = 0; i < r.getTimeTable().length; i++) {
-                                    out.println("<li>Start time : " + r.getTimeTable()[i].getStartTime() + "");
-                                    out.println("End Time : " + r.getTimeTable()[i].getEndTime() + "");
-                                    out.println("Event type : " + r.getTimeTable()[i].getEventType() + "");
-                                    out.println("Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</li>");
-
-                                    r.getTimeTable()[i].getEventType();
+                                    out.println("<li>");
+                                    out.println("<h3>" + r.getTimeTable()[i].getEventType() + "</h3>");
+                                    out.println("<p><strong>" + r.getTimeTable()[i].getStartTime() + "--" + r.getTimeTable()[i].getEndTime() + "</strong></p>");
+                                    out.println("<p>Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</p>");
+                                    out.println("<p class=\"ui-li-aside\"><strong>Event n°" + i + "</strong></p>");
+                                    out.println("</li>");
                                 }
+                                out.println("</ul>");
                             }
 
                         %>
-                        <br/><%out.println("Long location : " + r.getLongLocation());%>
 
                         <%} else {
                                 out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
@@ -265,7 +272,7 @@
                                     out.println("</div>");
                                 }
                             } else {
-                               out.println("Software content to be populated");
+                                out.println("Software content to be populated");
                             }
 
                         %>
@@ -273,18 +280,18 @@
                     </div>
                 </div>
                 <div data-role="footer" data-position="fixed"> <h3>Yuukou 2</h3>
-                <a href="#popupMap" style="left: 10px;position: absolute;top: 0.4em;" data-icon="star" data-rel="popup" data-role="button" data-inline="true">Map</a>
-                <a href="#popuphowtogetthere" style="right: 10px;position: absolute;top: 0.4em;" data-icon="info" data-rel="popup" data-role="button" data-inline="true">How to get there</a>
-                
-            </div>
-                        
+                    <a href="#popupMap" style="left: 10px;position: absolute;top: 0.4em;" data-icon="star" data-rel="popup" data-role="button" data-inline="true">Map</a>
+                    <a href="#popuphowtogetthere" style="right: 10px;position: absolute;top: 0.4em;" data-icon="info" data-rel="popup" data-role="button" data-inline="true">How to get there</a>
+
+                </div>
+
                 <div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="c"  data-inset="true" style="width:460px; height: 260px; max-width:90%;" >
-                <div id="map_canvas"></div>
-    		</div>
-                
+                    <div id="map_canvas"></div>
+                </div>
+
                 <div data-role="popup" id="popuphowtogetthere" data-overlay-theme="a" data-theme="c"  data-inset="true" >
-                <% String siteinfo_file = "siteinfo/site-" + siteletter + ".js"; %>
-                <jsp:include page='<%= siteinfo_file %>' />
+                    <% String siteinfo_file = "siteinfo/site-" + siteletter + ".js";%>
+                    <jsp:include page='<%= siteinfo_file%>' />
                 </div>
 
                 <div data-role="popup" id="<%= r.getIdRoom()%>-day" data-overlay-theme="a"  data-corners="false">
@@ -316,9 +323,9 @@
                 <div data-role="popup" id="<%= u.getIdUser()%>" data-overlay-theme="a" data-corners="false">
                     <img src="<%= u.getIdPicture()%>" style="width:180px; max-width:100%; vertical-align:middle;" />
                     <br />
-                    
-                    <a href="YuukouServlet?choice=findUser&idUser=<%= u.getIdUser() %>" data-role="button" data-inline="true" data-rel="dialog">More about this User</a>"
-                                       
+
+                    <a href="YuukouServlet?choice=findUser&idUser=<%= u.getIdUser()%>" data-role="button" data-inline="true" data-rel="dialog">More about this User</a>"
+
                 </div>
                 <%  }
                         }

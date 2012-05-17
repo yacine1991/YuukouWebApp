@@ -24,6 +24,18 @@ public class User {
     private String JSONState;
     private String actualState;
     private String actualSession;
+    private String EndTimeSession;
+
+    public User(String idUser, String nameUser, String StartTimeSession, String idPicture, String EndTimeSession, String actualState) {
+        this.idUser = idUser;
+        this.nameUser = nameUser;
+        this.StartTimeSession = StartTimeSession;
+        this.idPicture = idPicture;
+        this.EndTimeSession = EndTimeSession;
+        this.actualState = actualState;
+    }
+
+    
 
     public User(String idUser, String nameUser) {
         this.idUser = idUser;
@@ -142,5 +154,11 @@ public class User {
     public void setActualSession(String actualSession) {
         this.actualSession = actualSession;
     }
-    
+    public String getEndTimeSession() {
+        return EndTimeSession;
+    }
+
+    public void setEndTimeSession(String EndTimeSession) {
+        this.EndTimeSession = EndTimeSession;
+    }
 }

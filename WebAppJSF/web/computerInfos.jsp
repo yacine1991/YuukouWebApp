@@ -27,27 +27,33 @@
     <% Computer cp = (Computer) request.getAttribute("computer");%>
     <body>
 
-        <div data-role="page">
+        <div data-role="page" data-theme="d">
             <div data-role="header">
                 <h1>PC <%out.println(cp.getRessourceName());%></h1>
             </div>
             <div data-role="content">
-                <%
-
-                    out.println("pc hashistory" + cp.isHasPreviousUser());
-                    out.println("<br/>");
-                    out.println("<br/>");
-                    if (cp.isHasPreviousUser() == true) {
-                        for (int i = 0; i < cp.getPreviousUsers().size(); i++) {
-                            out.println("Name ancien User : " + cp.getPreviousUsers().get(i).getNameUser());
-                            out.println("Id ancien User : " + cp.getPreviousUsers().get(i).getIdUser());
-                            out.println("<a href=\"YuukouServlet?choice=findUser&idUser=" + cp.getPreviousUsers().get(i).getIdUser() + "\" data-role=\"button\">More about Him </a>");
-                            out.println("<br/>");
+                <ul data-role="listview" data-theme="d" data-filter="true" data-inset="true">
+                    <li data-role="list-divider" data-theme="a"><%out.println("PC " + cp.getRessourceName() + " History");%></li>
+                    <%
+                        if (cp.isHasPreviousUser() == true) {
+                            for (int i = 0; i < cp.getPreviousUsers().size(); i++) {
+                                out.println("<li><a href=\"YuukouServlet?choice=findUser&idUser=" + cp.getPreviousUsers().get(i).getIdUser() + "\"> ");
+                                out.println("<img src=\"images/" + cp.getPreviousUsers().get(i).getIdPicture() + "\" alt=\"imgUser\"/>");
+                                out.println("<h3>" + cp.getPreviousUsers().get(i).getNameUser() + "</h3>");
+                                out.println("<p><strong>ID :" + cp.getPreviousUsers().get(i).getIdUser() + "</p></strong>");
+                                if (!cp.getPreviousUsers().get(i).getActualState().equals("User logged out")) {
+                                    out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getActualState() + "</p>");
+                                } else {
+                                    out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getEndTimeSession() + "</p>");
+                                }
+                                //out.println("<a href=\"YuukouServlet?choice=findUser&idUser=" + cp.getPreviousUsers().get(i).getIdUser() + "\" data-role=\"button\">More about Him </a>");
+                                out.println("</a>");
+                                out.println("</li>");
+                            }
+                        } else {
+                            out.println("<li>No History</li>");
                         }
-                    } else {
-                        out.println("No History");
-                    }
-                %>
+                    %>
             </div>
         </div>
 
