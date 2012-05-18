@@ -49,7 +49,7 @@
                                 out.println("Actual Session Started at : " + u.getActualSession()+"</span>");
                                 out.println("<br />");
                                 for (int i = 0; i < u.getAllHistoryUser().size(); i++) {
-                                    out.println("<div class=\"styleb\"> <br /><font color=\"blue\"><strong>Pc Name :</strong></font>" + u.getAllHistoryUser().get(i).getPcUsed());
+                                    out.println("<div class=\"styleb\"> <br /><font color=\"blue\"><strong>Resource Name :</strong></font>" + u.getAllHistoryUser().get(i).getPcUsed());
                                     out.println("<br />");
                                     out.println("<font color=\"green\"><strong>Start : </strong></font>" + u.getAllHistoryUser().get(i).getStartTimeSession());
                                     out.println("<br />");
