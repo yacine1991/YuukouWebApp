@@ -27,7 +27,7 @@
     <% Computer cp = (Computer) request.getAttribute("computer");%>
     <body>
 
-        <div data-role="page" data-theme="d">
+        <div data-role="page" data-theme="d" data-add-back-btn="true">
             <div data-role="header">
                 <h1>PC <%out.println(cp.getRessourceName());%></h1>
             </div>
