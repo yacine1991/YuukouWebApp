@@ -38,9 +38,9 @@
                         if (cp.isHasPreviousUser() == true) {
                             for (int i = 0; i < cp.getPreviousUsers().size(); i++) {
                                 out.println("<li><a href=\"YuukouServlet?choice=findUser&idUser=" + cp.getPreviousUsers().get(i).getIdUser() + "\"> ");
-                                out.println("<img src=\"images/" + cp.getPreviousUsers().get(i).getIdPicture() + "\" alt=\"imgUser\"/>");
+                                out.println("<img src=\"" + cp.getPreviousUsers().get(i).getIdPicture() + "images/\" alt=\"imgUser\"/>");
                                 out.println("<h3>" + cp.getPreviousUsers().get(i).getNameUser() + "</h3>");
-                                out.println("<p><strong>ID :" + cp.getPreviousUsers().get(i).getIdUser() + "</p></strong>");
+                                out.println("<p><strong>ID :" + cp.getPreviousUsers().get(i).getIdUser() + "</strong></p>");
                                 if (!cp.getPreviousUsers().get(i).getActualState().equals("User logged out")) {
                                     out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getActualState() + "</p>");
                                 } else {
@@ -54,6 +54,7 @@
                             out.println("<li>No History</li>");
                         }
                     %>
+                </ul>
             </div>
         </div>
 
