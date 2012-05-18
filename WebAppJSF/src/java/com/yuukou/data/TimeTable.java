@@ -13,13 +13,27 @@ public class TimeTable {
     private String EndTime;
     private String EventType;
     private String EventDescription;
+    private String EventId;
 
-    public TimeTable(String StartTime, String EndTime, String EventType, String EventDescription) {
+    public TimeTable(String StartTime, String EndTime, String EventType, String EventDescription, String EventId) {
         this.StartTime = StartTime;
         this.EndTime = EndTime;
         this.EventType = EventType;
         this.EventDescription = EventDescription;
+        this.EventId = EventId;
     }
+    
+    
+
+    public String getEventId() {
+        return EventId;
+    }
+
+    public void setEventId(String EventId) {
+        this.EventId = EventId;
+    }
+
+    
 
     public String getEndTime() {
         return EndTime;

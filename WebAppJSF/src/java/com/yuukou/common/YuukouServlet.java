@@ -393,6 +393,9 @@ public class YuukouServlet extends HttpServlet {
             r.setRoomUrl(jso.get("Url").toString());
             r.setRestriction(jso.get("Restriction").toString());
             r.setHasSoftware(jso.get("HasSoftware").toString());
+            if(jso.get("State").toString().equals("Busy")){
+            r.setActualEventId(jso.get("EventId").toString());
+            }
             healthResourceForRoom(r);
 
             if (jso.get("HasGroups").toString().equals("YES")) {
@@ -441,11 +444,12 @@ public class YuukouServlet extends HttpServlet {
 
                     for (i = 0; i < joo.size(); i++) {
                         JSONObject joTimeTable = (JSONObject) joo.get(i);
+                        String swap0 = (String) joTimeTable.get("EventId");
                         String swap1 = (String) joTimeTable.get("StartTime");
                         String swap2 = (String) joTimeTable.get("EndTime");
                         String swap3 = (String) joTimeTable.get("EventType");
                         String swap4 = (String) joTimeTable.get("EventDescription");
-                        TimeTable tb = new TimeTable(swap1, swap2, swap3, swap4);
+                        TimeTable tb = new TimeTable(swap1, swap2, swap3, swap4, swap0);
 
                         tabTimeTable[i] = tb;
 
@@ -765,7 +769,7 @@ public class YuukouServlet extends HttpServlet {
                     String swap4 = jso2.get("EndTimeSession").toString();
                     if (!jso2.get("IdPicture").toString().isEmpty() || jso2.get("IdPicture").toString() != null) {
                         swapPict = jso2.get("IdPicture").toString().replace("'\'", "");
-                        
+
                     }
 
                     User u = new User(swap5, swap1, swap3, swapPict, swap4, swap2);

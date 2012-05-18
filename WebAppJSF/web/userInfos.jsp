@@ -43,10 +43,10 @@
                         %>
                         </td><td>
                             <%
-                                out.println("Actual state : " + u.getActualState());
+                                out.println("<span style=\"background:#33FF33\">Actual state : " + u.getActualState());
 
                                 out.println("<br />");
-                                out.println("Actual Session Started at : " + u.getActualSession());
+                                out.println("Actual Session Started at : " + u.getActualSession()+"</span>");
                                 out.println("<br />");
                                 for (int i = 0; i < u.getAllHistoryUser().size(); i++) {
                                     out.println("<div class=\"styleb\"> <br /><font color=\"blue\"><strong>Pc Name :</strong></font>" + u.getAllHistoryUser().get(i).getPcUsed());

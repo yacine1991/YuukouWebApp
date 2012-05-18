@@ -146,101 +146,118 @@
                         <br/><br/>
                         <br/>
 
+                        <div>
+                            <ul data-role="listview" data-theme="d" data-filter="true">
+                                <li data-role="list-divider" data-theme="a"> Computer List</li>
+                                <%
+                                    if (r.getComputerList() != null) {
+                                        for (int i = 0; i < r.getComputerList().length; i++) {
 
-                        <ul data-role="listview" data-theme="d" data-filter="true">
-                            <li data-role="list-divider" data-theme="a"> Computer List</li>
-                            <%
-                                if (r.getComputerList() != null) {
-                                    for (int i = 0; i < r.getComputerList().length; i++) {
+                                            out.println("<li><a href=\"YuukouServlet?choice=computerInfo&idPc=" + r.getComputerList()[i].getRessourceName() + "\">");
+                                            if (r.getComputerList()[i].getRessourceStatus().equals("DOWN")) {
+                                                out.println("<span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            }
 
-                                        out.println("<li><a href=\"YuukouServlet?choice=computerInfo&idPc=" + r.getComputerList()[i].getRessourceName() + "\">");
-                                        if (r.getComputerList()[i].getRessourceStatus().equals("DOWN")) {
-                                            out.println("<span class=\"bad\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            if (r.getComputerList()[i].getRessourceStatus().equals("DELETEME")) {
+                                                out.println("<span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            }
+
+                                            if (r.getComputerList()[i].getRessourceStatus().equals("OK")) {
+                                                out.println("<span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                            }
+                                            if (r.getComputerList()[i].getLastTimeSeen().equals("null")) {
+                                                out.println("Lastseen: Never seen alive");
+                                            } else {
+                                                out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen());
+                                            }
+
+                                            out.println("</a>");
+                                            out.println("</li>");
+
+
                                         }
 
-                                        if (r.getComputerList()[i].getRessourceStatus().equals("DELETEME")) {
-                                            out.println("<span class=\"zero\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+                                    }
+                                %>
+                            </ul>7
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <div>
+                            <ul data-role="listview" data-theme="d" data-filter="true">
+                                <li data-role="list-divider" data-theme="a"> Users logged-in</li>
+                                <%
+                                    if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
+
+
+
+                                        Iterator it = ul.getJSONcontent().iterator();
+                                        while (it.hasNext()) {
+
+                                            User u = (User) it.next();
+                                            // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
+                                            if (u.getRoomFromResource().equals(r.getIdRoom())) {
+                                                out.println("<li> <a href=\"#" + u.getIdUser() + "\" data-rel=\"popup\"  data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
+                                                        + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</a></li>");
+
+                                                //out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">More about this User</a>");
+
+
+                                            }
                                         }
+                                    } else {
+                                        out.println("<li>No logged-in users</li>");
+                                    }
 
-                                        if (r.getComputerList()[i].getRessourceStatus().equals("OK")) {
-                                            out.println("<span class=\"good\">" + r.getComputerList()[i].getRessourceName() + "</span>");
+
+                                %>
+                            </ul>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            <br/><%
+                                if (r.getHasTimeTable()) {
+                                    out.println("<ul data-role=\"listview\" data-inset=\"false\">");
+                                    out.println("<li data-role=\"list-divider\" data-theme=\"a\"> Time Table</li>");
+                                    for (int i = 0; i < r.getTimeTable().length; i++) {
+                                        out.println("<li>");
+                                        if (r.getTimeTable()[i].getEventId().equals(r.getActualEventId())) {
+                                            out.println("<h3>" + r.getTimeTable()[i].getEventType() + " <font color=\"red\" size=-1> ( Current Event )</font></h3>");
+                                        } else {
+                                            out.println("<h3>" + r.getTimeTable()[i].getEventType() + "</h3>");
                                         }
+                                        out.println("<p><strong>" + r.getTimeTable()[i].getStartTime() + "--" + r.getTimeTable()[i].getEndTime() + "</strong></p>");
+                                        out.println("<p>Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</p>");
+                                        int j = i + 1;
 
-                                        out.println("Lastseen: " + r.getComputerList()[i].getLastTimeSeen() + "");
 
-
-                                        out.println("</a>");
+                                        out.println("<p class=\"ui-li-aside\"><strong>Event n°" + j + "</strong></p>");
                                         out.println("</li>");
-
-
                                     }
-
+                                    out.println("</ul>");
                                 }
+
                             %>
-                        </ul>
-                        <br/>
-                        <br/>
-                        <ul data-role="listview" data-theme="d" data-filter="true">
-                            <li data-role="list-divider" data-theme="a"> Users logged-in</li>
+
+                            <%} else {
+                                    out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
+                                }%>
+
                             <%
-                                if (ul.getJSONcontent() != null && ul.getJSONcontent().size() > 0) {
-
-
-
-                                    Iterator it = ul.getJSONcontent().iterator();
-                                    while (it.hasNext()) {
-
-                                        User u = (User) it.next();
-                                        // System.out.println(u.getRoomFromResource() + " --- " + r.getIdRoom());
-                                        if (u.getRoomFromResource().equals(r.getIdRoom())) {
-                                            out.println("<li> <a href=\"#" + u.getIdUser() + "\" data-rel=\"popup\"  data-inline=\"true\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-mini=\"true\">"
-                                                    + u.getIdUser() + " on " + u.getResourceUsedByUser() + " since " + u.getStartTimeSession() + "</a></li>");
-
-                                            //out.println("<a href=\"YuukouServlet?choice=findUser&idUser="+u.getIdUser()+"\">More about this User</a>");
-
-
-                                        }
-                                    }
-                                } else {
-                                    out.println("<li>No logged-in users</li>");
-                                }
-
-
+                                Date today = new Date();
+                                SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                                Calendar cal = new GregorianCalendar();
+                                cal.setTime(today);
+                                cal.add(Calendar.DAY_OF_MONTH, -1);
+                                Date today1 = cal.getTime();
+                                cal.add(Calendar.DAY_OF_MONTH, -7);
+                                Date today7 = cal.getTime();
+                                cal.add(Calendar.DAY_OF_MONTH, -30);
+                                Date today30 = cal.getTime();
                             %>
-                        </ul>
-                        <br/><%
-                            if (r.getHasTimeTable()) {
-                                out.println("<ul data-role=\"listview\" data-inset=\"true\">");
-                                for (int i = 0; i < r.getTimeTable().length; i++) {
-                                    out.println("<li>");
-                                    out.println("<h3>" + r.getTimeTable()[i].getEventType() + "</h3>");
-                                    out.println("<p><strong>" + r.getTimeTable()[i].getStartTime() + "--" + r.getTimeTable()[i].getEndTime() + "</strong></p>");
-                                    out.println("<p>Event descritpion : " + r.getTimeTable()[i].getEventDescription() + "</p>");
-                                    out.println("<p class=\"ui-li-aside\"><strong>Event n°" + i + "</strong></p>");
-                                    out.println("</li>");
-                                }
-                                out.println("</ul>");
-                            }
-
-                        %>
-
-                        <%} else {
-                                out.println("<li><blink><font color=\"red\">Room busy</font></blink></li>");
-                            }%>
-
-                        <%
-                            Date today = new Date();
-                            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                            Calendar cal = new GregorianCalendar();
-                            cal.setTime(today);
-                            cal.add(Calendar.DAY_OF_MONTH, -1);
-                            Date today1 = cal.getTime();
-                            cal.add(Calendar.DAY_OF_MONTH, -7);
-                            Date today7 = cal.getTime();
-                            cal.add(Calendar.DAY_OF_MONTH, -30);
-                            Date today30 = cal.getTime();
-                        %>
-
+                        </div>
                         <p><strong>Lab usage</strong></p>
                         <a href="#<%= r.getIdRoom()%>-day" data-rel="popup" data-role="button" data-inline="true" >Day</a>
                         <a href="#<%= r.getIdRoom()%>-week" data-rel="popup" data-role="button" data-inline="true" >Week</a>

@@ -46,6 +46,15 @@ public class Room {
     private boolean HasComputersDown = false;
     private boolean HasUserOnline = false;
     private String HasSoftware;
+    private String ActualEventId;
+
+    public String getActualEventId() {
+        return ActualEventId;
+    }
+
+    public void setActualEventId(String ActualEventId) {
+        this.ActualEventId = ActualEventId;
+    }
 
     public String getHasSoftware() {
         return HasSoftware;

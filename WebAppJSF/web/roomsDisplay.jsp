@@ -137,7 +137,7 @@
                 <a href="info.jsp" data-role="button" data-icon="info" data-theme="a" style="position: absolute; right: 10px; top: 0.4em;">Info</a>
             </div>
 
-            <div data-role="popup" id="why" data-overlay-theme="a" data-corners="false">
+            <div data-role="popup" id="why" data-overlay-theme="a" data-corners="true">
                 <P>
                     Data quality : ${roomList.JSONstate}
                     <br />
