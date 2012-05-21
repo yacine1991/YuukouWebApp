@@ -42,9 +42,9 @@
                                 out.println("<h3>" + cp.getPreviousUsers().get(i).getNameUser() + "</h3>");
                                 out.println("<p><strong>ID :" + cp.getPreviousUsers().get(i).getIdUser() + "</strong></p>");
                                 if (!cp.getPreviousUsers().get(i).getActualState().equals("User logged out")) {
-                                    out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getActualState() + "</p>");
+                                    out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getActualState() + " ("+cp.getPreviousUsers().get(i).getDureeSession()+")</p>");
                                 } else {
-                                    out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getEndTimeSession() + "</p>");
+                                    out.println("<p> Session :" + cp.getPreviousUsers().get(i).getStartTimeSession() + "--" + cp.getPreviousUsers().get(i).getEndTimeSession() +" ("+cp.getPreviousUsers().get(i).getDureeSession()+")</p>");
                                 }
                                 //out.println("<a href=\"YuukouServlet?choice=findUser&idUser=" + cp.getPreviousUsers().get(i).getIdUser() + "\" data-role=\"button\">More about Him </a>");
                                 out.println("</a>");

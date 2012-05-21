@@ -25,15 +25,21 @@ public class User {
     private String actualState;
     private String actualSession;
     private String EndTimeSession;
+    private String dureeSession;
 
-    public User(String idUser, String nameUser, String StartTimeSession, String idPicture, String EndTimeSession, String actualState) {
+
+
+    public User(String idUser, String nameUser, String StartTimeSession, String idPicture, String actualState, String EndTimeSession, String dureeSession) {
         this.idUser = idUser;
         this.nameUser = nameUser;
         this.StartTimeSession = StartTimeSession;
         this.idPicture = idPicture;
-        this.EndTimeSession = EndTimeSession;
         this.actualState = actualState;
+        this.EndTimeSession = EndTimeSession;
+        this.dureeSession = dureeSession;
     }
+
+
 
     
 
@@ -56,7 +62,13 @@ public class User {
         }
         this.StartTimeSession = StartTimeSession;
     }
+    public String getDureeSession() {
+        return dureeSession;
+    }
 
+    public void setDureeSession(String dureeSession) {
+        this.dureeSession = dureeSession;
+    }
     public boolean isOnline() {
         return online;
     }

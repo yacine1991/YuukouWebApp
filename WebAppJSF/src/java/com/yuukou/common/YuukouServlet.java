@@ -20,7 +20,9 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -238,8 +240,8 @@ public class YuukouServlet extends HttpServlet {
                 r.setRestriction(jso.get("Restriction").toString());
 
                 if (jso.get("State").equals("Busy")) {
-                    r.setStartTime(jso.get("StartTime").toString());
-                    r.setEndTime(jso.get("EndTime").toString());
+                    r.setStartTime(jso.get("StartTime").toString().replace(".0", ""));
+                    r.setEndTime(jso.get("EndTime").toString().replace(".0", ""));
                     r.setEventType(jso.get("EventType").toString());
                 }
                 rl.addRoom(r);
@@ -393,8 +395,8 @@ public class YuukouServlet extends HttpServlet {
             r.setRoomUrl(jso.get("Url").toString());
             r.setRestriction(jso.get("Restriction").toString());
             r.setHasSoftware(jso.get("HasSoftware").toString());
-            if(jso.get("State").toString().equals("Busy")){
-            r.setActualEventId(jso.get("EventId").toString());
+            if (jso.get("State").toString().equals("Busy")) {
+                r.setActualEventId(jso.get("EventId").toString());
             }
             healthResourceForRoom(r);
 
@@ -445,8 +447,8 @@ public class YuukouServlet extends HttpServlet {
                     for (i = 0; i < joo.size(); i++) {
                         JSONObject joTimeTable = (JSONObject) joo.get(i);
                         String swap0 = (String) joTimeTable.get("EventId");
-                        String swap1 = (String) joTimeTable.get("StartTime");
-                        String swap2 = (String) joTimeTable.get("EndTime");
+                        String swap1 = (String) joTimeTable.get("StartTime").toString().replace(".0", "");
+                        String swap2 = (String) joTimeTable.get("EndTime").toString().replace(".0", "");
                         String swap3 = (String) joTimeTable.get("EventType");
                         String swap4 = (String) joTimeTable.get("EventDescription");
                         TimeTable tb = new TimeTable(swap1, swap2, swap3, swap4, swap0);
@@ -558,7 +560,7 @@ public class YuukouServlet extends HttpServlet {
                     User u = new User();
                     u.setIdUser(jso.get("User").toString());
                     u.setResourceUsedByUser(jso.get("Resource").toString());
-                    u.setStartTimeSession(jso.get("StartTimeSession").toString());
+                    u.setStartTimeSession(jso.get("StartTimeSession").toString().replace(".0", ""));
                     if (!jso.get("IdPicture").toString().isEmpty() || jso.get("IdPicture").toString() != null) {
                         String swap = jso.get("IdPicture").toString().replace("'\'", "");
                         u.setIdPicture(swap);
@@ -582,6 +584,7 @@ public class YuukouServlet extends HttpServlet {
     public void searchHistoryUser(User u, String idUser) {
         JSONParser jp = new JSONParser();
         Object obj = null;
+        String Duree = null;
         Connection c = new Connection();
         String responseSearchHistoryUser = c.searchHistoryUser(idUser, true, true, 5);
 
@@ -614,16 +617,45 @@ public class YuukouServlet extends HttpServlet {
                 for (Iterator it2 = joo2.iterator(); it2.hasNext();) {
                     JSONObject jso2 = (JSONObject) it2.next();
                     String swap1 = jso2.get("Resource").toString();
-                    System.out.println("swap 1 : " + swap1);
+
                     String swap2 = jso2.get("State").toString();
-                    String swap3 = jso2.get("StartTimeSession").toString();
-                    String swap4 = jso2.get("EndTimeSession").toString();
+                    String swap3 = jso2.get("StartTimeSession").toString().replace(".0", "");
+                    String swap4 = jso2.get("EndTimeSession").toString().replace(".0", "");
+                    
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    try {
 
-                    System.out.println("swap 2 " + swap2);
-                    System.out.println("swap 3 : " + swap3);
-                    System.out.println("swap 4 : " + swap4);
+                        Date fin = sdf.parse(swap3);
+                        Date deb = sdf.parse(swap4);
+                        long diff = deb.getTime() - fin.getTime();
 
-                    History h = new History(swap1, swap2, swap3, swap4);
+                        float nbHeuresSwap = diff / 3600000.0f;
+                        float nbMinPrcent = nbHeuresSwap % 3600000.0f;
+                        //String decimalHeures = Float.valueOf(nbMinPrcent).toString().substring(1);
+                        
+                        float nbMin = (nbMinPrcent * 60);
+
+
+                        String s = Float.valueOf(nbHeuresSwap).toString();
+                        String sf = s.substring(0, s.indexOf("."));
+                        float nbHeures = Float.parseFloat(sf);
+
+                        System.out.println("Nbheures : " + nbHeures);
+                        System.out.println("nbMin : " + nbMin);
+
+                        if (nbHeures == 0) {
+                            Duree = nbMin + " minutes";
+                        } else if (nbHeures == 1) {
+                            Duree = nbHeures + " hour " + nbMin + " minutes";
+                        } else {
+                            Duree = nbHeures + " hours " + nbMin + " minutes";
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("ERROR :" + e.getMessage());
+                    }
+
+                    History h = new History(swap1, swap2, swap3, swap4, Duree);
 
                     historySwap.add(h);
                 }
@@ -639,7 +671,7 @@ public class YuukouServlet extends HttpServlet {
                     JSONObject jso3 = (JSONObject) it3.next();
                     u.setResourceUsedByUser(jso3.get("Resource").toString());
                     u.setActualState(jso3.get("State").toString());
-                    u.setActualSession(jso3.get("StartTimeSession").toString());
+                    u.setActualSession(jso3.get("StartTimeSession").toString().replace(".0", ""));
                 }
             } else {
                 u.setOnline(false);
@@ -734,6 +766,7 @@ public class YuukouServlet extends HttpServlet {
         JSONParser jp = new JSONParser();
         Object obj = null;
         String swapPict = null;
+        String Duree = null;
         Connection c = new Connection();
         String responseSearchHistoryPc = c.searchHistoryResource(idPc, true, true, 5);
 
@@ -765,14 +798,46 @@ public class YuukouServlet extends HttpServlet {
                     String swap1 = jso2.get("Fullname").toString();
                     String swap5 = jso2.get("User").toString();
                     String swap2 = jso2.get("State").toString();
-                    String swap3 = jso2.get("StartTimeSession").toString();
-                    String swap4 = jso2.get("EndTimeSession").toString();
+                    String swap3 = jso2.get("StartTimeSession").toString().replace(".0", "");
+                    String swap4 = jso2.get("EndTimeSession").toString().replace(".0", "");
                     if (!jso2.get("IdPicture").toString().isEmpty() || jso2.get("IdPicture").toString() != null) {
                         swapPict = jso2.get("IdPicture").toString().replace("'\'", "");
 
                     }
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    try {
 
-                    User u = new User(swap5, swap1, swap3, swapPict, swap4, swap2);
+                        Date deb = sdf.parse(swap4);
+                        Date fin = sdf.parse(swap3);
+                        long diff = deb.getTime() - fin.getTime();
+
+                        float nbHeuresSwap = diff / 3600000.0f;
+                        float nbMinPrcent = nbHeuresSwap % 3600000.0f;
+                        //String decimalHeures = Float.valueOf(nbMinPrcent).toString().substring(1);
+                        
+                        float nbMin = (nbMinPrcent * 60);
+
+
+                        String s = Float.valueOf(nbHeuresSwap).toString();
+                        String sf = s.substring(0, s.indexOf("."));
+                        float nbHeures = Float.parseFloat(sf);
+
+                        System.out.println("Nbheures : " + nbHeures);
+                        System.out.println("nbMin : " + nbMin);
+
+                        if (nbHeures == 0) {
+                            Duree = nbMin + " minutes";
+                        } else if (nbHeures == 1) {
+                            Duree = nbHeures + " hour " + nbMin + " minutes";
+                        } else {
+                            Duree = nbHeures + " hours " + nbMin + " minutes";
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("ERROR :" + e.getMessage());
+                    }
+
+                    User u = new User(swap5, swap1, swap3, swapPict, swap4, swap2, Duree);
                     PreviousSwap.add(u);
                 }
 
