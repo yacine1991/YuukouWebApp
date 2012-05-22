@@ -31,7 +31,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rooms Infos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
         <style>
             .good,
             .medium,
@@ -42,8 +44,7 @@
             .zero { background-color:#FF0000; }
             .novalues { background-color:#100000; }
         </style>
-        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
-        <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
+
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
         <% String gmap_file = "gmap/gmap-" + siteletter + ".js";%>
@@ -296,11 +297,7 @@
 
                     </div>
                 </div>
-                <div data-role="footer" data-position="fixed"> <h3>Yuukou 2</h3>
-                    <a href="#popupMap" style="left: 10px;position: absolute;top: 0.4em;" data-icon="star" data-rel="popup" data-role="button" data-inline="true">Map</a>
-                    <a href="#popuphowtogetthere" style="right: 10px;position: absolute;top: 0.4em;" data-icon="info" data-rel="popup" data-role="button" data-inline="true">How to get there</a>
-
-                </div>
+                
 
                 <div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="c"  data-inset="true" style="width:460px; height: 260px; max-width:90%;" >
                     <div id="map_canvas"></div>
@@ -349,7 +346,12 @@
                     }
                 %>
 
-            </div>  
+            </div>
+                <div data-role="footer" data-position="fixed"> <h3>Yuukou 2</h3>
+                    <a href="#popupMap" style="left: 10px;position: absolute;top: 0.4em;" data-icon="star" data-rel="popup" data-role="button" data-inline="true">Map</a>
+                    <a href="#popuphowtogetthere" style="right: 10px;position: absolute;top: 0.4em;" data-icon="info" data-rel="popup" data-role="button" data-inline="true">How to get there</a>
+
+                </div>
         </div>
 
     </body>

@@ -621,7 +621,7 @@ public class YuukouServlet extends HttpServlet {
                     String swap2 = jso2.get("State").toString();
                     String swap3 = jso2.get("StartTimeSession").toString().replace(".0", "");
                     String swap4 = jso2.get("EndTimeSession").toString().replace(".0", "");
-                    
+
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     try {
 
@@ -632,23 +632,31 @@ public class YuukouServlet extends HttpServlet {
                         float nbHeuresSwap = diff / 3600000.0f;
                         float nbMinPrcent = nbHeuresSwap % 3600000.0f;
                         //String decimalHeures = Float.valueOf(nbMinPrcent).toString().substring(1);
-                        
-                        float nbMin = (nbMinPrcent * 60);
+
 
 
                         String s = Float.valueOf(nbHeuresSwap).toString();
                         String sf = s.substring(0, s.indexOf("."));
                         float nbHeures = Float.parseFloat(sf);
 
+                        float nbMin = (nbMinPrcent * 60);
+                        if (nbMin >= 60) {
+                            nbMin = (nbMinPrcent * 60) - nbHeures * 60;
+                        }
+                      
+                        float nbMin1 = Math.round(nbMin);
                         System.out.println("Nbheures : " + nbHeures);
-                        System.out.println("nbMin : " + nbMin);
+                        System.out.println("nbMin : " + nbMin1);
+                        
 
                         if (nbHeures == 0) {
-                            Duree = nbMin + " minutes";
+                            Duree = nbMin1 + " minutes";
                         } else if (nbHeures == 1) {
-                            Duree = nbHeures + " hour " + nbMin + " minutes";
+                            Duree = nbHeures + " hour " + nbMin1 + " minutes";
+                            Duree = Duree.toString().replace(".0", "");
                         } else {
-                            Duree = nbHeures + " hours " + nbMin + " minutes";
+                            Duree = nbHeures + " hours " + nbMin1 + " minutes";
+                            Duree = Duree.toString().replace(".0", "");
                         }
 
                     } catch (Exception e) {
@@ -814,7 +822,7 @@ public class YuukouServlet extends HttpServlet {
                         float nbHeuresSwap = diff / 3600000.0f;
                         float nbMinPrcent = nbHeuresSwap % 3600000.0f;
                         //String decimalHeures = Float.valueOf(nbMinPrcent).toString().substring(1);
-                        
+
                         float nbMin = (nbMinPrcent * 60);
 
 

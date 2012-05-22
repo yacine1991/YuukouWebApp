@@ -104,7 +104,7 @@
                 <li><a href="YuukouServlet?choice=find">Room View</a></li>
              </ul>
             </div>
-        </div>
+        
         <div data-role="page" data-add-back-btn="true" id="groupview">
           <div data-role="header"><h3>Site</h3></div>
            <div data-role="content">
@@ -620,6 +620,6 @@
             </div>       
       </div>
                                        
-                   
+               </div>    
     </body>
 </html>

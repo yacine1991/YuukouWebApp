@@ -18,9 +18,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rooms Infos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet"  href="http://jquerymobile.com/branches/popup-widget/css/themes/default/jquery.mobile.css" /> 
-        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
-        <script src="http://jquerymobile.com/branches/popup-widget/js/"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
         <style>
             .good,
             .medium,
@@ -138,7 +138,7 @@
             </div>
 
             <div data-role="popup" id="why" data-overlay-theme="a" data-corners="true">
-                <P>
+                <p>
                     Data quality : ${roomList.JSONstate}
                     <br />
                     Serveur LastCycle : ${roomList.JSONlastCycle}

@@ -10,9 +10,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css" />
-        <script src="jquery-1.7.1.min.js"></script>
-        <script src="jquery.mobile-1.0.1.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Yuukou2WebApp Main Page</title>
     </head>
