@@ -39,9 +39,9 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.css" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<script src="http://code.jquery.com/mobile/latest/jquery.mobile.js"></script>
         <style>
 .good,
 .medium,
@@ -104,6 +104,7 @@
                 <li><a href="YuukouServlet?choice=find">Room View</a></li>
              </ul>
             </div>
+        </div>
         
         <div data-role="page" data-add-back-btn="true" id="groupview">
           <div data-role="header"><h3>Site</h3></div>
