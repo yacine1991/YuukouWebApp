@@ -341,7 +341,7 @@
                     <img src="<%= u.getIdPicture()%>" style="width:180px; max-width:100%; vertical-align:middle;" />
                     <br />
 
-                    <a href="YuukouServlet?choice=findUser&idUser=<%= u.getIdUser()%>" data-role="button" data-inline="true" data-rel="dialog">More about this User</a>"
+                    <a href="YuukouServlet?choice=findUser&idUser=<%= u.getIdUser()%>" data-role="button" data-inline="true" data-rel="dialog">More about this User</a>
 
                 </div>
                 <%  }
